@@ -11,7 +11,7 @@ A Helm chart for Node-Red, a low-code programming for event-driven applications
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| dirien |  |  |
+| dirien | engin.diri@mail.schwarz | https://jobs.schwarz |
 
 ## Values
 
@@ -48,4 +48,3 @@ A Helm chart for Node-Red, a low-code programming for event-driven applications
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
 | tolerations | list | `[]` |  |
-

@@ -1,6 +1,7 @@
 # node-red
 
 ![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.3.5](https://img.shields.io/badge/AppVersion-1.3.5-informational?style=flat-square)
+[![Linting and Testing](https://github.com/dirien/node-red-chart/actions/workflows/lint-and-test.yml/badge.svg)](https://github.com/dirien/node-red-chart/actions/workflows/lint-and-test.yml)
 
 A Helm chart for Node-Red, a low-code programming for event-driven applications
 
@@ -10,7 +11,7 @@ A Helm chart for Node-Red, a low-code programming for event-driven applications
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| dirien |  |  |
+| dirien | engin.diri@mail.schwarz | https://jobs.schwarz |
 
 ## Values
 
@@ -47,4 +48,3 @@ A Helm chart for Node-Red, a low-code programming for event-driven applications
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
 | tolerations | list | `[]` |  |
-
