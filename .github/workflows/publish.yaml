@@ -3,8 +3,7 @@ name: Chart Publish
 on:
   push:
     branches:
-      - master
-      - rewrite-build
+      - main
 jobs:
   publish:
     runs-on: ubuntu-latest
