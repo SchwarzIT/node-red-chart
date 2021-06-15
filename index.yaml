@@ -3,6 +3,29 @@ entries:
   node-red:
   - apiVersion: v2
     appVersion: 1.3.5
+    created: "2021-06-15T09:29:28.316577555Z"
+    description: A Helm chart for Node-Red, a low-code programming for event-driven
+      applications
+    digest: 2013c99973693518c6f27b8f853af13f1eaf3c1ecad9a6e2e3c8e32192d6510a
+    home: https://nodered.org/
+    icon: https://yt3.ggpht.com/ytc/AAUvwnhA7nZR-BfQMmmzd2F218gg7BUtXuJ2N1vafR2s=s68-c-k-c0x00ffffff-no-rj
+    keywords:
+    - node-red
+    - iot
+    - home
+    - automation
+    - ""
+    maintainers:
+    - email: engin.diri@mail.schwarz
+      name: dirien
+      url: https://jobs.schwarz
+    name: node-red
+    type: application
+    urls:
+    - https://github.com/dirien/node-red-chart/releases/download/node-red-0.1.2/node-red-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.3.5
     created: "2021-06-10T11:31:26.235391279Z"
     description: A Helm chart for Node-Red, a low-code programming for event-driven
       applications
@@ -47,4 +70,4 @@ entries:
     urls:
     - https://github.com/dirien/node-red-chart/releases/download/node-red-0.1.0/node-red-0.1.0.tgz
     version: 0.1.0
-generated: "2021-06-10T11:31:26.235398279Z"
+generated: "2021-06-15T09:29:28.316587855Z"
