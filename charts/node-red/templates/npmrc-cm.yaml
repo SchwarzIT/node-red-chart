@@ -1,0 +1,9 @@
+{{- if and .Values.npmrc.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: npmrc
+data:
+  npmrc: |
+    registry={{ .Values.npmrc.registry }}
+{{- end -}}

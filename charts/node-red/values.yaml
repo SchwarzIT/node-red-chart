@@ -15,6 +15,10 @@ imagePullSecrets: ""
 nameOverride: ""
 fullnameOverride: ""
 
+npmrc:
+  enabled: false
+  registry: "https://registry.npmjs.org"
+
 env: []
   # Possible Values:
   # TZ:

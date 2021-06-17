@@ -1,6 +1,6 @@
 # node-red
 
-![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.3.5](https://img.shields.io/badge/AppVersion-1.3.5-informational?style=flat-square)
+![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.3.5](https://img.shields.io/badge/AppVersion-1.3.5-informational?style=flat-square)
 [![Linting and Testing](https://github.com/dirien/node-red-chart/actions/workflows/lint-and-test.yml/badge.svg)](https://github.com/dirien/node-red-chart/actions/workflows/lint-and-test.yml)
 
 [![SIT](https://img.shields.io/badge/SIT-awesome-blueviolet.svg)](https://jobs.schwarz)
@@ -69,6 +69,8 @@ The command removes all the Kubernetes components associated with the chart and 
 | ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` | Ingress type of path |
 | ingress.tls | list | `[]` | Ingress TLS configuration |
 | nameOverride | string | `"node-red"` | Provide a name in place of node-red |
+| npmrc.enabled | bool | `false` | Enable custom npmrc config |
+| npmrc.registry | string | `"https://registry.npmjs.org"` | Configuration to use any compatible registry |
 | nodeSelector | object | `{}` | Node selector |
 | persistence.accessMode | string | `"ReadWriteOnce"` | Persistence access modes |
 | persistence.enabled | bool | `false` | Use persistent volume to store data |
