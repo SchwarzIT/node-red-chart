@@ -48,6 +48,11 @@ spec:
               path: /
               port: http
           volumeMounts:
+            {{- if and .Values.npmrc.enabled }}
+            - name: npmrc-volume
+              mountPath: /usr/src/node-red/.npmrc
+              subPath: npmrc
+            {{- end }}
             - name: data
               mountPath: /data
               {{- if .Values.persistence.subPath }}
@@ -56,6 +61,11 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
+        {{- if and .Values.npmrc.enabled }}
+        - name: npmrc-volume
+          configMap:
+            name: npmrc
+        {{- end }}
         - name: data
           {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
