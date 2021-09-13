@@ -1,6 +1,6 @@
 # node-red
 
-![Version: 0.2.1](https://img.shields.io/badge/Version-0.2.1-informational?style=flat-square)
+![Version: 0.2.2](https://img.shields.io/badge/Version-0.2.2-informational?style=flat-square)
 ![AppVersion: 2.0.6--12](https://img.shields.io/badge/AppVersion-2.0.6--12-informational?style=flat-square)
 ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) 
 [![Linting and Testing](https://github.com/dirien/node-red-chart/actions/workflows/lint-and-test.yml/badge.svg)](https://github.com/dirien/node-red-chart/actions/workflows/lint-and-test.yml)
@@ -80,10 +80,10 @@ The command removes all the Kubernetes components associated with the chart and 
 | persistence.existingClaim | string | `""` | Use an existing PVC to persist data |
 | persistence.size | string | `"5Gi"` | Size of persistent volume claim |
 | podAnnotations | object | `{}` | Pod annotations |
-| podSecurityContext | object | `{}` | Pod Security Context see [values.yaml](charts/values.yaml) |
+| podSecurityContext | object | `{}` | Pod Security Context see [values.yaml](charts/node-red/values.yaml) |
 | replicaCount | int | `1` | Number of nodes |
 | resources | object | `{}` | CPU/Memory resource requests/limits |
-| securityContext | object | `{}` | Security Context see [values.yaml](charts/values.yaml) |
+| securityContext | object | `{}` | Security Context see [values.yaml](charts/node-red/values.yaml) |
 | service.port | int | `1880` | Kubernetes port where service is exposed |
 | service.type | string | `"ClusterIP"` | Kubernetes service type |
 | serviceAccount.annotations | object | `{}` | Additional ServiceAccount annotations |
@@ -103,7 +103,7 @@ Alternatively, a YAML file that specifies the values for the parameters can be p
 helm install node-red node-red/node-red -f values.yaml
 ```
 
-> **Tip**: You can use the default [values.yaml](charts/values.yaml)
+> **Tip**: You can use the default [values.yaml](charts/node-red/values.yaml)
 
 ## Maintainers
 
