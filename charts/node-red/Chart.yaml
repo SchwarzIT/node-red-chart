@@ -6,15 +6,15 @@ icon: https://yt3.ggpht.com/ytc/AAUvwnhA7nZR-BfQMmmzd2F218gg7BUtXuJ2N1vafR2s=s68
 
 type: application
 
-version: 0.1.4
-appVersion: "1.3.5"
+version: 0.2.0
+appVersion: "2.0.6-12"
 
 keywords:
   - node-red
   - iot
   - home
   - automation
-  -
+
 maintainers:
   - name: dirien
     email: engin.diri@mail.schwarz
