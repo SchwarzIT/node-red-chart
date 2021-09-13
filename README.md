@@ -17,7 +17,7 @@ Adding node-red repository
 Before installing any chart provided by this repository, add the node-red Charts Repository:
 
 ```bash
-helm repo add node-red https://dirien.github.io/node-red-chart/
+helm repo add node-red https://schwarzit.github.io/node-red-chart/
 helm repo update
 ```
 
