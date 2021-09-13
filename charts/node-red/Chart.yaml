@@ -2,11 +2,14 @@ apiVersion: v2
 name: node-red
 description: A Helm chart for Node-Red, a low-code programming for event-driven applications
 home: https://nodered.org/
+sources:
+  - https://github.com/SchwarzIT/node-red-chart
+
 icon: https://yt3.ggpht.com/ytc/AAUvwnhA7nZR-BfQMmmzd2F218gg7BUtXuJ2N1vafR2s=s68-c-k-c0x00ffffff-no-rj
 
 type: application
 
-version: 0.2.0
+version: 0.2.1
 appVersion: "2.0.6-12"
 
 keywords:
