@@ -1,6 +1,6 @@
 # node-red
 
-![Version: 0.2.2](https://img.shields.io/badge/Version-0.2.2-informational?style=flat-square)
+![Version: 0.2.3](https://img.shields.io/badge/Version-0.2.3-informational?style=flat-square)
 ![AppVersion: 2.0.6--12](https://img.shields.io/badge/AppVersion-2.0.6--12-informational?style=flat-square)
 ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) 
 [![Linting and Testing](https://github.com/dirien/node-red-chart/actions/workflows/lint-and-test.yml/badge.svg)](https://github.com/dirien/node-red-chart/actions/workflows/lint-and-test.yml)
@@ -61,7 +61,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | image.pullPolicy | string | `"IfNotPresent"` | The image pull policy |
 | image.registry | string | `"docker.io"` | The image registry to pull from |
 | image.repository | string | `"nodered/node-red"` | The image repository to pull from |
-| image.tag | string | `""` | The image tag to pull |
+| image.tag | string | `""` | The image tag to pull, default: `Chart.appVersion` |
 | imagePullSecrets | string | `""` | The image pull secrets |
 | ingress.annotations | object | `{}` | Additional ingress annotations |
 | ingress.className | string | `""` | Defines which ingress controller will implement the resource |
