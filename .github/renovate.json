@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "config:base",
+    ":semanticCommitTypeAll(chore)"
+  ],
+  "commitBody": "Signed-off-by: {{{gitAuthor}}}",
+  "dependencyDashboard": false,
+  "labels": [
+    "helm"
+  ],
+  "semanticCommits": true
+}
