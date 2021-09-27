@@ -5,11 +5,11 @@ home: https://nodered.org/
 sources:
   - https://github.com/SchwarzIT/node-red-chart
 
-icon: https://yt3.ggpht.com/ytc/AAUvwnhA7nZR-BfQMmmzd2F218gg7BUtXuJ2N1vafR2s=s68-c-k-c0x00ffffff-no-rj
+icon: https://nodered.org/about/resources/media/node-red-icon-2.png
 
 type: application
 
-version: 0.2.3
+version: 0.2.4
 appVersion: "2.0.6-12"
 
 keywords:

@@ -1,4 +1,4 @@
-# node-red
+# node-red ⚙
 
 ![Version: 0.2.3](https://img.shields.io/badge/Version-0.2.3-informational?style=flat-square)
 ![AppVersion: 2.0.6--12](https://img.shields.io/badge/AppVersion-2.0.6--12-informational?style=flat-square)
@@ -104,6 +104,16 @@ helm install node-red node-red/node-red -f values.yaml
 ```
 
 > **Tip**: You can use the default [values.yaml](charts/node-red/values.yaml)
+
+### Contributing 🤝
+
+#### Contributing via GitHub
+
+Feel free to join. Checkout the [contributing guide](CONTRIBUTING.md)
+
+#### License
+
+Apache License, Version 2.0
 
 ## Maintainers
 
