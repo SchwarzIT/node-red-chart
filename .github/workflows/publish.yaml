@@ -31,8 +31,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: "chart_version"
-          replace: |
-            ${{ steps.lookUpChartVersion.outputs.result }}
+          replace: ${{ steps.lookUpChartVersion.outputs.result }}
           include: "**README.md"
 
       - name: Get App Version
@@ -45,8 +44,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: "app_version"
-          replace: |
-            ${{ steps.lookUpAppVersion.outputs.result }}
+          replace: ${{ steps.lookUpAppVersion.outputs.result }}
           include: "**README.md"
 
       - name: Run chart-releaser
