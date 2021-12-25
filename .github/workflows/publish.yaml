@@ -21,6 +21,34 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
+      - name: Get Chart Version
+        id: lookUpChartVersion
+        uses: mikefarah/yq@v4.16.2
+        with:
+          cmd: yq e '.version' charts/node-red/Chart.yaml
+
+      - name: replace placeholder for chart version
+        uses: jacobtomlinson/gha-find-replace@v2
+        with:
+          find: "chart_version"
+          replace: |
+            ${{ steps.lookUpChartVersion.outputs.result }}
+          include: "**README.md"
+
+      - name: Get App Version
+        id: lookUpAppVersion
+        uses: mikefarah/yq@v4.16.2
+        with:
+          cmd: yq e '.appVersion' charts/node-red/Chart.yaml
+
+      - name: replace placeholder for a  version
+        uses: jacobtomlinson/gha-find-replace@v2
+        with:
+          find: "app_version"
+          replace: |
+            ${{ steps.lookUpAppVersion.outputs.result }}
+          include: "**README.md"
+
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.2.1
         with:

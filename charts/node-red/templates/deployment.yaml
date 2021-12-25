@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "node-red.labels" . | nindent 4 }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount | default 1 }}
   selector:
     matchLabels:
       {{- include "node-red.selectorLabels" . | nindent 6 }}

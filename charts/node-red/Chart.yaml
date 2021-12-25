@@ -9,8 +9,8 @@ icon: https://nodered.org/about/resources/media/node-red-icon-2.png
 
 type: application
 
-version: 0.3.1
-appVersion: "2.1.3"
+version: 0.3.2
+appVersion: "2.1.4"
 
 keywords:
   - node-red
@@ -24,11 +24,13 @@ maintainers:
     url: https://jobs.schwarz
 
 annotations:
+  artifacthub.io/containsSecurityUpdates: "true"
   artifacthub.io/changes: |
+    - Updated node-red image to 2.1.4
     - Updated node-red image to 2.1.3
   artifacthub.io/images: |
     - name: node-red
-      image: docker.io/nodered/node-red:2.1.3
+      image: docker.io/nodered/node-red:2.1.4
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: website
