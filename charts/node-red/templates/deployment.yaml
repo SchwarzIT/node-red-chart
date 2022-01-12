@@ -25,6 +25,17 @@ spec:
       serviceAccountName: {{ include "node-red.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.persistence.enabled }}
+      initContainers:
+        - name: permission-fix
+          image: busybox
+          command: ['sh', '-c']
+          args: ['chmod -R 777 /data']
+          volumeMounts:
+            - name: data
+              mountPath: /data
+              subPath: {{ .Values.persistence.subPath }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
