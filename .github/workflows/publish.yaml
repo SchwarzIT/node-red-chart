@@ -23,7 +23,7 @@ jobs:
 
       - name: Get Chart Version
         id: lookUpChartVersion
-        uses: mikefarah/yq@v4.16.2
+        uses: mikefarah/yq@v4.18.1
         with:
           cmd: yq e '.version' charts/node-red/Chart.yaml
 
@@ -36,7 +36,7 @@ jobs:
 
       - name: Get App Version
         id: lookUpAppVersion
-        uses: mikefarah/yq@v4.16.2
+        uses: mikefarah/yq@v4.18.1
         with:
           cmd: yq e '.appVersion' charts/node-red/Chart.yaml
 
