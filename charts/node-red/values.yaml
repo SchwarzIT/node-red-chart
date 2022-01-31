@@ -2,23 +2,34 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# -- Number of nodes
 replicaCount: 1
 
 image:
+  # -- The image registry to pull from
   registry: docker.io
+  # -- The image repository to pull from
   repository: nodered/node-red
+  # -- The image pull policy
   pullPolicy: IfNotPresent
+  # -- The image tag to pull, default: `Chart.appVersion`
   tag: ""
 
+# -- The image pull secrets
 imagePullSecrets: ""
 
+# -- Provide a name in place of node-red
 nameOverride: ""
+# -- String to fully override "node-red.fullname"
 fullnameOverride: ""
 
 npmrc:
+  # -- Enable custom npmrc config
   enabled: false
+  # -- Configuration to use any compatible registry
   registry: "https://registry.npmjs.org"
 
+# -- node-red env, see more environment variables in the [node-red documentation](https://nodered.org/docs/getting-started/docker)
 env: []
   # Possible Values:
   # TZ:
@@ -33,18 +44,24 @@ env: []
 
 serviceAccount:
   # Specifies whether a service account should be created
+  # -- Create service account
   create: true
   # Annotations to add to the service account
+  # -- Additional ServiceAccount annotations
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
+  # -- Service account name to use, when empty will be set to created account if
   name: ""
 
+# -- Pod annotations
 podAnnotations: {}
 
+# -- Pod Security Context see [values.yaml](values.yaml)
 podSecurityContext: {}
   # fsGroup: 2000
 
+# -- Security Context see [values.yaml](values.yaml)
 securityContext: {}
   # capabilities:
   #   drop:
@@ -54,10 +71,13 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
+  # -- Kubernetes service type
   type: ClusterIP
+  # -- Kubernetes port where service is exposed
   port: 1880
 
 persistence:
+  # -- Use persistent volume to store data
   enabled: false
   ## node-red data Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
@@ -66,30 +86,42 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
+  # -- Type of persistent volume claim
   # storageClass: "-"
   ##
   ## If you want to reuse an existing claim, you can pass the name of the PVC using
   ## the existingClaim variable
+  # -- Use an existing PVC to persist data
   # existingClaim: your-claim
+  # -- Persistence access mode
   accessMode: ReadWriteOnce
+  # -- Size of persistent volume claim
   size: 5Gi
 
 ingress:
+  # -- Enable an ingress resource for the server
   enabled: false
+  # -- Defines which ingress controller will implement the resource
   className: ""
+  # -- Additional ingress annotations
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
+    # -- Ingress accepted hostnames
     - host: chart-example.local
       paths:
+          # -- The base path
         - path: /
+          # --  Ingress type of path
           pathType: ImplementationSpecific
+  # --  Ingress TLS configuration
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
 
+# -- CPU/Memory resource requests/limits
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -102,8 +134,11 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
+# -- Node selector
 nodeSelector: {}
 
+# -- Toleration labels for pod assignment
 tolerations: []
 
+# -- The affinity constraint
 affinity: {}
