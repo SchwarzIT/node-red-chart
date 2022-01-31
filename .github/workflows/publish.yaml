@@ -6,6 +6,9 @@ on:
     paths:
       - "charts/**"
 
+env:
+  HELM_DOCS_VERSION: "1.7.0"
+
 permissions: read-all
 
 jobs:
@@ -27,31 +30,16 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      - name: Get Chart Version
-        id: lookUpChartVersion
-        uses: mikefarah/yq@915e9de437b645435e004ef13c5dc347f855658d # v4.16.2
-        with:
-          cmd: yq e '.version' charts/node-red/Chart.yaml
+      - name: install helm-docs
+        run: |
+          cd /tmp
+          wget https://github.com/norwoodj/helm-docs/releases/download/v${{env.HELM_DOCS_VERSION}}/helm-docs_${{env.HELM_DOCS_VERSION}}_Linux_x86_64.tar.gz
+          tar -xvf helm-docs_${{env.HELM_DOCS_VERSION}}_Linux_x86_64.tar.gz
+          sudo mv helm-docs /usr/local/sbin
 
-      - name: replace placeholder for chart version
-        uses: jacobtomlinson/gha-find-replace@f485fdc3f67a6d87ae6e3d11e41f648c26d7aee3 # v2
-        with:
-          find: "chart_version"
-          replace: ${{ steps.lookUpChartVersion.outputs.result }}
-          include: "**README.md"
-
-      - name: Get App Version
-        id: lookUpAppVersion
-        uses: mikefarah/yq@915e9de437b645435e004ef13c5dc347f855658d # v4.16.2
-        with:
-          cmd: yq e '.appVersion' charts/node-red/Chart.yaml
-
-      - name: replace placeholder for a  version
-        uses: jacobtomlinson/gha-find-replace@f485fdc3f67a6d87ae6e3d11e41f648c26d7aee3 # v2
-        with:
-          find: "app_version"
-          replace: ${{ steps.lookUpAppVersion.outputs.result }}
-          include: "**README.md"
+      - name: run helm-docs
+        run: |
+          helm-docs -t README.md.gotmpl -o README.md
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@1fa3377857fddeb03de4cc76dbedca289f227ed3
