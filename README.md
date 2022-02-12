@@ -1,10 +1,12 @@
 # `node-red ⚙`
 
-![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
-[![Linting and Testing](https://github.com/dirien/node-red-chart/actions/workflows/lint-and-test.yml/badge.svg)](https://github.com/dirien/node-red-chart/actions/workflows/lint-and-test.yml)
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/node-red)](https://artifacthub.io/packages/search?repo=node-red)
-[![SIT](https://img.shields.io/badge/SIT-awesome-blueviolet.svg?style=flat-square)](https://jobs.schwarz)
+[![SIT](https://img.shields.io/badge/SIT-awesome-blueviolet.svg?style=for-the-badge)](https://jobs.schwarz)
 
+![Helm](https://img.shields.io/badge/helm-0F1689?style=for-the-badge&logo=helm&logoColor=white)
+![Node-Red](https://img.shields.io/badge/node--red-8F0000?style=for-the-badge&logo=nodered&logoColor=white)
+
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/SchwarzIT/node-red-chart/chart-publish/main?logo=github&style=for-the-badge)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/node-red&style=for-the-badge)](https://artifacthub.io/packages/search?repo=node-red)
 
 <img src="https://nodered.org/about/resources/media/node-red-icon-2.png" width="80" height="80">
 
