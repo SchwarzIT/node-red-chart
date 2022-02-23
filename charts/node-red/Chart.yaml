@@ -9,8 +9,8 @@ icon: https://nodered.org/about/resources/media/node-red-icon-2.png
 
 type: application
 
-version: 0.5.0
-appVersion: 2.2.0
+version: 0.5.1
+appVersion: 2.2.2
 
 keywords:
   - node-red
@@ -28,12 +28,12 @@ maintainers:
 
 
 annotations:
-  artifacthub.io/containsSecurityUpdates: "false"
+  artifacthub.io/containsSecurityUpdates: "true"
   artifacthub.io/changes: |
-    - npmrc config map unique name
+    - verson upgrade to 2.2.2
   artifacthub.io/images: |
     - name: node-red
-      image: docker.io/nodered/node-red:2.1.4
+      image: docker.io/nodered/node-red:2.2.2
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: website
