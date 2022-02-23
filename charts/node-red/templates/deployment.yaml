@@ -75,7 +75,7 @@ spec:
         {{- if and .Values.npmrc.enabled }}
         - name: npmrc-volume
           configMap:
-            name: npmrc
+            name: {{ include "node-red.configMapName" . }}
         {{- end }}
         - name: data
           {{- if .Values.persistence.enabled }}

@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: npmrc
+  name: {{ include "node-red.configMapName" . }}
 data:
   npmrc: |
     registry={{ .Values.npmrc.registry }}

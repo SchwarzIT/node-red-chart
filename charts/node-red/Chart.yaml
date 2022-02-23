@@ -9,7 +9,7 @@ icon: https://nodered.org/about/resources/media/node-red-icon-2.png
 
 type: application
 
-version: 0.4.2
+version: 0.5.0
 appVersion: 2.2.0
 
 keywords:
@@ -22,11 +22,15 @@ maintainers:
   - name: dirien
     email: engin.diri@mail.schwarz
     url: https://jobs.schwarz
+  - name: Kaktor
+    email: felix.kammerer@mail.schwarz
+    url: https://jobs.schwarz
+
 
 annotations:
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/changes: |
-    - remove fix default of 1 for replica
+    - npmrc config map unique name
   artifacthub.io/images: |
     - name: node-red
       image: docker.io/nodered/node-red:2.1.4
@@ -37,3 +41,5 @@ annotations:
   artifacthub.io/maintainers: |
     - name: dirien
       email: engin.diri@mail.schwarz
+    - name: Kaktor
+      email: felix.kammerer@mail.schwarz
