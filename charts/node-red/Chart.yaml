@@ -9,7 +9,7 @@ icon: https://nodered.org/about/resources/media/node-red-icon-2.png
 
 type: application
 
-version: 0.5.1
+version: 0.6.0
 appVersion: 2.2.2
 
 keywords:
@@ -28,9 +28,9 @@ maintainers:
 
 
 annotations:
-  artifacthub.io/containsSecurityUpdates: "true"
+  artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/changes: |
-    - verson upgrade to 2.2.2
+    - adding cert-manager certificates support
   artifacthub.io/images: |
     - name: node-red
       image: docker.io/nodered/node-red:2.2.2

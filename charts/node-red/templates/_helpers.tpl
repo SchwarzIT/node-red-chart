@@ -62,8 +62,18 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
-Create the name of the config-map
+Create the name of the configmap
 */}}
 {{- define "node-red.configMapName" -}}
 {{ printf "%s-npmrc-cm" (include "node-red.fullname" $) | trunc 63 | trimSuffix "-" }}
 {{- end }}
+
+
+{{/*
+Create the name of the certificate
+*/}}
+{{- define "node-red.certificateName" -}}
+{{ printf "%s-cert" (include "node-red.fullname" $) | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
+

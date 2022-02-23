@@ -27,7 +27,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red
+helm install node-red node-red/node-red --version {{ .Version }}
 ```
 
 After a few seconds, node-red should be running.
