@@ -60,3 +60,10 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Create the name of the config-map
+*/}}
+{{- define "node-red.configMapName" -}}
+{{ printf "%s-npmrc-cm" (include "node-red.fullname" $) | trunc 63 | trimSuffix "-" }}
+{{- end }}
