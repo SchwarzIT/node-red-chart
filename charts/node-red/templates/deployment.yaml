@@ -64,6 +64,9 @@ spec:
               mountPath: /usr/src/node-red/.npmrc
               subPath: npmrc
             {{- end }}
+            {{- with .Values.extraVolumeMounts }}
+              {{- toYaml . | nindent 12 }}
+            {{- end }}
             - name: data
               mountPath: /data
               {{- if .Values.persistence.subPath }}
@@ -72,6 +75,9 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
+        {{- with .Values.extraVolumes }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
         {{- if and .Values.npmrc.enabled }}
         - name: npmrc-volume
           configMap:

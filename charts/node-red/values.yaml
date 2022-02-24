@@ -156,3 +156,17 @@ tolerations: []
 
 # -- The affinity constraint
 affinity: {}
+
+# -- Extra Volumes for the pod
+extraVolumes:
+# - name: pv-claim
+#   persistentVolumeClaim:
+#     claimName: task-pv-volume
+# - name: example
+#   configMap:
+#     name: example
+
+# -- Extra Volume Mounts for the node-red pod
+extraVolumeMounts:
+# - name: test
+#   mountPath: /test

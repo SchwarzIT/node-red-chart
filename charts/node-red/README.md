@@ -1,12 +1,11 @@
 # node-red ⚙
 
-![Version: 0.6.0](https://img.shields.io/badge/Version-0.6.0-informational?style=for-the-badge)
-![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) 
-![AppVersion: 2.2.2](https://img.shields.io/badge/AppVersion-2.2.2-informational?style=for-the-badge) 
+![Version: 0.7.0](https://img.shields.io/badge/Version-0.7.0-informational?style=for-the-badge)
+![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge)
+![AppVersion: 2.2.2](https://img.shields.io/badge/AppVersion-2.2.2-informational?style=for-the-badge)
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/node-red&style=for-the-badge)](https://artifacthub.io/packages/search?repo=node-red)
 [![SIT](https://img.shields.io/badge/SIT-awesome-blueviolet.svg?style=for-the-badge)](https://jobs.schwarz)
-
 
 <img src="https://nodered.org/about/resources/media/node-red-icon-2.png" width="80" height="80">
 
@@ -27,7 +26,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.6.0
+helm install node-red node-red/node-red --version 0.7.0
 ```
 
 After a few seconds, node-red should be running.
@@ -35,7 +34,7 @@ After a few seconds, node-red should be running.
 To install the chart in a specific namespace use following commands:
 
 ```bash
-kubectl create ns node-red 
+kubectl create ns node-red
 helm install node-red node-red/node-red --namespace node-red
 ```
 
@@ -57,6 +56,8 @@ The command removes all the Kubernetes components associated with the chart and 
 |-----|------|---------|-------------|
 | affinity | object | `{}` | The affinity constraint |
 | env | list | `[]` | node-red env, see more environment variables in the [node-red documentation](https://nodered.org/docs/getting-started/docker) |
+| extraVolumeMounts | string | `nil` | Extra Volume Mounts for the node-red pod |
+| extraVolumes | string | `nil` | Extra Volumes for the pod |
 | fullnameOverride | string | `""` | String to fully override "node-red.fullname" |
 | image.pullPolicy | string | `"IfNotPresent"` | The image pull policy |
 | image.registry | string | `"docker.io"` | The image registry to pull from |
