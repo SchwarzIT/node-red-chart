@@ -3,6 +3,49 @@ entries:
   node-red:
   - annotations:
       artifacthub.io/changes: |
+        - adding extra volumes to the chart
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/images: |
+        - name: node-red
+          image: docker.io/nodered/node-red:2.2.2
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: website
+          url: https://jobs.schwarz
+      artifacthub.io/maintainers: |
+        - name: dirien
+          email: engin.diri@mail.schwarz
+        - name: Kaktor
+          email: felix.kammerer@mail.schwarz
+    apiVersion: v2
+    appVersion: 2.2.2
+    created: "2022-02-24T15:23:56.470819493Z"
+    description: A Helm chart for Node-Red, a low-code programming for event-driven
+      applications
+    digest: 29bd60ea515d4bdd509bba67e22054c2c1b41c44df05e844b5862f7f5d1989ae
+    home: https://nodered.org/
+    icon: https://nodered.org/about/resources/media/node-red-icon-2.png
+    keywords:
+    - node-red
+    - iot
+    - home
+    - automation
+    maintainers:
+    - email: engin.diri@mail.schwarz
+      name: dirien
+      url: https://jobs.schwarz
+    - email: felix.kammerer@mail.schwarz
+      name: Kaktor
+      url: https://jobs.schwarz
+    name: node-red
+    sources:
+    - https://github.com/SchwarzIT/node-red-chart
+    type: application
+    urls:
+    - https://github.com/SchwarzIT/node-red-chart/releases/download/node-red-0.7.0/node-red-0.7.0.tgz
+    version: 0.7.0
+  - annotations:
+      artifacthub.io/changes: |
         - adding cert-manager certificates support
       artifacthub.io/containsSecurityUpdates: "false"
       artifacthub.io/images: |
@@ -620,4 +663,4 @@ entries:
     urls:
     - https://github.com/dirien/node-red-chart/releases/download/node-red-0.1.0/node-red-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-23T13:28:49.598001217Z"
+generated: "2022-02-24T15:23:56.471219992Z"
