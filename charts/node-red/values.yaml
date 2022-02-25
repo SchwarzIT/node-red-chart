@@ -30,7 +30,7 @@ npmrc:
   registry: "https://registry.npmjs.org"
 
 # -- node-red env, see more environment variables in the [node-red documentation](https://nodered.org/docs/getting-started/docker)
-env: []
+env:
   # Possible Values:
   # TZ:
   # NODE_OPTIONS:
@@ -38,9 +38,8 @@ env: []
   # NODE_RED_ENABLE_SAFE_MODE:
   # FLOWS:
   # example:
-  # env:
-  # - name: "NODE_RED_ENABLE_SAFE_MODE"
-  #   value: ""
+ - name: "NODE_RED_ENABLE_SAFE_MODE"
+   value: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
