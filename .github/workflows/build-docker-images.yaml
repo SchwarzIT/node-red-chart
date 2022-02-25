@@ -12,7 +12,7 @@ on:
     paths:
       - Dockerfiles/**
 
-permissions: read-all
+permissions: write-all
 
 env:
   CONTAINER_REPO: ghcr.io/schwarzit/node-red-oidc
@@ -20,6 +20,7 @@ env:
 defaults:
   run:
     working-directory: Dockerfiles
+
 
 jobs:
   build:
