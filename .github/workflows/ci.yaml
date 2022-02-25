@@ -1,0 +1,97 @@
+name: build-docker-images
+
+on:
+  push:
+    paths:
+      - Dockerfiles/**
+    branches:
+      - '*'
+    tags:
+      - '*'
+  pull_request:
+    paths:
+      - Dockerfiles/**
+
+permissions: read-all
+
+env:
+  CONTAINER_REPO: ghcr.io/schwarzit/node-red-oidc
+
+defaults:
+  run:
+    working-directory: Dockerfiles
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_CLI_EXPERIMENTAL: "enabled"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # renovate: tag=v2.4.0
+        with:
+          fetch-depth: 0
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@27d0a4f181a40b142cce983c5393082c365d1480 # renovate: tag=v1.2.0
+
+      - name: Tests the container build
+        run: |
+          make build-container-image
+        env:
+          CONTAINER_REPO: ${{ env.CONTAINER_REPO }}
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@a7a829a4345428ddd92ca57b18257440f6a18c90 # tag=0.2.2
+        with:
+          image-ref: ${{ env.CONTAINER_REPO }}:2.2.2
+          format: "sarif"
+          output: "trivy-results.sarif"
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@75f07e7ab2ee63cba88752d8c696324e4df67466 # tag=v1
+        with:
+          sarif_file: "trivy-results.sarif"
+
+  release:
+    permissions:
+      id-token: write
+      packages: write
+    needs: build
+    env:
+      DOCKER_CLI_EXPERIMENTAL: "enabled"
+    runs-on: ubuntu-latest
+    if: success() && startsWith(github.ref, 'refs/tags/')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # renovate: tag=v2.4.0
+        with:
+          fetch-depth: 0
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@27d0a4f181a40b142cce983c5393082c365d1480 # renovate: tag=v1.2.0
+
+      - name: Docker Login
+        uses: docker/login-action@6af3c118c8376c675363897acf1757f7a9be6583 # tag=v1.13.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: build the container build
+        run: |
+          make push-container-image
+        env:
+          CONTAINER_REPO: ${{ env.CONTAINER_REPO }}
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@a7a829a4345428ddd92ca57b18257440f6a18c90 # tag=0.2.2
+        with:
+          image-ref: ${{ env.CONTAINER_REPO }}:2.2.2
+          format: "sarif"
+          output: "trivy-results.sarif"
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@75f07e7ab2ee63cba88752d8c696324e4df67466 # tag=v1
+        with:
+          sarif_file: "trivy-results.sarif"
