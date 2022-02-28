@@ -1,4 +1,4 @@
-VERSION=2.2.2
+VERSION=2.3.0
 CONTAINER_REPO=ghcr.io/schwarzit/node-red-oidc
 CONTAINER_IMAGE=$(CONTAINER_REPO):$(VERSION)
 
