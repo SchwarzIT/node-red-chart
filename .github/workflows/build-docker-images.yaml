@@ -39,7 +39,7 @@ jobs:
         run: |
           make build-container-image
         env:
-          SUFFIX: ${{ env.SUFFIX }}
+          SUFFIX: ${{ github.run_number }}
 
 
   release:
@@ -68,4 +68,4 @@ jobs:
         run: |
           make push-container-image
         env:
-          SUFFIX: ${{ env.SUFFIX }}
+          SUFFIX:  ${{ github.run_number }}
