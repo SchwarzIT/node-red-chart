@@ -18,6 +18,8 @@ defaults:
   run:
     working-directory: Dockerfiles
 
+env:
+  SUFFIX: ${{ github.run_number }}
 
 jobs:
   build:
@@ -62,5 +64,3 @@ jobs:
       - name: build and push the container build
         run: |
           make push-container-image
-        env:
-          SUFFIX: ${{ github.run_number }}
