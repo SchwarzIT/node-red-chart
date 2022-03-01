@@ -8,4 +8,4 @@ build-container-image:
 
 .PHONY: push-container-image
 push-container-image: build-container-image
-	@docker push $(CONTAINER_IMAGE)
+	@docker push $(CONTAINER_IMAGE):$(BASE_VERSION)-$(SUFFIX)
