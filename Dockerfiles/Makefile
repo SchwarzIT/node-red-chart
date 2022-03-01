@@ -1,10 +1,10 @@
-VERSION=2.3.0
-CONTAINER_REPO=ghcr.io/schwarzit/node-red-oidc
-CONTAINER_IMAGE=$(CONTAINER_REPO):$(VERSION)
+BASE_VERSION:=2.2.2
+CONTAINER_IMAGE:=ghcr.io/schwarzit/node-red-iep
+SUFFIX:=latest
 
 .PHONY: build-container-image
 build-container-image:
-	@docker buildx build --build-arg VERSION=$(VERSION) -t $(CONTAINER_IMAGE) .
+	@docker buildx build --build-arg BASE_VERSION=$(BASE_VERSION) -t $(CONTAINER_IMAGE):$(BASE_VERSION)-$(SUFFIX) .
 
 .PHONY: push-container-image
 push-container-image: build-container-image

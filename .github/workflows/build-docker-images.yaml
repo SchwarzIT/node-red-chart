@@ -14,13 +14,12 @@ on:
 
 permissions: write-all
 
-env:
-  CONTAINER_REPO: ghcr.io/schwarzit/node-red-oidc
-
 defaults:
   run:
     working-directory: Dockerfiles
 
+env:
+  SUFFIX: ${{ github.run_number }}
 
 jobs:
   build:
@@ -38,21 +37,7 @@ jobs:
 
       - name: Tests the container build
         run: |
-          make build-container-image
-        env:
-          CONTAINER_REPO: ${{ env.CONTAINER_REPO }}
-
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@a7a829a4345428ddd92ca57b18257440f6a18c90 # tag=0.2.2
-        with:
-          image-ref: ${{ env.CONTAINER_REPO }}:2.2.2
-          format: "sarif"
-          output: "trivy-results.sarif"
-
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@75f07e7ab2ee63cba88752d8c696324e4df67466 # tag=v1
-        with:
-          sarif_file: "trivy-results.sarif"
+          make SUFFIX=${{ github.run_number }} build-container-image
 
   release:
     needs: build
@@ -76,20 +61,6 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: build the container build
+      - name: build and push the container build
         run: |
-          make push-container-image
-        env:
-          CONTAINER_REPO: ${{ env.CONTAINER_REPO }}
-
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@a7a829a4345428ddd92ca57b18257440f6a18c90 # tag=0.2.2
-        with:
-          image-ref: ${{ env.CONTAINER_REPO }}:2.2.2
-          format: "sarif"
-          output: "trivy-results.sarif"
-
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@75f07e7ab2ee63cba88752d8c696324e4df67466 # tag=v1
-        with:
-          sarif_file: "trivy-results.sarif"
+          make SUFFIX=${{ github.run_number }} push-container-image
