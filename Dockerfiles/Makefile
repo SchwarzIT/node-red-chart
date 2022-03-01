@@ -1,6 +1,6 @@
-BASE_VERSION=2.2.2
-CONTAINER_IMAGE=ghcr.io/schwarzit/node-red-iep
-SUFFIX=latest
+BASE_VERSION:=2.2.2
+CONTAINER_IMAGE:=ghcr.io/schwarzit/node-red-iep
+SUFFIX:=latest
 
 .PHONY: build-container-image
 build-container-image:

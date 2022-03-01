@@ -37,10 +37,7 @@ jobs:
 
       - name: Tests the container build
         run: |
-          make build-container-image
-        env:
-          SUFFIX: ${{ github.run_number }}
-
+          make SUFFIX=${{ github.run_number }} build-container-image
 
   release:
     needs: build
@@ -66,6 +63,4 @@ jobs:
 
       - name: build and push the container build
         run: |
-          make push-container-image
-        env:
-          SUFFIX:  ${{ github.run_number }}
+          make SUFFIX=${{ github.run_number }} push-container-image
