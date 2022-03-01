@@ -38,6 +38,9 @@ jobs:
       - name: Tests the container build
         run: |
           make build-container-image
+        env:
+          SUFFIX: ${{ env.SUFFIX }}
+
 
   release:
     needs: build
@@ -64,3 +67,5 @@ jobs:
       - name: build and push the container build
         run: |
           make push-container-image
+        env:
+          SUFFIX: ${{ env.SUFFIX }}
