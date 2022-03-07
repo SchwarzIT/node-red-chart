@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.8.0](https://img.shields.io/badge/Version-0.8.0-informational?style=for-the-badge)
+![Version: 0.9.0](https://img.shields.io/badge/Version-0.9.0-informational?style=for-the-badge)
 ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) 
 ![AppVersion: 2.3.0](https://img.shields.io/badge/AppVersion-2.3.0-informational?style=for-the-badge) 
 
@@ -27,7 +27,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.8.0
+helm install node-red node-red/node-red --version 0.9.0
 ```
 
 After a few seconds, node-red should be running.
@@ -56,6 +56,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` | The affinity constraint |
+| deploymentStrategy | string | `""` | Specifies the strategy used to replace old Pods by new ones, default: `RollingUpdate` |
 | env | list | `[]` | node-red env, see more environment variables in the [node-red documentation](https://nodered.org/docs/getting-started/docker) |
 | extraVolumeMounts | string | `nil` | Extra Volume Mounts for the node-red pod |
 | extraVolumes | string | `nil` | Extra Volumes for the pod |

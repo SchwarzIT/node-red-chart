@@ -6,6 +6,10 @@ metadata:
     {{- include "node-red.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  {{- if .Values.deploymentStrategy }}
+  strategy:
+    type: {{ .Values.deploymentStrategy }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "node-red.selectorLabels" . | nindent 6 }}

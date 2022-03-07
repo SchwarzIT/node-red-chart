@@ -4,7 +4,8 @@
 
 # -- Number of nodes
 replicaCount: 1
-
+# -- Specifies the strategy used to replace old Pods by new ones, default: `RollingUpdate`
+deploymentStrategy: ""
 image:
   # -- The image registry to pull from
   registry: docker.io
