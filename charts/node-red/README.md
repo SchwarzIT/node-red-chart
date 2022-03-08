@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.9.0](https://img.shields.io/badge/Version-0.9.0-informational?style=for-the-badge)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=for-the-badge)
 ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) 
 ![AppVersion: 2.3.0](https://img.shields.io/badge/AppVersion-2.3.0-informational?style=for-the-badge) 
 
@@ -27,7 +27,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.9.0
+helm install node-red node-red/node-red --version 1.0.0
 ```
 
 After a few seconds, node-red should be running.
@@ -73,6 +73,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | ingress.hosts[0].paths[0] | object | `{"path":"/","pathType":"ImplementationSpecific"}` | The base path |
 | ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` | Ingress type of path |
 | ingress.tls | list | `[]` | Ingress TLS configuration |
+| initContainers | list | `[]` |  |
 | nameOverride | string | `""` | Provide a name in place of node-red |
 | nodeSelector | object | `{}` | Node selector |
 | npmrc.enabled | bool | `false` | Enable custom npmrc config |

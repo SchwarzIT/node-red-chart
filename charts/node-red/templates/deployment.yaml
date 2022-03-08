@@ -31,6 +31,10 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       {{- if .Values.persistence.enabled }}
       initContainers:
+      {{- with .Values.initContainers }}
+        {{- toYaml . | nindent 6 }}
+      {{- end }}
+      {{- if .Values.persistence.enabled }}
         - name: permission-fix
           image: busybox
           command: ['sh', '-c']
@@ -39,6 +43,7 @@ spec:
             - name: data
               mountPath: /data
               subPath: {{ .Values.persistence.subPath }}
+      {{- end }}
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}

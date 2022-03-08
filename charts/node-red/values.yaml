@@ -99,6 +99,9 @@ persistence:
   # -- Size of persistent volume claim
   size: 5Gi
 
+  # -- containers which are run before the app containers are started
+initContainers: []
+
 ingress:
   # -- Enable an ingress resource for the server
   enabled: false
