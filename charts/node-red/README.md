@@ -73,7 +73,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | ingress.hosts[0].paths[0] | object | `{"path":"/","pathType":"ImplementationSpecific"}` | The base path |
 | ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` | Ingress type of path |
 | ingress.tls | list | `[]` | Ingress TLS configuration |
-| initContainers | list | `[]` |  |
+| initContainers | list | `[]` | containers which are run before the app containers are started |
 | nameOverride | string | `""` | Provide a name in place of node-red |
 | nodeSelector | object | `{}` | Node selector |
 | npmrc.enabled | bool | `false` | Enable custom npmrc config |
