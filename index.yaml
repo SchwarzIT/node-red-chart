@@ -3,6 +3,49 @@ entries:
   node-red:
   - annotations:
       artifacthub.io/changes: |
+        - fix indent of initContainers
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/images: |
+        - name: node-red
+          image: docker.io/nodered/node-red:2.2.2
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: website
+          url: https://jobs.schwarz
+      artifacthub.io/maintainers: |
+        - name: dirien
+          email: engin.diri@mail.schwarz
+        - name: Kaktor
+          email: felix.kammerer@mail.schwarz
+    apiVersion: v2
+    appVersion: 2.2.2
+    created: "2022-03-09T15:20:59.811529761Z"
+    description: A Helm chart for Node-Red, a low-code programming for event-driven
+      applications
+    digest: 47a6612eb79b68ef672b1fd85f8f41741740244f3bb270fc31047f3f5db5b38b
+    home: https://nodered.org/
+    icon: https://nodered.org/about/resources/media/node-red-icon-2.png
+    keywords:
+    - node-red
+    - iot
+    - home
+    - automation
+    maintainers:
+    - email: engin.diri@mail.schwarz
+      name: dirien
+      url: https://jobs.schwarz
+    - email: felix.kammerer@mail.schwarz
+      name: Kaktor
+      url: https://jobs.schwarz
+    name: node-red
+    sources:
+    - https://github.com/SchwarzIT/node-red-chart
+    type: application
+    urls:
+    - https://github.com/SchwarzIT/node-red-chart/releases/download/node-red-0.10.1/node-red-0.10.1.tgz
+    version: 0.10.1
+  - annotations:
+      artifacthub.io/changes: |
         - adding optional value initContainers
       artifacthub.io/containsSecurityUpdates: "false"
       artifacthub.io/images: |
@@ -749,4 +792,4 @@ entries:
     urls:
     - https://github.com/dirien/node-red-chart/releases/download/node-red-0.1.0/node-red-0.1.0.tgz
     version: 0.1.0
-generated: "2022-03-08T15:16:09.854820613Z"
+generated: "2022-03-09T15:20:59.811687262Z"
