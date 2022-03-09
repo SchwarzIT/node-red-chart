@@ -27,28 +27,34 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "node-red.serviceAccountName" . }}
+      {{- if .Values.podSecurityContext }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      {{- if .Values.persistence.enabled }}
+      {{- end }}
+      {{- if or .Values.persistence.enabled .Values.initContainers  }}
       initContainers:
       {{- with .Values.initContainers }}
         {{- toYaml . | nindent 6 }}
       {{- end }}
       {{- if .Values.persistence.enabled }}
-        - name: permission-fix
-          image: busybox
-          command: ['sh', '-c']
-          args: ['chmod -R 777 /data']
-          volumeMounts:
-            - name: data
-              mountPath: /data
-              subPath: {{ .Values.persistence.subPath }}
+      - name: permission-fix
+        image: busybox
+        command: ['sh', '-c']
+        args: ['chmod -R 777 /data']
+        volumeMounts:
+          - name: data
+            mountPath: /data
+            {{- if .Values.persistence.subPath}}
+            subPath: {{ .Values.persistence.subPath }}
+            {{- end }}
       {{- end }}
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
+          {{- if .Values.securityContext }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
+          {{- end }}
           image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if .Values.env }}
@@ -81,8 +87,10 @@ spec:
               {{- if .Values.persistence.subPath }}
               subPath: {{ .Values.persistence.subPath }}
               {{- end }}
+          {{- if .Values.resources }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          {{- end }}
       volumes:
         {{- with .Values.extraVolumes }}
           {{- toYaml . | nindent 8 }}
