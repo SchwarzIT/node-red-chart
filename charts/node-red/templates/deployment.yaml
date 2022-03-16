@@ -79,6 +79,11 @@ spec:
               mountPath: /usr/src/node-red/.npmrc
               subPath: npmrc
             {{- end }}
+            {{- if .Values.settings }}
+            - name: {{ .Values.settings.name }}
+              mountPath: /data/settings.js
+              subPath: settings.js
+            {{- end }}
             {{- with .Values.extraVolumeMounts }}
               {{- toYaml . | nindent 12 }}
             {{- end }}
@@ -99,6 +104,11 @@ spec:
         - name: npmrc-volume
           configMap:
             name: {{ include "node-red.configMapName" . }}
+        {{- end }}
+        {{- if .Values.settings }}
+        - name: {{ .Values.settings.name }}
+          configMap:
+            name: {{ .Values.settings.configMapName }}
         {{- end }}
         - name: data
           {{- if .Values.persistence.enabled }}
