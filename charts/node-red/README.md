@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.10.1](https://img.shields.io/badge/Version-0.10.1-informational?style=for-the-badge)
+![Version: 0.11.0](https://img.shields.io/badge/Version-0.11.0-informational?style=for-the-badge)
 ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge)
 ![AppVersion: 2.2.2](https://img.shields.io/badge/AppVersion-2.2.2-informational?style=for-the-badge)
 
@@ -26,7 +26,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.10.1
+helm install node-red node-red/node-red --version 0.11.0
 ```
 
 After a few seconds, node-red should be running.
@@ -52,45 +52,46 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ## Values
 
-| Key | Type | Default | Description |
-|-----|------|---------|-------------|
-| affinity | object | `{}` | The affinity constraint |
-| deploymentStrategy | string | `""` | Specifies the strategy used to replace old Pods by new ones, default: `RollingUpdate` |
-| env | list | `[]` | node-red env, see more environment variables in the [node-red documentation](https://nodered.org/docs/getting-started/docker) |
-| extraVolumeMounts | string | `nil` | Extra Volume Mounts for the node-red pod |
-| extraVolumes | string | `nil` | Extra Volumes for the pod |
-| fullnameOverride | string | `""` | String to fully override "node-red.fullname" |
-| image.pullPolicy | string | `"IfNotPresent"` | The image pull policy |
-| image.registry | string | `"docker.io"` | The image registry to pull from |
-| image.repository | string | `"nodered/node-red"` | The image repository to pull from |
-| image.tag | string | `""` | The image tag to pull, default: `Chart.appVersion` |
-| imagePullSecrets | string | `""` | The image pull secrets |
-| ingress.annotations | object | `{}` | Additional ingress annotations |
-| ingress.className | string | `""` | Defines which ingress controller will implement the resource |
-| ingress.enabled | bool | `false` | Enable an ingress resource for the server |
-| ingress.hosts[0] | object | `{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"}]}` | Ingress accepted hostnames |
-| ingress.hosts[0].paths[0] | object | `{"path":"/","pathType":"ImplementationSpecific"}` | The base path |
-| ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` | Ingress type of path |
-| ingress.tls | list | `[]` | Ingress TLS configuration |
-| initContainers | list | `[]` | containers which are run before the app containers are started |
-| nameOverride | string | `""` | Provide a name in place of node-red |
-| nodeSelector | object | `{}` | Node selector |
-| npmrc.enabled | bool | `false` | Enable custom npmrc config |
-| npmrc.registry | string | `"https://registry.npmjs.org"` | Configuration to use any compatible registry |
-| persistence.accessMode | string | `"ReadWriteOnce"` | Persistence access mode |
-| persistence.enabled | bool | `false` | Use persistent volume to store data |
-| persistence.size | string | `"5Gi"` | Size of persistent volume claim |
-| podAnnotations | object | `{}` | Pod annotations |
-| podSecurityContext | object | `{}` | Pod Security Context see [values.yaml](values.yaml) |
-| replicaCount | int | `1` | Number of nodes |
-| resources | object | `{}` | CPU/Memory resource requests/limits |
-| securityContext | object | `{}` | Security Context see [values.yaml](values.yaml) |
-| service.port | int | `1880` | Kubernetes port where service is exposed |
-| service.type | string | `"ClusterIP"` | Kubernetes service type |
-| serviceAccount.annotations | object | `{}` | Additional ServiceAccount annotations |
-| serviceAccount.create | bool | `true` | Create service account |
-| serviceAccount.name | string | `""` | Service account name to use, when empty will be set to created account if |
-| tolerations | list | `[]` | Toleration labels for pod assignment |
+| Key                                | Type   | Default                                                                                     | Description                                                                                                                   |
+|------------------------------------|--------|---------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| affinity                           | object | `{}`                                                                                        | The affinity constraint                                                                                                       |
+| deploymentStrategy                 | string | `""`                                                                                        | Specifies the strategy used to replace old Pods by new ones, default: `RollingUpdate`                                         |
+| env                                | list   | `[]`                                                                                        | node-red env, see more environment variables in the [node-red documentation](https://nodered.org/docs/getting-started/docker) |
+| extraVolumeMounts                  | string | `nil`                                                                                       | Extra Volume Mounts for the node-red pod                                                                                      |
+| extraVolumes                       | string | `nil`                                                                                       | Extra Volumes for the pod                                                                                                     |
+| fullnameOverride                   | string | `""`                                                                                        | String to fully override "node-red.fullname"                                                                                  |
+| image.pullPolicy                   | string | `"IfNotPresent"`                                                                            | The image pull policy                                                                                                         |
+| image.registry                     | string | `"docker.io"`                                                                               | The image registry to pull from                                                                                               |
+| image.repository                   | string | `"nodered/node-red"`                                                                        | The image repository to pull from                                                                                             |
+| image.tag                          | string | `""`                                                                                        | The image tag to pull, default: `Chart.appVersion`                                                                            |
+| imagePullSecrets                   | string | `""`                                                                                        | The image pull secrets                                                                                                        |
+| ingress.annotations                | object | `{}`                                                                                        | Additional ingress annotations                                                                                                |
+| ingress.className                  | string | `""`                                                                                        | Defines which ingress controller will implement the resource                                                                  |
+| ingress.enabled                    | bool   | `false`                                                                                     | Enable an ingress resource for the server                                                                                     |
+| ingress.hosts[0]                   | object | `{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"}]}` | Ingress accepted hostnames                                                                                                    |
+| ingress.hosts[0].paths[0]          | object | `{"path":"/","pathType":"ImplementationSpecific"}`                                          | The base path                                                                                                                 |
+| ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"`                                                                  | Ingress type of path                                                                                                          |
+| ingress.tls                        | list   | `[]`                                                                                        | Ingress TLS configuration                                                                                                     |
+| initContainers                     | list   | `[]`                                                                                        | containers which are run before the app containers are started                                                                |
+| nameOverride                       | string | `""`                                                                                        | Provide a name in place of node-red                                                                                           |
+| nodeSelector                       | object | `{}`                                                                                        | Node selector                                                                                                                 |
+| npmrc.enabled                      | bool   | `false`                                                                                     | Enable custom npmrc config                                                                                                    |
+| npmrc.registry                     | string | `"https://registry.npmjs.org"`                                                              | Configuration to use any compatible registry                                                                                  |
+| persistence.accessMode             | string | `"ReadWriteOnce"`                                                                           | Persistence access mode                                                                                                       |
+| persistence.enabled                | bool   | `false`                                                                                     | Use persistent volume to store data                                                                                           |
+| persistence.size                   | string | `"5Gi"`                                                                                     | Size of persistent volume claim                                                                                               |
+| podAnnotations                     | object | `{}`                                                                                        | Pod annotations                                                                                                               |
+| podSecurityContext                 | object | `{}`                                                                                        | Pod Security Context see [values.yaml](values.yaml)                                                                           |
+| replicaCount                       | int    | `1`                                                                                         | Number of nodes                                                                                                               |
+| resources                          | object | `{}`                                                                                        | CPU/Memory resource requests/limits                                                                                           |
+| securityContext                    | object | `{}`                                                                                        | Security Context see [values.yaml](values.yaml)                                                                               |
+| service.port                       | int    | `1880`                                                                                      | Kubernetes port where service is exposed                                                                                      |
+| service.type                       | string | `"ClusterIP"`                                                                               | Kubernetes service type                                                                                                       |
+| serviceAccount.annotations         | object | `{}`                                                                                        | Additional ServiceAccount annotations                                                                                         |
+| serviceAccount.create              | bool   | `true`                                                                                      | Create service account                                                                                                        |
+| serviceAccount.name                | string | `""`                                                                                        | Service account name to use, when empty will be set to created account if                                                     |
+| settings                           | object | `{}`                                                                                        | You can configure Node-RED using a settings file. default: {}                                                                 |
+| tolerations                        | list   | `[]`                                                                                        | Toleration labels for pod assignment                                                                                          |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
@@ -122,7 +123,7 @@ Apache License, Version 2.0
 
 ## Maintainers
 
-| Name | Email | Url |
-| ---- | ------ | --- |
-| dirien | engin.diri@mail.schwarz | https://jobs.schwarz |
+| Name   | Email                       | Url                  |
+|--------|-----------------------------|----------------------|
+| dirien | engin.diri@mail.schwarz     | https://jobs.schwarz |
 | Kaktor | felix.kammerer@mail.schwarz | https://jobs.schwarz |
