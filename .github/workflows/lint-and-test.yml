@@ -2,7 +2,7 @@ name: ct-linting-and-testing
 on:
   pull_request:
     paths:
-      - "charts/**"
+      - charts/**
 
 permissions: read-all
 
