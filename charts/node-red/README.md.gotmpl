@@ -67,6 +67,19 @@ helm install node-red node-red/node-red -f values.yaml
 
 > **Tip**: You can use the default [values.yaml](values.yaml)
 
+## Monitoring
+To enable the node-red prometheus monitoring capability, you need to install the node `node-red-contrib-prometheus-exporter`.
+For more details see [official documentation](https://flows.nodered.org/node/node-red-contrib-prometheus-exporter)
+
+In the helm value you can enable the `ServiceMonitor` via
+
+```yaml
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+```
+
 ## Contributing 🤝
 
 ### Contributing via GitHub
