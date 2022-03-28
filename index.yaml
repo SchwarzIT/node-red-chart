@@ -3,6 +3,49 @@ entries:
   node-red:
   - annotations:
       artifacthub.io/changes: |
+        - change port name of servicemonitor to default port
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/images: |
+        - name: node-red
+          image: docker.io/nodered/node-red:2.2.2
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: website
+          url: https://jobs.schwarz
+      artifacthub.io/maintainers: |
+        - name: dirien
+          email: engin.diri@mail.schwarz
+        - name: Kaktor
+          email: felix.kammerer@mail.schwarz
+    apiVersion: v2
+    appVersion: 2.2.2
+    created: "2022-03-28T11:39:09.574988279Z"
+    description: A Helm chart for Node-Red, a low-code programming for event-driven
+      applications
+    digest: 7d82b90e6cb25ab5170f3fb6c349ce59479d09c32c960c394c2afbb75ba87649
+    home: https://nodered.org/
+    icon: https://nodered.org/about/resources/media/node-red-icon-2.png
+    keywords:
+    - node-red
+    - iot
+    - home
+    - automation
+    maintainers:
+    - email: engin.diri@mail.schwarz
+      name: dirien
+      url: https://jobs.schwarz
+    - email: felix.kammerer@mail.schwarz
+      name: Kaktor
+      url: https://jobs.schwarz
+    name: node-red
+    sources:
+    - https://github.com/SchwarzIT/node-red-chart
+    type: application
+    urls:
+    - https://github.com/SchwarzIT/node-red-chart/releases/download/node-red-0.13.2/node-red-0.13.2.tgz
+    version: 0.13.2
+  - annotations:
+      artifacthub.io/changes: |
         - support for prometheus metrics
       artifacthub.io/containsSecurityUpdates: "false"
       artifacthub.io/images: |
@@ -921,4 +964,4 @@ entries:
     urls:
     - https://github.com/dirien/node-red-chart/releases/download/node-red-0.1.0/node-red-0.1.0.tgz
     version: 0.1.0
-generated: "2022-03-28T10:50:24.788305227Z"
+generated: "2022-03-28T11:39:09.575553287Z"
