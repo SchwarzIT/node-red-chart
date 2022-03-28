@@ -9,7 +9,7 @@ icon: https://nodered.org/about/resources/media/node-red-icon-2.png
 
 type: application
 
-version: 0.10.0
+version: 0.11.0
 appVersion: 2.2.2
 
 keywords:
@@ -30,7 +30,7 @@ maintainers:
 annotations:
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/changes: |
-    - adding optional value initContainers
+    - adding optional support for prometheus metrics
   artifacthub.io/images: |
     - name: node-red
       image: docker.io/nodered/node-red:2.2.2

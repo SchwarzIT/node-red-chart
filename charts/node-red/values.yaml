@@ -77,6 +77,29 @@ service:
   # -- Kubernetes port where service is exposed
   port: 1880
 
+# -- Enable Service-Monitor for node-red
+metrics:
+  # -- Deploy metrics service
+  enabled: false
+  path: /metrics
+  serviceMonitor:
+    # -- Enable a prometheus ServiceMonitor
+    enabled: false
+    # -- Prometheus ServiceMonitor interval
+    interval: 30s
+    # -- Prometheus [RelabelConfigs] to apply to samples before scraping
+    relabelings: []
+    # -- Prometheus [MetricRelabelConfigs] to apply to samples before ingestion
+    metricRelabelings: []
+    # -- Prometheus ServiceMonitor selector
+    selector: {}
+    # prometheus: kube-prometheus
+
+    # -- Prometheus ServiceMonitor namespace
+    namespace: "" # "monitoring"
+    # -- Prometheus ServiceMonitor labels
+    additionalLabels: {}
+
 persistence:
   # -- Use persistent volume to store data
   enabled: false

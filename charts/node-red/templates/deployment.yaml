@@ -51,8 +51,14 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- if .Values.env }}
           env:
+          {{- if .Values.metrics.enabled}}
+          - name: PROMETHEUS_COLLECT_DEFAULT_METRICS
+            value: "true"
+          - name: PROMETHEUS_METRICS_PATH
+            value: {{ .Values.metrics.path | default "/metrics" }}
+          {{- end }}
+          {{- if .Values.env }}
           {{- toYaml .Values.env | nindent 10 }}
           {{- end }}
           ports:
