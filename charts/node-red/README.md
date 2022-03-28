@@ -1,11 +1,12 @@
 # node-red ⚙
 
-![Version: 0.12.0](https://img.shields.io/badge/Version-0.12.0-informational?style=for-the-badge)
-![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge)
-![AppVersion: 2.2.2](https://img.shields.io/badge/AppVersion-2.2.2-informational?style=for-the-badge)
+![Version: 0.13.0](https://img.shields.io/badge/Version-0.13.0-informational?style=for-the-badge)
+![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) 
+![AppVersion: 2.2.2](https://img.shields.io/badge/AppVersion-2.2.2-informational?style=for-the-badge) 
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/node-red&style=for-the-badge)](https://artifacthub.io/packages/search?repo=node-red)
 [![SIT](https://img.shields.io/badge/SIT-awesome-blueviolet.svg?style=for-the-badge)](https://jobs.schwarz)
+
 
 <img src="https://nodered.org/about/resources/media/node-red-icon-2.png" width="80" height="80">
 
@@ -26,7 +27,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.12.0
+helm install node-red node-red/node-red --version 0.13.0
 ```
 
 After a few seconds, node-red should be running.
@@ -34,7 +35,7 @@ After a few seconds, node-red should be running.
 To install the chart in a specific namespace use following commands:
 
 ```bash
-kubectl create ns node-red
+kubectl create ns node-red 
 helm install node-red node-red/node-red --namespace node-red
 ```
 
@@ -73,6 +74,15 @@ The command removes all the Kubernetes components associated with the chart and 
 | ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` | Ingress type of path |
 | ingress.tls | list | `[]` | Ingress TLS configuration |
 | initContainers | list | `[]` | containers which are run before the app containers are started |
+| metrics | object | `{"enabled":false,"path":"/metrics","serviceMonitor":{"additionalLabels":{},"enabled":false,"interval":"30s","metricRelabelings":[],"namespace":"","relabelings":[],"selector":{}}}` | Enable Service-Monitor for node-red |
+| metrics.enabled | bool | `false` | Deploy metrics service |
+| metrics.serviceMonitor.additionalLabels | object | `{}` | Prometheus ServiceMonitor labels |
+| metrics.serviceMonitor.enabled | bool | `false` | Enable a prometheus ServiceMonitor |
+| metrics.serviceMonitor.interval | string | `"30s"` | Prometheus ServiceMonitor interval |
+| metrics.serviceMonitor.metricRelabelings | list | `[]` | Prometheus [MetricRelabelConfigs] to apply to samples before ingestion |
+| metrics.serviceMonitor.namespace | string | `""` | Prometheus ServiceMonitor namespace |
+| metrics.serviceMonitor.relabelings | list | `[]` | Prometheus [RelabelConfigs] to apply to samples before scraping |
+| metrics.serviceMonitor.selector | object | `{}` | Prometheus ServiceMonitor selector |
 | nameOverride | string | `""` | Provide a name in place of node-red |
 | nodeSelector | object | `{}` | Node selector |
 | npmrc.enabled | bool | `false` | Enable custom npmrc config |
@@ -107,6 +117,19 @@ helm install node-red node-red/node-red -f values.yaml
 ```
 
 > **Tip**: You can use the default [values.yaml](values.yaml)
+
+## Monitoring
+To enable the node-red prometheus monitoring capability, you need to install the node `node-red-contrib-prometheus-exporter`.
+For more details see [official documentation](https://flows.nodered.org/node/node-red-contrib-prometheus-exporter)
+
+In the helm value you can enable the `ServiceMonitor` via
+
+```yaml
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+```
 
 ## Contributing 🤝
 
