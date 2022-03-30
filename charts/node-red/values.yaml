@@ -58,6 +58,9 @@ serviceAccount:
 # -- Pod annotations
 podAnnotations: {}
 
+# -- Deployment annotations
+deploymentAnnotations: {}
+
 # -- Pod Security Context see [values.yaml](values.yaml)
 podSecurityContext: {}
   # fsGroup: 2000

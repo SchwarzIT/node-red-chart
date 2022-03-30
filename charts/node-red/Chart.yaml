@@ -9,7 +9,7 @@ icon: https://nodered.org/about/resources/media/node-red-icon-2.png
 
 type: application
 
-version: 0.13.2
+version: 0.14.0
 appVersion: 2.2.2
 
 keywords:
@@ -29,7 +29,7 @@ maintainers:
 annotations:
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/changes: |
-    - change port name of servicemonitor to default port
+    - add annotation support for deployment manifest
   artifacthub.io/images: |
     - name: node-red
       image: docker.io/nodered/node-red:2.2.2
