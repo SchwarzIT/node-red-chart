@@ -169,7 +169,7 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- end }}
       volumes:
-        {{- if and .Values.sidecar.enabled .Values.sidecar.volumeMounts }}
+        {{- if and .Values.sidecar.enabled }}
         - name: flow-refresh-script
           configMap:
             name: flow-refresh-script
