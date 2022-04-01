@@ -24,7 +24,7 @@ tests:
           value: "1"
       - equal:
           path: spec.template.spec.containers[0].env[4].value
-          value: data
+          value: /data
       - equal:
           path: spec.template.spec.containers[0].env[5].value
           value: /app/flow_refresh.sh

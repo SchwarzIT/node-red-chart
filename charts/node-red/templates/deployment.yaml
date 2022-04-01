@@ -71,7 +71,7 @@ spec:
           - name: LABEL_VALUE
             value: {{ .Values.sidecar.env.label_value | quote}}
           - name: FOLDER
-            value: data
+            value: /data
           {{- if .Values.sidecar.env.script }}
           - name: SCRIPT
             value: /app/{{ .Values.sidecar.env.script }}
