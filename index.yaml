@@ -19,6 +19,49 @@ entries:
           email: felix.kammerer@mail.schwarz
     apiVersion: v2
     appVersion: 2.2.2
+    created: "2022-04-01T16:01:59.744507633Z"
+    description: A Helm chart for Node-Red, a low-code programming for event-driven
+      applications
+    digest: a4f18bc33e008a179b93847600750126839f40023d7bd2c3bf3c26a8a82d0d60
+    home: https://nodered.org/
+    icon: https://nodered.org/about/resources/media/node-red-icon-2.png
+    keywords:
+    - node-red
+    - iot
+    - home
+    - automation
+    maintainers:
+    - email: engin.diri@mail.schwarz
+      name: dirien
+      url: https://jobs.schwarz
+    - email: felix.kammerer@mail.schwarz
+      name: Kaktor
+      url: https://jobs.schwarz
+    name: node-red
+    sources:
+    - https://github.com/SchwarzIT/node-red-chart
+    type: application
+    urls:
+    - https://github.com/SchwarzIT/node-red-chart/releases/download/node-red-0.15.3/node-red-0.15.3.tgz
+    version: 0.15.3
+  - annotations:
+      artifacthub.io/changes: |
+        - fix defaultMode on refresh script
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/images: |
+        - name: node-red
+          image: docker.io/nodered/node-red:2.2.2
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: website
+          url: https://jobs.schwarz
+      artifacthub.io/maintainers: |
+        - name: dirien
+          email: engin.diri@mail.schwarz
+        - name: Kaktor
+          email: felix.kammerer@mail.schwarz
+    apiVersion: v2
+    appVersion: 2.2.2
     created: "2022-04-01T13:48:24.556767304Z"
     description: A Helm chart for Node-Red, a low-code programming for event-driven
       applications
@@ -1136,4 +1179,4 @@ entries:
     urls:
     - https://github.com/dirien/node-red-chart/releases/download/node-red-0.1.0/node-red-0.1.0.tgz
     version: 0.1.0
-generated: "2022-04-01T13:48:24.557400108Z"
+generated: "2022-04-01T16:01:59.744781821Z"
