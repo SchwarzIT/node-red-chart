@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.15.0](https://img.shields.io/badge/Version-0.15.0-informational?style=for-the-badge)
+![Version: 0.15.1](https://img.shields.io/badge/Version-0.15.1-informational?style=for-the-badge)
 ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge)
 ![AppVersion: 2.2.2](https://img.shields.io/badge/AppVersion-2.2.2-informational?style=for-the-badge)
 
@@ -26,7 +26,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.15.0
+helm install node-red node-red/node-red --version 0.15.1
 ```
 
 After a few seconds, node-red should be running.
@@ -102,14 +102,15 @@ The command removes all the Kubernetes components associated with the chart and 
 | serviceAccount.create | bool | `true` | Create service account |
 | serviceAccount.name | string | `""` | Service account name to use, when empty will be set to created account if |
 | settings | object | `{}` | You can configure node-red using a settings file. default: {} |
-| sidecar.enabled | bool | `true` | Enable the sidecar |
+| sidecar.enabled | bool | `false` | Enable the sidecar |
 | sidecar.env.label | string | `"node-red-settings"` | Label that should be used for filtering |
 | sidecar.env.label_value | string | `"1"` | The value for the label you want to filter your resources on. Don't set a value to filter by any value |
 | sidecar.env.method | string | `"watch"` | If METHOD is set to LIST, the sidecar will just list config-maps/secrets and exit. With SLEEP it will list all config-maps/secrets, then sleep for SLEEP_TIME seconds. Anything else will continuously watch for changes (see https://kubernetes.io/docs/reference/using-api/api-concepts/#efficient-detection-of-changes). |
-| sidecar.env.password | string | `"x"` | Password as key value pair |
+| sidecar.env.password | string | `""` | Password as key value pair |
 | sidecar.env.passwordFromExistingSecret | object | `{}` | Password from existing secret |
 | sidecar.env.script | string | `"flow_refresh.sh"` | Absolute path to shell script to execute after a configmap got reloaded. |
-| sidecar.env.username | string | `"x"` |  |
+| sidecar.env.sleep_time_sidecar | string | `"5s"` | Set the sleep time for refresh script |
+| sidecar.env.username | string | `""` |  |
 | sidecar.extraEnv | list | `[]` | Extra Environments for the sidecar |
 | sidecar.image.pullPolicy | string | `"IfNotPresent"` | The image pull policy, default: `IfNotPresent` |
 | sidecar.image.registry | string | `"quay.io"` | The image registry to pull the sidecar from |

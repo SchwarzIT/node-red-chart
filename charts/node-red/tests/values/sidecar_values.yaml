@@ -1,6 +1,7 @@
 sidecar:
   enabled: true
   env:
+    sleep_time_sidecar: 10s
     method: watch
     label: node-red-settings
     label_value: "1"

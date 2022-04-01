@@ -222,6 +222,8 @@ sidecar:
   enabled: false
   # Env variables to pass to the sidecar
   env:
+    # -- Set the sleep time for refresh script
+    sleep_time_sidecar: 5s
     # -- If METHOD is set to LIST, the sidecar will just list config-maps/secrets and exit. With SLEEP it will list all config-maps/secrets, then sleep for SLEEP_TIME seconds. Anything else will continuously watch for changes (see https://kubernetes.io/docs/reference/using-api/api-concepts/#efficient-detection-of-changes).
     method: watch
     # -- Label that should be used for filtering
