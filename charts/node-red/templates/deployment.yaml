@@ -65,7 +65,7 @@ spec:
           - name: METHOD
             value: {{ .Values.sidecar.env.method }}
           - name: SLEEP_TIME_SIDECAR
-            value: '5s'
+            value: {{ .Values.sidecar.env.sleep_time_sidecar }}
           - name: LABEL
             value: {{ .Values.sidecar.env.label }}
           - name: LABEL_VALUE
@@ -173,6 +173,7 @@ spec:
         - name: flow-refresh-script
           configMap:
             name: flow-refresh-script
+            defaultMode: 0777
         {{- end }}
         {{- with .Values.extraVolumes }}
           {{- toYaml . | nindent 8 }}
