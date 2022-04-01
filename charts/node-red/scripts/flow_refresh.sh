@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 echo "node-red flow refresh api"
 sleep $SLEEP_TIME_SIDECAR
 token=$(curl -X POST -sSk --connect-timeout 30 --retry 50 --retry-delay 10 --data "client_id=node-red-admin&grant_type=password&scope=*&username=$USERNAME&password=$PASSWORD" $URL/auth/token | grep "^{" |  jq -r .access_token)

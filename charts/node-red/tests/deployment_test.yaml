@@ -30,7 +30,7 @@ tests:
           value: /app/flow_refresh.sh
       - equal:
           path: spec.template.spec.containers[0].env[6].value
-          value: http://RELEASE-NAME-node-red.svc.cluster.local:1880
+          value: http://RELEASE-NAME-node-red.NAMESPACE.svc.cluster.local:1880
       - equal:
           path: spec.template.spec.containers[0].env[7].value
           value: x
