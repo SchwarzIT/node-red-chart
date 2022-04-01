@@ -10,7 +10,7 @@
 
 <img src="https://nodered.org/about/resources/media/node-red-icon-2.png" width="80" height="80">
 
-## Description
+## Description 📜
 
 {{ template "chart.description" . }}
 
@@ -23,7 +23,7 @@ helm repo add node-red https://schwarzit.github.io/node-red-chart/
 helm repo update
 ```
 
-### Installing the Chart
+### Installing the Chart 📦
 To install the chart with the release name node-red run:
 
 ```bash
@@ -35,13 +35,13 @@ After a few seconds, node-red should be running.
 To install the chart in a specific namespace use following commands:
 
 ```bash
-kubectl create ns node-red 
+kubectl create ns node-red
 helm install node-red node-red/node-red --namespace node-red
 ```
 
 > **Tip**: List all releases using `helm list`, a release is a name used to track a specific deployment
 
-### Uninstalling the Chart
+### Uninstalling the Chart 🗑️
 
 To uninstall the `node-red` deployment:
 
@@ -67,7 +67,7 @@ helm install node-red node-red/node-red -f values.yaml
 
 > **Tip**: You can use the default [values.yaml](values.yaml)
 
-## Monitoring
+## Monitoring 🌡️
 To enable the node-red prometheus monitoring capability, you need to install the node `node-red-contrib-prometheus-exporter`.
 For more details see [official documentation](https://flows.nodered.org/node/node-red-contrib-prometheus-exporter)
 
@@ -80,13 +80,23 @@ metrics:
     enabled: true
 ```
 
+## Sidecar 🏎️
+
+This Chart supports the handling for loading flows from configmaps/secrets via the [k8s-sidecar](https://github.com/kiwigrid/k8s-sidecar)
+
+You just need to create a configmap/secret with your `node-red` flow.json and annotate it with the a label and value defined in the chart `sidecar`.
+Default values are: `node-red-settings:1`.
+
+The `k8s-sidecar` will then call the `node-red` api to reload the flows. This will be done via a script. To run this script successfully you need to provide the `username` and `password`
+of your admin user. The admin user needs to have the right to use the `node-red` API.
+
 ## Contributing 🤝
 
 ### Contributing via GitHub
 
 Feel free to join. Checkout the [contributing guide](CONTRIBUTING.md)
 
-## License
+## License ⚖️
 
 Apache License, Version 2.0
 

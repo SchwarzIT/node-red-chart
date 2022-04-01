@@ -1,0 +1,50 @@
+suite: check sidecar in deployment
+templates:
+  - deployment.yaml
+tests:
+  - it: deployment should render, when sidecar.enabled=true
+    asserts:
+      - hasDocuments:
+          count: 1
+  - it: check for envs in sidecar env
+    values:
+      - ./values/sidecar_values.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].env[0].value
+          value: watch
+      - equal:
+          path: spec.template.spec.containers[0].env[1].value
+          value: 5s
+      - equal:
+          path: spec.template.spec.containers[0].env[2].value
+          value: node-red-settings
+      - equal:
+          path: spec.template.spec.containers[0].env[3].value
+          value: "1"
+      - equal:
+          path: spec.template.spec.containers[0].env[4].value
+          value: data
+      - equal:
+          path: spec.template.spec.containers[0].env[5].value
+          value: /app/flow_refresh.sh
+      - equal:
+          path: spec.template.spec.containers[0].env[6].value
+          value: http://RELEASE-NAME-node-red.svc.cluster.local:1880
+      - equal:
+          path: spec.template.spec.containers[0].env[7].value
+          value: x
+      - equal:
+          path: spec.template.spec.containers[0].env[8].value
+          value: "y"
+  - it: check volume mounts of for refresh script
+    values:
+      - ./values/sidecar_values.yaml
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            mountPath: /app/flow_refresh.sh
+            name: flow-refresh-script
+            subPath: flow_refresh.sh
+

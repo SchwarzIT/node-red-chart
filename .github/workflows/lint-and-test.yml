@@ -49,6 +49,11 @@ jobs:
       - name: Run chart-testing (lint)
         run: ct lint --debug --config ./.github/configs/ct-lint.yaml --lint-conf ./.github/configs/lintconf.yaml
 
+      - name: Run helm unittest
+        run: |
+          helm plugin install https://github.com/quintush/helm-unittest
+          helm unittest charts/node-red -3
+
       - name: Create kind cluster
         uses: helm/kind-action@94729529f85113b88f4f819c17ce61382e6d8478 # renovate: tag=v1.2.0
         if: steps.list-changed.outputs.changed == 'true'

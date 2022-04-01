@@ -1,0 +1,11 @@
+{{- if .Values.sidecar.enabled }}
+apiVersion: v1
+data:
+  flow_refresh.sh: | {{ range $.Files.Lines "scripts/flow_refresh.sh" }}
+    {{ . }}{{ end }}
+kind: ConfigMap
+metadata:
+  name: flow-refresh-script
+  labels:
+    {{ .Values.sidecar.env.label}}: {{ .Values.sidecar.env.label_value}}
+{{- end }}
