@@ -77,7 +77,7 @@ spec:
             value: /app/{{ .Values.sidecar.env.script }}
           {{- end }}
           - name: URL
-            value: {{ printf "http://%s.svc.cluster.local:%d" (include "node-red.fullname" .) (.Values.service.port | int) }}
+            value: {{ printf "http://%s.%s.svc.cluster.local:%d" (include "node-red.fullname" .) .Release.Namespace (.Values.service.port | int) }}
           - name: USERNAME
             value: {{ required "please set the username for API refresh call" .Values.sidecar.env.username }}
           {{- if or .Values.sidecar.env.password .Values.sidecar.env.passwordFromExistingSecret }}
