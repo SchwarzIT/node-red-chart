@@ -54,11 +54,66 @@ spec:
       {{- end }}
       {{- end }}
       containers:
-        {{- if .Values.sidecars }}
-        {{- with .Values.sidecars }}
-          {{- toYaml . | nindent  8 }}
-        {{- end }}
+        {{- if .Values.extraSidecars }}
+        {{- toYaml .Values.extraSidecars  | nindent  8 }}
         {{- end}}
+        {{- if .Values.sidecar.enabled }}
+        - env:
+          {{- if .Values.sidecar.extraEnv }}
+          {{- toYaml .Values.sidecar.extraEnv  | nindent 10 }}
+          {{- end }}
+          - name: METHOD
+            value: {{ .Values.sidecar.env.method }}
+          - name: SLEEP_TIME_SIDECAR
+            value: '5s'
+          - name: LABEL
+            value: {{ .Values.sidecar.env.label }}
+          - name: LABEL_VALUE
+            value: {{ .Values.sidecar.env.label_value | quote}}
+          - name: FOLDER
+            value: data
+          {{- if .Values.sidecar.env.script }}
+          - name: SCRIPT
+            value: /app/{{ .Values.sidecar.env.script }}
+          {{- end }}
+          - name: URL
+            value: {{ printf "http://%s.svc.cluster.local:%d" (include "node-red.fullname" .) (.Values.service.port | int) }}
+          - name: USERNAME
+            value: {{ required "please set the username for API refresh call" .Values.sidecar.env.username }}
+          {{- if or .Values.sidecar.env.password .Values.sidecar.env.passwordFromExistingSecret }}
+          - name: PASSWORD
+            {{- if .Values.sidecar.env.password }}
+            value: {{ .Values.sidecar.env.password | quote }}
+            {{- else if .Values.sidecar.env.passwordFromExistingSecret }}
+            valueFrom:
+              secretKeyRef:
+                key: {{ .Values.sidecar.env.passwordFromExistingSecret.key }}
+                name: {{ .Values.sidecar.env.passwordFromExistingSecret.name }}
+            {{- end }}
+          {{- end }}
+          image: "{{ .Values.sidecar.image.registry }}/{{ .Values.sidecar.image.repository }}:{{ .Values.sidecar.image.tag }}"
+          imagePullPolicy: {{ .Values.sidecar.image.pullPolicy }}
+          name: node-red-1-sidecar
+          {{- if .Values.sidecar.resources }}
+          resources:
+            {{- toYaml .Values.sidecar.resources | nindent 12 }}
+          {{- end }}
+          {{- if .Values.sidecar.securityContext }}
+          securityContext:
+            {{- toYaml .Values.sidecar.securityContext | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+          - mountPath: /data
+            name: data
+          - name: flow-refresh-script
+            mountPath: /app/{{ .Values.sidecar.env.script }}
+            subPath: {{ .Values.sidecar.env.script }}
+          {{- if .Values.sidecar.volumeMounts }}
+          {{- with .Values.sidecar.volumeMounts }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
+          {{- end }}
+        {{- end }}
         - name: {{ .Chart.Name }}
           {{- if .Values.securityContext }}
           securityContext:
@@ -66,6 +121,7 @@ spec:
           {{- end }}
           image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if or .Values.metrics.enabled .Values.env }}
           env:
           {{- if .Values.metrics.enabled}}
           - name: PROMETHEUS_COLLECT_DEFAULT_METRICS
@@ -73,8 +129,9 @@ spec:
           - name: PROMETHEUS_METRICS_PATH
             value: {{ .Values.metrics.path | default "/metrics" }}
           {{- end }}
-          {{- if .Values.env }}
-          {{- toYaml .Values.env | nindent 10 }}
+          {{- with .Values.env }}
+          {{- toYaml .| nindent 10 }}
+          {{- end }}
           {{- end }}
           ports:
             - name: http
@@ -112,6 +169,11 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- end }}
       volumes:
+        {{- if and .Values.sidecar.enabled .Values.sidecar.volumeMounts }}
+        - name: flow-refresh-script
+          configMap:
+            name: flow-refresh-script
+        {{- end }}
         {{- with .Values.extraVolumes }}
           {{- toYaml . | nindent 8 }}
         {{- end }}

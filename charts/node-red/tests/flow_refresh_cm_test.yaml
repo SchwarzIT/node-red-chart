@@ -1,0 +1,28 @@
+suite: configmap check for refresh.sh
+templates:
+  - sidecar-cm.yaml
+tests:
+  - it: config should not render, when sidecar.enabled=false
+    asserts:
+      - hasDocuments:
+          count: 0
+  - it: check configmap name is 'flow-refresh-script'
+    values:
+      - ./values/sidecar_values.yaml
+    asserts:
+      - equal:
+          path: metadata.name
+          value: flow-refresh-script
+  - it: label node-red-flow-refresh-cm-test should have the value '1'
+    values:
+      - ./values/sidecar_values.yaml
+    asserts:
+      - equal:
+          path: metadata.labels.node-red-settings
+          value: 1
+  - it: check that data is not empty
+    values:
+      - ./values/sidecar_values.yaml
+    asserts:
+      - isNotEmpty:
+          path: data.flow_refresh\.sh

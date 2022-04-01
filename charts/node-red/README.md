@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.14.0](https://img.shields.io/badge/Version-0.14.0-informational?style=for-the-badge)
+![Version: 0.15.0](https://img.shields.io/badge/Version-0.15.0-informational?style=for-the-badge)
 ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge)
 ![AppVersion: 2.2.2](https://img.shields.io/badge/AppVersion-2.2.2-informational?style=for-the-badge)
 
@@ -9,7 +9,7 @@
 
 <img src="https://nodered.org/about/resources/media/node-red-icon-2.png" width="80" height="80">
 
-## Description
+## Description 📜
 
 A Helm chart for Node-Red, a low-code programming for event-driven applications
 
@@ -22,11 +22,11 @@ helm repo add node-red https://schwarzit.github.io/node-red-chart/
 helm repo update
 ```
 
-### Installing the Chart
+### Installing the Chart 📦
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.14.0
+helm install node-red node-red/node-red --version 0.15.0
 ```
 
 After a few seconds, node-red should be running.
@@ -40,7 +40,7 @@ helm install node-red node-red/node-red --namespace node-red
 
 > **Tip**: List all releases using `helm list`, a release is a name used to track a specific deployment
 
-### Uninstalling the Chart
+### Uninstalling the Chart 🗑️
 
 To uninstall the `node-red` deployment:
 
@@ -58,6 +58,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | deploymentAnnotations | object | `{}` | Deployment annotations |
 | deploymentStrategy | string | `""` | Specifies the strategy used to replace old Pods by new ones, default: `RollingUpdate` |
 | env | list | `[]` | node-red env, see more environment variables in the [node-red documentation](https://nodered.org/docs/getting-started/docker) |
+| extraSidecars | list | `[]` | You can configure extra sidecars containers to run alongside the node-red pod. default: [] |
 | extraVolumeMounts | string | `nil` | Extra Volume Mounts for the node-red pod |
 | extraVolumes | string | `nil` | Extra Volumes for the pod |
 | fullnameOverride | string | `""` | String to fully override "node-red.fullname" |
@@ -69,13 +70,13 @@ The command removes all the Kubernetes components associated with the chart and 
 | ingress.annotations | object | `{}` | Additional ingress annotations |
 | ingress.className | string | `""` | Defines which ingress controller will implement the resource |
 | ingress.enabled | bool | `false` | Enable an ingress resource for the server |
-| ingress.hosts[0] | object | `{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"}]}` | Ingress accepted hostnames |
+| ingress.hosts[0].host | string | `"chart-example.local"` |  |
 | ingress.hosts[0].paths[0] | object | `{"path":"/","pathType":"ImplementationSpecific"}` | The base path |
 | ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` | Ingress type of path |
 | ingress.tls | list | `[]` | Ingress TLS configuration |
 | initContainers | list | `[]` | containers which are run before the app containers are started |
-| metrics | object | `{"enabled":false,"path":"/metrics","serviceMonitor":{"additionalLabels":{},"enabled":false,"interval":"30s","metricRelabelings":[],"namespace":"","relabelings":[],"selector":{}}}` | Enable Service-Monitor for node-red |
 | metrics.enabled | bool | `false` | Deploy metrics service |
+| metrics.path | string | `"/metrics"` |  |
 | metrics.serviceMonitor.additionalLabels | object | `{}` | Prometheus ServiceMonitor labels |
 | metrics.serviceMonitor.enabled | bool | `false` | Enable a prometheus ServiceMonitor |
 | metrics.serviceMonitor.interval | string | `"30s"` | Prometheus ServiceMonitor interval |
@@ -101,7 +102,22 @@ The command removes all the Kubernetes components associated with the chart and 
 | serviceAccount.create | bool | `true` | Create service account |
 | serviceAccount.name | string | `""` | Service account name to use, when empty will be set to created account if |
 | settings | object | `{}` | You can configure node-red using a settings file. default: {} |
-| sidecars | list | `[]` | You can configure a sidecar containers to run alongside the node-red pod. default: [] |
+| sidecar.enabled | bool | `true` | Enable the sidecar |
+| sidecar.env.label | string | `"node-red-settings"` | Label that should be used for filtering |
+| sidecar.env.label_value | string | `"1"` | The value for the label you want to filter your resources on. Don't set a value to filter by any value |
+| sidecar.env.method | string | `"watch"` | If METHOD is set to LIST, the sidecar will just list config-maps/secrets and exit. With SLEEP it will list all config-maps/secrets, then sleep for SLEEP_TIME seconds. Anything else will continuously watch for changes (see https://kubernetes.io/docs/reference/using-api/api-concepts/#efficient-detection-of-changes). |
+| sidecar.env.password | string | `"x"` | Password as key value pair |
+| sidecar.env.passwordFromExistingSecret | object | `{}` | Password from existing secret |
+| sidecar.env.script | string | `"flow_refresh.sh"` | Absolute path to shell script to execute after a configmap got reloaded. |
+| sidecar.env.username | string | `"x"` |  |
+| sidecar.extraEnv | list | `[]` | Extra Environments for the sidecar |
+| sidecar.image.pullPolicy | string | `"IfNotPresent"` | The image pull policy, default: `IfNotPresent` |
+| sidecar.image.registry | string | `"quay.io"` | The image registry to pull the sidecar from |
+| sidecar.image.repository | string | `"kiwigrid/k8s-sidecar"` | The image repository to pull from |
+| sidecar.image.tag | string | `"1.15.9"` | The image tag to pull, default: ` 1.15.9` |
+| sidecar.resources | object | `{}` | Resources for the sidecar |
+| sidecar.securityContext | object | `{}` | Security context for the sidecar |
+| sidecar.volumeMounts | list | `[]` | The extra volume mounts for the sidecar |
 | tolerations | list | `[]` | Toleration labels for pod assignment |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
@@ -118,7 +134,7 @@ helm install node-red node-red/node-red -f values.yaml
 
 > **Tip**: You can use the default [values.yaml](values.yaml)
 
-## Monitoring
+## Monitoring 🌡️
 To enable the node-red prometheus monitoring capability, you need to install the node `node-red-contrib-prometheus-exporter`.
 For more details see [official documentation](https://flows.nodered.org/node/node-red-contrib-prometheus-exporter)
 
@@ -131,13 +147,23 @@ metrics:
     enabled: true
 ```
 
+## Sidecar 🏎️
+
+This Chart supports the handling for loading flows from configmaps/secrets via the [k8s-sidecar](https://github.com/kiwigrid/k8s-sidecar)
+
+You just need to create a configmap/secret with your `node-red` flow.json and annotate it with the a label and value defined in the chart `sidecar`.
+Default values are: `node-red-settings:1`.
+
+The `k8s-sidecar` will then call the `node-red` api to reload the flows. This will be done via a script. To run this script successfully you need to provide the `username` and `password`
+of your admin user. The admin user needs to have the right to use the `node-red` API.
+
 ## Contributing 🤝
 
 ### Contributing via GitHub
 
 Feel free to join. Checkout the [contributing guide](CONTRIBUTING.md)
 
-## License
+## License ⚖️
 
 Apache License, Version 2.0
 
