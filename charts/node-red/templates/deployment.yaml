@@ -35,22 +35,10 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       {{- end }}
-      {{- if or .Values.persistence.enabled .Values.initContainers  }}
+      {{- if .Values.initContainers  }}
       initContainers:
       {{- with .Values.initContainers }}
         {{- toYaml . | nindent 6 }}
-      {{- end }}
-      {{- if .Values.persistence.enabled }}
-      - name: permission-fix
-        image: busybox
-        command: ['sh', '-c']
-        args: ['chmod -R 777 /data']
-        volumeMounts:
-          - name: data
-            mountPath: /data
-            {{- if .Values.persistence.subPath}}
-            subPath: {{ .Values.persistence.subPath }}
-            {{- end }}
       {{- end }}
       {{- end }}
       containers:
