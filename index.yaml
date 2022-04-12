@@ -3,6 +3,49 @@ entries:
   node-red:
   - annotations:
       artifacthub.io/changes: |
+        - remove initContainer and work with runAsUser and fsGroup
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/images: |
+        - name: node-red
+          image: docker.io/nodered/node-red:2.2.2
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: website
+          url: https://jobs.schwarz
+      artifacthub.io/maintainers: |
+        - name: dirien
+          email: engin.diri@mail.schwarz
+        - name: Kaktor
+          email: felix.kammerer@mail.schwarz
+    apiVersion: v2
+    appVersion: 2.2.2
+    created: "2022-04-12T21:16:41.562297871Z"
+    description: A Helm chart for Node-Red, a low-code programming for event-driven
+      applications
+    digest: 86ea7da4a8c386dc4f5447938b4044bb0c455a535fe98fecd3ae33e7602cb6d5
+    home: https://nodered.org/
+    icon: https://nodered.org/about/resources/media/node-red-icon-2.png
+    keywords:
+    - node-red
+    - iot
+    - home
+    - automation
+    maintainers:
+    - email: engin.diri@mail.schwarz
+      name: dirien
+      url: https://jobs.schwarz
+    - email: felix.kammerer@mail.schwarz
+      name: Kaktor
+      url: https://jobs.schwarz
+    name: node-red
+    sources:
+    - https://github.com/SchwarzIT/node-red-chart
+    type: application
+    urls:
+    - https://github.com/SchwarzIT/node-red-chart/releases/download/node-red-0.17.0/node-red-0.17.0.tgz
+    version: 0.17.0
+  - annotations:
+      artifacthub.io/changes: |
         - adding basic-auth support for servicemonitor
       artifacthub.io/containsSecurityUpdates: "false"
       artifacthub.io/images: |
@@ -1265,4 +1308,4 @@ entries:
     urls:
     - https://github.com/dirien/node-red-chart/releases/download/node-red-0.1.0/node-red-0.1.0.tgz
     version: 0.1.0
-generated: "2022-04-12T13:10:41.395305885Z"
+generated: "2022-04-12T21:16:41.562588182Z"
