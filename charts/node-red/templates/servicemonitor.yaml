@@ -20,6 +20,10 @@ spec:
       {{- with .Values.metrics.serviceMonitor.interval }}
       interval: {{ . }}
       {{- end }}
+      {{- with .Values.metrics.serviceMonitor.basicAuth }}
+      basicAuth:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       path: {{ .Values.metrics.path }}
       {{- with .Values.metrics.serviceMonitor.relabelings }}
       relabelings:
