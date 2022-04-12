@@ -88,6 +88,8 @@ metrics:
   serviceMonitor:
     # -- Enable a prometheus ServiceMonitor
     enabled: false
+    # -- Prometheus basicAuth configuration for ServiceMonitor endpoint
+    basicAuth: []
     # -- Prometheus ServiceMonitor interval
     interval: 30s
     # -- Prometheus [RelabelConfigs] to apply to samples before scraping
