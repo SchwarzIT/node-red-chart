@@ -9,7 +9,7 @@ icon: https://nodered.org/about/resources/media/node-red-icon-2.png
 
 type: application
 
-version: 0.17.1
+version: 0.17.2
 appVersion: 2.2.2
 
 keywords:
@@ -29,10 +29,12 @@ maintainers:
 annotations:
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/changes: |
-    - change servicemonitor flag from list to object
+    - update k8s-sidcar image to 1.16.0
   artifacthub.io/images: |
     - name: node-red
       image: docker.io/nodered/node-red:2.2.2
+    - name: node-red-sidecar
+      image: quay.io/kiwigrid/k8s-sidecar:1.16.0
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: website
