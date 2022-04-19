@@ -29,7 +29,7 @@ maintainers:
 annotations:
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/changes: |
-    - fix basic auth servicemonitor
+    - change servicemonitor flag from list to object
   artifacthub.io/images: |
     - name: node-red
       image: docker.io/nodered/node-red:2.2.2
