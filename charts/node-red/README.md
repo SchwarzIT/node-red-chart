@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.16.0](https://img.shields.io/badge/Version-0.16.0-informational?style=for-the-badge)
+![Version: 0.17.1](https://img.shields.io/badge/Version-0.17.1-informational?style=for-the-badge)
 ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) 
 ![AppVersion: 2.2.2](https://img.shields.io/badge/AppVersion-2.2.2-informational?style=for-the-badge) 
 
@@ -27,7 +27,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.16.0
+helm install node-red node-red/node-red --version 0.17.1
 ```
 
 After a few seconds, node-red should be running.
@@ -79,7 +79,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | metrics.enabled | bool | `false` | Deploy metrics service |
 | metrics.path | string | `"/metrics"` |  |
 | metrics.serviceMonitor.additionalLabels | object | `{}` | Prometheus ServiceMonitor labels |
-| metrics.serviceMonitor.basicAuth | list | `[]` | Prometheus basicAuth configuration for ServiceMonitor endpoint |
+| metrics.serviceMonitor.basicAuth | object | `{}` | Prometheus basicAuth configuration for ServiceMonitor endpoint |
 | metrics.serviceMonitor.enabled | bool | `false` | Enable a prometheus ServiceMonitor |
 | metrics.serviceMonitor.interval | string | `"30s"` | Prometheus ServiceMonitor interval |
 | metrics.serviceMonitor.metricRelabelings | list | `[]` | Prometheus [MetricRelabelConfigs] to apply to samples before ingestion |
@@ -94,7 +94,9 @@ The command removes all the Kubernetes components associated with the chart and 
 | persistence.enabled | bool | `false` | Use persistent volume to store data |
 | persistence.size | string | `"5Gi"` | Size of persistent volume claim |
 | podAnnotations | object | `{}` | Pod annotations |
-| podSecurityContext | object | `{}` | Pod Security Context see [values.yaml](values.yaml) |
+| podSecurityContext | object | `{"fsGroup":1000,"runAsUser":1000}` | Pod Security Context see [values.yaml](values.yaml) |
+| podSecurityContext.fsGroup | int | `1000` | node-red group is 1000 |
+| podSecurityContext.runAsUser | int | `1000` | node-red user is 1000 |
 | replicaCount | int | `1` | Number of nodes |
 | resources | object | `{}` | CPU/Memory resource requests/limits |
 | securityContext | object | `{}` | Security Context see [values.yaml](values.yaml) |
