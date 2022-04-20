@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.17.1](https://img.shields.io/badge/Version-0.17.1-informational?style=for-the-badge)
+![Version: 0.17.2](https://img.shields.io/badge/Version-0.17.2-informational?style=for-the-badge)
 ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) 
 ![AppVersion: 2.2.2](https://img.shields.io/badge/AppVersion-2.2.2-informational?style=for-the-badge) 
 
@@ -27,7 +27,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.17.1
+helm install node-red node-red/node-red --version 0.17.2
 ```
 
 After a few seconds, node-red should be running.

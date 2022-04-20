@@ -160,7 +160,7 @@ spec:
         {{- if and .Values.sidecar.enabled }}
         - name: flow-refresh-script
           configMap:
-            name: flow-refresh-script
+            name: {{ include "node-red.sidecarConfigMapName" . }}
             defaultMode: 0777
         {{- end }}
         {{- with .Values.extraVolumes }}

@@ -5,7 +5,7 @@ data:
     {{ . }}{{ end }}
 kind: ConfigMap
 metadata:
-  name: flow-refresh-script
+  name: {{ include "node-red.sidecarConfigMapName" . }}
   labels:
     {{ .Values.sidecar.env.label}}: {{ .Values.sidecar.env.label_value}}
 {{- end }}
