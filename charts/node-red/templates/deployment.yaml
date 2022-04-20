@@ -81,7 +81,7 @@ spec:
           {{- end }}
           image: "{{ .Values.sidecar.image.registry }}/{{ .Values.sidecar.image.repository }}:{{ .Values.sidecar.image.tag }}"
           imagePullPolicy: {{ .Values.sidecar.image.pullPolicy }}
-          name: node-red-1-sidecar
+          name: node-red-sidecar
           {{- if .Values.sidecar.resources }}
           resources:
             {{- toYaml .Values.sidecar.resources | nindent 12 }}
