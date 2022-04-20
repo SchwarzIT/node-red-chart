@@ -68,6 +68,13 @@ Create the name of the configmap
 {{ printf "%s-npmrc-cm" (include "node-red.fullname" $) | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
+{{/*
+Create the name of the sidecar-configmap
+*/}}
+{{- define "node-red.sidecarConfigMapName" -}}
+{{ printf "%s-flow-refresh-cm" (include "node-red.fullname" $) | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
 
 {{/*
 Create the name of the certificate
