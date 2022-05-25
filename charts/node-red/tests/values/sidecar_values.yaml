@@ -15,6 +15,6 @@ sidecar:
   image:
     registry: quay.io
     repository: kiwigrid/k8s-sidecar
-    tag: 1.15.9
+    tag: 1.18.1
     pullPolicy: IfNotPresent
   volumeMounts: []
