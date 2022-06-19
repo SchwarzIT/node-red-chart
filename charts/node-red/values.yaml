@@ -259,7 +259,7 @@ sidecar:
     registry: quay.io
     # -- The image repository to pull from
     repository: kiwigrid/k8s-sidecar
-    # -- The image tag to pull, default: `1.19.0`
+    # -- The image tag to pull, default: `1.19.2`
     tag: 1.19.2
     # -- The image pull policy, default: `IfNotPresent`
     pullPolicy: IfNotPresent
