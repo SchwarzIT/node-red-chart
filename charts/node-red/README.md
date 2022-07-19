@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.17.6](https://img.shields.io/badge/Version-0.17.6-informational?style=for-the-badge)
+![Version: 0.18.0](https://img.shields.io/badge/Version-0.18.0-informational?style=for-the-badge)
 ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge)
 ![AppVersion: 2.2.2](https://img.shields.io/badge/AppVersion-2.2.2-informational?style=for-the-badge)
 
@@ -26,7 +26,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.17.6
+helm install node-red node-red/node-red --version 0.18.0
 ```
 
 After a few seconds, node-red should be running.
@@ -93,6 +93,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | persistence.enabled | bool | `false` | Use persistent volume to store data |
 | persistence.size | string | `"5Gi"` | Size of persistent volume claim |
 | podAnnotations | object | `{}` | Pod annotations |
+| podLabels | object | `{}` | Labels to add to the node-red pod. default: {} |
 | podSecurityContext | object | `{"fsGroup":1000,"runAsUser":1000}` | Pod Security Context see [values.yaml](values.yaml) |
 | podSecurityContext.fsGroup | int | `1000` | node-red group is 1000 |
 | podSecurityContext.runAsUser | int | `1000` | node-red user is 1000 |
