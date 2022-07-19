@@ -214,6 +214,8 @@ settings: {}
 #  name: settings-config
 #  configMapName: settings-config
 
+# -- Labels to add to the node-red pod. default: {}
+podLabels: {}
 
 # -- You can configure extra sidecars containers to run alongside the node-red pod. default: []
 extraSidecars: []
