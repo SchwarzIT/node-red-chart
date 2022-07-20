@@ -9,8 +9,8 @@ icon: https://nodered.org/about/resources/media/node-red-icon-2.png
 
 type: application
 
-version: 0.18.0
-appVersion: 2.2.2
+version: 0.19.0
+appVersion: 3.0.0
 
 keywords:
   - node-red
@@ -29,7 +29,7 @@ maintainers:
 annotations:
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/changes: |
-    - add option to add addition pod labels to deployment
+    - update node-red to version 3.0.0
   artifacthub.io/images: |
     - name: node-red
       image: docker.io/nodered/node-red:2.2.2
