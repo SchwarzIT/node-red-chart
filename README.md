@@ -3,7 +3,7 @@
 [![SIT](https://img.shields.io/badge/SIT-awesome-blueviolet.svg?style=for-the-badge)](https://jobs.schwarz)
 
 ![Helm](https://img.shields.io/badge/helm-0F1689?style=for-the-badge&logo=helm&logoColor=white)
-![Node-Red](https://img.shields.io/badge/node--red-8F0000?style=for-the-badge&logo=nodered&logoColor=white)
+![Node-Red](https://img.shields.io/badge/node--red_3.x-8F0000?style=for-the-badge&logo=nodered&logoColor=white)
 
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/SchwarzIT/node-red-chart/chart-publish/main?logo=github&style=for-the-badge)
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/node-red&style=for-the-badge)](https://artifacthub.io/packages/search?repo=node-red)
@@ -66,6 +66,8 @@ Apache License, Version 2.0
 
 ## Maintainers
 
-| Name | Email | Url |
-| ---- | ------ | --- |
-| [@dirien](https://github.com/dirien) | engin.diri@mail.schwarz | https://jobs.schwarz |
+| Name   | Email                         | Url                    |
+|--------|-------------------------------|------------------------|
+| dirien | <engin.diri@mail.schwarz>     | <https://jobs.schwarz> |
+| Kaktor | <felix.kammerer@mail.schwarz> | <https://jobs.schwarz> |
+
