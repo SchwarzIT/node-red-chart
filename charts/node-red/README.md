@@ -98,8 +98,8 @@ The command removes all the Kubernetes components associated with the chart and 
 | podSecurityContext.fsGroup | int | `1000` | node-red group is 1000 |
 | podSecurityContext.runAsUser | int | `1000` | node-red user is 1000 |
 | replicaCount | int | `1` | Number of nodes |
-| resources | object | `{}` | CPU/Memory resource requests/limits |
-| securityContext | object | `{}` | Security Context see [values.yaml](values.yaml) |
+| resources | object | `{"limits":{"cpu":"500m","memory":"5123Mi"},"requests":{"cpu":"100m","memory":"128Mi"}}` | CPU/Memory resource requests/limits |
+| securityContext | object | `{"allowPrivilegeEscalation":false,"capabilities":{"drop":["ALL"]},"privileged":false,"readOnlyRootFilesystem":true,"runAsGroup":10003,"runAsNonRoot":true,"runAsUser":10003,"seccompProfile":{"type":"RuntimeDefault"}}` | Security Context see [values.yaml](values.yaml) |
 | service.port | int | `1880` | Kubernetes port where service is exposed |
 | service.type | string | `"ClusterIP"` | Kubernetes service type |
 | serviceAccount.annotations | object | `{}` | Additional ServiceAccount annotations |
