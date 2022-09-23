@@ -8,6 +8,8 @@
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/SchwarzIT/node-red-chart/chart-publish/main?logo=github&style=for-the-badge)
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/node-red&style=for-the-badge)](https://artifacthub.io/packages/search?repo=node-red)
 
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/SchwarzIT/node-red-chart/badge?style=for-the-badge)](https://api.securityscorecards.dev/projects/github.com/SchwarzIT/node-red-chart)
+
 <img src="https://nodered.org/about/resources/media/node-red-icon-2.png" width="80" height="80">
 
 A Helm chart for Node-Red, a low-code programming for event-driven applications
