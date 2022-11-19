@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.19.2](https://img.shields.io/badge/Version-0.19.2-informational?style=for-the-badge)
+![Version: 0.20.4](https://img.shields.io/badge/Version-0.20.4-informational?style=for-the-badge)
 ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge)
 ![AppVersion: 3.0.2](https://img.shields.io/badge/AppVersion-3.0.2-informational?style=for-the-badge)
 
@@ -26,7 +26,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.19.2
+helm install node-red node-red/node-red --version 0.20.4
 ```
 
 After a few seconds, node-red should be running.
@@ -119,7 +119,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | sidecar.image.pullPolicy | string | `"IfNotPresent"` | The image pull policy, default: `IfNotPresent` |
 | sidecar.image.registry | string | `"quay.io"` | The image registry to pull the sidecar from |
 | sidecar.image.repository | string | `"kiwigrid/k8s-sidecar"` | The image repository to pull from |
-| sidecar.image.tag | string | `"1.19.4"` | The image tag to pull, default: `1.19.4` |
+| sidecar.image.tag | string | `"1.21.0"` | The image tag to pull, default: `1.21.0` |
 | sidecar.resources | object | `{}` | Resources for the sidecar |
 | sidecar.securityContext | object | `{}` | Security context for the sidecar |
 | sidecar.volumeMounts | list | `[]` | The extra volume mounts for the sidecar |
