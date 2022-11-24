@@ -1,18 +1,23 @@
 # node-red ⚙
 
-![Version: {{ .Version }}](https://img.shields.io/badge/Version-{{ .Version | replace "-" "--" }}-informational?style=for-the-badge)
-{{ if .Type }}![Type: {{ .Type }}](https://img.shields.io/badge/Type-{{ .Type }}-informational?style=for-the-badge) {{ end }}
-{{ if .AppVersion }}![AppVersion: {{ .AppVersion }}](https://img.shields.io/badge/AppVersion-{{ .AppVersion | replace "-" "--" }}-informational?style=for-the-badge) {{ end }}
+{{ template "chart.badgesSection" . }}
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/node-red&style=for-the-badge)](https://artifacthub.io/packages/search?repo=node-red)
 [![SIT](https://img.shields.io/badge/SIT-awesome-blueviolet.svg?style=for-the-badge)](https://jobs.schwarz)
-
 
 <img src="https://nodered.org/about/resources/media/node-red-icon-2.png" width="80" height="80">
 
 ## Description 📜
 
 {{ template "chart.description" . }}
+
+## Usage (via OCI Registry)
+
+To install the chart using the OCI artifact, run:
+
+```bash
+helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version {{ .Version }}
+```
 
 ## Usage
 Adding node-red repository
