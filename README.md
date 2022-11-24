@@ -16,6 +16,14 @@ A Helm chart for Node-Red, a low-code programming for event-driven applications
 
 **Homepage:** <https://nodered.org/>
 
+## Usage (via OCI Registry)
+
+To install the chart using the OCI artifact, run:
+
+```bash
+helm install node-red oci://ghcr.io/schwarzit/charts/node-red
+```
+
 ## Usage
 
 Adding node-red repository Before installing any chart provided by this repository, add the node-red Charts Repository:
