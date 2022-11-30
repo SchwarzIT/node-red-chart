@@ -3,6 +3,51 @@ entries:
   node-red:
   - annotations:
       artifacthub.io/changes: |
+        - remove replicas from values.yaml
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/images: |
+        - name: node-red
+          image: docker.io/nodered/node-red:3.0.2
+        - name: node-red-sidecar
+          image: quay.io/kiwigrid/k8s-sidecar:1.20.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: website
+          url: https://jobs.schwarz
+      artifacthub.io/maintainers: |
+        - name: dirien
+          email: engin.diri@mail.schwarz
+        - name: Kaktor
+          email: felix.kammerer@mail.schwarz
+    apiVersion: v2
+    appVersion: 3.0.2
+    created: "2022-11-30T20:19:52.044534852Z"
+    description: A Helm chart for Node-Red, a low-code programming for event-driven
+      applications
+    digest: edd6dde14ceb8ce2d2437f4039db59ee4f292ab575c54c3058498de334b9f84e
+    home: https://nodered.org/
+    icon: https://nodered.org/about/resources/media/node-red-icon-2.png
+    keywords:
+    - node-red
+    - iot
+    - home
+    - automation
+    maintainers:
+    - email: engin.diri@mail.schwarz
+      name: dirien
+      url: https://jobs.schwarz
+    - email: felix.kammerer@mail.schwarz
+      name: Kaktor
+      url: https://jobs.schwarz
+    name: node-red
+    sources:
+    - https://github.com/SchwarzIT/node-red-chart
+    type: application
+    urls:
+    - https://github.com/SchwarzIT/node-red-chart/releases/download/node-red-0.21.2/node-red-0.21.2.tgz
+    version: 0.21.2
+  - annotations:
+      artifacthub.io/changes: |
         - add OCI artefact support
       artifacthub.io/containsSecurityUpdates: "false"
       artifacthub.io/images: |
@@ -2071,4 +2116,4 @@ entries:
     urls:
     - https://github.com/dirien/node-red-chart/releases/download/node-red-0.1.0/node-red-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-24T15:55:57.756904627Z"
+generated: "2022-11-30T20:19:52.045427759Z"
