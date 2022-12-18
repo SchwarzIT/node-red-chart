@@ -51,7 +51,7 @@ spec:
         {{- if .Values.sidecar.enabled }}
         - env:
           {{- if .Values.sidecar.extraEnv }}
-          {{- toYaml .Values.sidecar.extraEnv  | nindent 10 }}
+          {{- toYaml .Values.sidecar.extraEnv  | nindent 12 }}
           {{- end }}
             - name: METHOD
               value: {{ .Values.sidecar.env.method }}
