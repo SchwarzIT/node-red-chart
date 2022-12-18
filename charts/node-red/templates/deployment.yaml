@@ -121,7 +121,7 @@ spec:
               value: {{ .Values.metrics.path | default "/metrics" }}
           {{- end }}
           {{- with .Values.env }}
-          {{- toYaml .| nindent 10 }}
+          {{- toYaml .| nindent 12 }}
           {{- end }}
           {{- end }}
           ports:
