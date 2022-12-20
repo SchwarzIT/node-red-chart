@@ -9,7 +9,7 @@ icon: https://nodered.org/about/resources/media/node-red-icon-2.png
 
 type: application
 
-version: 0.21.2
+version: 0.21.3
 appVersion: 3.0.2
 
 keywords:
@@ -20,8 +20,8 @@ keywords:
 
 maintainers:
   - name: dirien
-    email: engin.diri@mail.schwarz
-    url: https://jobs.schwarz
+    email: engin@pulumi.com
+    url: https://pulumi.com
   - name: Kaktor
     email: felix.kammerer@mail.schwarz
     url: https://jobs.schwarz
