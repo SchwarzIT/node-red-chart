@@ -78,6 +78,6 @@ Apache License, Version 2.0
 
 | Name   | Email                         | Url                    |
 |--------|-------------------------------|------------------------|
-| dirien | <engin.diri@mail.schwarz>     | <https://jobs.schwarz> |
+| dirien | <engin@pulumi.com>            | <https://pulumi.com>   |
 | Kaktor | <felix.kammerer@mail.schwarz> | <https://jobs.schwarz> |
 
