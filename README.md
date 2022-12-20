@@ -5,7 +5,7 @@
 ![Helm](https://img.shields.io/badge/helm-0F1689?style=for-the-badge&logo=helm&logoColor=white)
 ![Node-Red](https://img.shields.io/badge/node--red_3.x-8F0000?style=for-the-badge&logo=nodered&logoColor=white)
 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/SchwarzIT/node-red-chart/chart-publish/main?logo=github&style=for-the-badge)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/SchwarzIT/node-red-chart/publish.yaml?logo=github&style=for-the-badge&branch=main)
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/node-red&style=for-the-badge)](https://artifacthub.io/packages/search?repo=node-red)
 
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/SchwarzIT/node-red-chart/badge?style=for-the-badge)](https://api.securityscorecards.dev/projects/github.com/SchwarzIT/node-red-chart)
