@@ -73,6 +73,6 @@ jobs:
             if [ -z "${pkg:-}" ]; then
               break
             fi
-            helm push "${pkg}" oci://ghcr.io/schwarzit/charts > .digest
+            helm push "${pkg}" oci://ghcr.io/schwarzit/charts |& tee .digest
             cosign sign $(cat .digest | awk -F "[, ]+" '/Pushed/{print $NF}')
           done          
