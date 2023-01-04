@@ -5,5 +5,10 @@ metadata:
   name: {{ include "node-red.configMapName" . }}
 data:
   npmrc: |
+{{- if .Values.npmrc.registry }}
     registry={{ .Values.npmrc.registry }}
+{{- end }}
+{{- if .Values.npmrc.content }}
+    {{- .Values.npmrc.content | nindent 4 }}
+{{- end }}
 {{- end -}}
