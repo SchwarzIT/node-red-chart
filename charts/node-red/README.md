@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.21.3](https://img.shields.io/badge/Version-0.21.3-informational?style=for-the-badge) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) ![AppVersion: 3.0.2](https://img.shields.io/badge/AppVersion-3.0.2-informational?style=for-the-badge)
+![Version: 0.22.0](https://img.shields.io/badge/Version-0.22.0-informational?style=for-the-badge) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) ![AppVersion: 3.0.2](https://img.shields.io/badge/AppVersion-3.0.2-informational?style=for-the-badge)
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/node-red&style=for-the-badge)](https://artifacthub.io/packages/search?repo=node-red)
 [![SIT](https://img.shields.io/badge/SIT-awesome-blueviolet.svg?style=for-the-badge)](https://jobs.schwarz)
@@ -16,7 +16,7 @@ A Helm chart for Node-Red, a low-code programming for event-driven applications
 To install the chart using the OCI artifact, run:
 
 ```bash
-helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.21.3
+helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.22.0
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.21.3
+helm install node-red node-red/node-red --version 0.22.0
 ```
 
 After a few seconds, node-red should be running.
@@ -93,6 +93,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | metrics.serviceMonitor.selector | object | `{}` | Prometheus ServiceMonitor selector |
 | nameOverride | string | `""` | Provide a name in place of node-red |
 | nodeSelector | object | `{}` | Node selector |
+| npmrc.content | string | `"# Custom npmrc config\n"` | Configuration to add custom npmrc config |
 | npmrc.enabled | bool | `false` | Enable custom npmrc config |
 | npmrc.registry | string | `"https://registry.npmjs.org"` | Configuration to use any compatible registry |
 | persistence.accessMode | string | `"ReadWriteOnce"` | Persistence access mode |

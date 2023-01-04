@@ -28,6 +28,9 @@ npmrc:
   enabled: false
   # -- Configuration to use any compatible registry
   registry: "https://registry.npmjs.org"
+  # -- Configuration to add custom npmrc config
+  content: |
+    # Custom npmrc config
 
 # -- node-red env, see more environment variables in the [node-red documentation](https://nodered.org/docs/getting-started/docker)
 env: []
