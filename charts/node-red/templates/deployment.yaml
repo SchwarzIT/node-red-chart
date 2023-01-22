@@ -53,34 +53,34 @@ spec:
           {{- if .Values.sidecar.extraEnv }}
           {{- toYaml .Values.sidecar.extraEnv  | nindent 10 }}
           {{- end }}
-            - name: METHOD
-              value: {{ .Values.sidecar.env.method }}
-            - name: SLEEP_TIME_SIDECAR
-              value: {{ .Values.sidecar.env.sleep_time_sidecar }}
-            - name: LABEL
-              value: {{ .Values.sidecar.env.label }}
-            - name: LABEL_VALUE
-              value: {{ .Values.sidecar.env.label_value | quote}}
-            - name: FOLDER
-              value: /data
+          - name: METHOD
+            value: {{ .Values.sidecar.env.method }}
+          - name: SLEEP_TIME_SIDECAR
+            value: {{ .Values.sidecar.env.sleep_time_sidecar }}
+          - name: LABEL
+            value: {{ .Values.sidecar.env.label }}
+          - name: LABEL_VALUE
+            value: {{ .Values.sidecar.env.label_value | quote}}
+          - name: FOLDER
+            value: /data
           {{- if .Values.sidecar.env.script }}
-            - name: SCRIPT
-              value: /app/{{ .Values.sidecar.env.script }}
+          - name: SCRIPT
+            value: /app/{{ .Values.sidecar.env.script }}
           {{- end }}
-            - name: URL
-              value: {{ printf "http://%s.%s.svc.cluster.local:%d" (include "node-red.fullname" .) .Release.Namespace (.Values.service.port | int) }}
-            - name: USERNAME
-              value: {{ required "please set the username for API refresh call" .Values.sidecar.env.username }}
+          - name: URL
+            value: {{ printf "http://%s.%s.svc.cluster.local:%d" (include "node-red.fullname" .) .Release.Namespace (.Values.service.port | int) }}
+          - name: USERNAME
+            value: {{ required "please set the username for API refresh call" .Values.sidecar.env.username }}
           {{- if or .Values.sidecar.env.password .Values.sidecar.env.passwordFromExistingSecret }}
-            - name: PASSWORD
-            {{- if .Values.sidecar.env.password }}
-              value: {{ .Values.sidecar.env.password | quote }}
-            {{- else if .Values.sidecar.env.passwordFromExistingSecret }}
-              valueFrom:
-                secretKeyRef:
-                  key: {{ .Values.sidecar.env.passwordFromExistingSecret.key }}
-                  name: {{ .Values.sidecar.env.passwordFromExistingSecret.name }}
-            {{- end }}
+          - name: PASSWORD
+          {{- if .Values.sidecar.env.password }}
+            value: {{ .Values.sidecar.env.password | quote }}
+          {{- else if .Values.sidecar.env.passwordFromExistingSecret }}
+            valueFrom:
+              secretKeyRef:
+                key: {{ .Values.sidecar.env.passwordFromExistingSecret.key }}
+                name: {{ .Values.sidecar.env.passwordFromExistingSecret.name }}
+          {{- end }}
           {{- end }}
           image: "{{ .Values.sidecar.image.registry }}/{{ .Values.sidecar.image.repository }}:{{ .Values.sidecar.image.tag }}"
           imagePullPolicy: {{ .Values.sidecar.image.pullPolicy }}
