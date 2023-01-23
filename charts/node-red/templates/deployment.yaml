@@ -112,6 +112,10 @@ spec:
           {{- end }}
           image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+           - sh
+           - -c
+           - "{{- if .Values.installPackages }}npm install {{ join " " .Values.installPackages }};{{ end }} ./entrypoint.sh"
           {{- if or .Values.metrics.enabled .Values.env }}
           env:
           {{- if .Values.metrics.enabled}}
