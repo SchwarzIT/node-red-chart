@@ -85,12 +85,6 @@ spec:
           image: "{{ .Values.sidecar.image.registry }}/{{ .Values.sidecar.image.repository }}:{{ .Values.sidecar.image.tag }}"
           imagePullPolicy: {{ .Values.sidecar.image.pullPolicy }}
           name: node-red-sidecar
-          {{- if or .Values.installPackages }}
-          command:
-           - sh
-           - -c
-           - "{{- if .Values.installPackages }}npm install {{ join " " .Values.installPackages }};{{ end }} ./entrypoint.sh"
-          {{ end }}
           {{- if .Values.sidecar.resources }}
           resources:
             {{- toYaml .Values.sidecar.resources | nindent 12 }}
