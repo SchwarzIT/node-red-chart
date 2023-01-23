@@ -45,6 +45,11 @@ env: []
   # - name: "NODE_RED_ENABLE_SAFE_MODE"
   #   value: ""
 
+# -- npm packages to install
+installPackages: []
+# - node-red-contrib-postgresql
+# - node-red-contrib-oauth2
+
 serviceAccount:
   # Specifies whether a service account should be created
   # -- Create service account
