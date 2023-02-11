@@ -115,10 +115,10 @@ spec:
           {{- if or .Values.metrics.enabled .Values.env }}
           env:
           {{- if .Values.metrics.enabled}}
-            - name: PROMETHEUS_COLLECT_DEFAULT_METRICS
-              value: "true"
-            - name: PROMETHEUS_METRICS_PATH
-              value: {{ .Values.metrics.path | default "/metrics" }}
+          - name: PROMETHEUS_COLLECT_DEFAULT_METRICS
+            value: "true"
+          - name: PROMETHEUS_METRICS_PATH
+            value: {{ .Values.metrics.path | default "/metrics" }}
           {{- end }}
           {{- with .Values.env }}
           {{- toYaml .| nindent 10 }}
