@@ -74,5 +74,5 @@ jobs:
               break
             fi
             helm push "${pkg}" oci://ghcr.io/schwarzit/charts |& tee .digest
-            cosign sign $(cat .digest | awk -F "[, ]+" '/Pushed/{print $NF}')
+            cosign sign -y $(cat .digest | awk -F "[, ]+" '/Pushed/{print $NF}')
           done          
