@@ -9,7 +9,7 @@ icon: https://nodered.org/about/resources/media/node-red-icon-2.png
 
 type: application
 
-version: 0.22.6
+version: 0.22.7
 appVersion: 3.0.2
 
 keywords:
@@ -29,7 +29,7 @@ maintainers:
 annotations:
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/changes: |
-    - fix indentation of env vars
+    - update quay.io/kiwigrid/k8s-sidecar to 1.23.1
   artifacthub.io/images: |
     - name: node-red
       image: docker.io/nodered/node-red:3.0.2
