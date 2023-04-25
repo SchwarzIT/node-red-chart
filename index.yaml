@@ -21,6 +21,51 @@ entries:
           email: felix.kammerer@mail.schwarz
     apiVersion: v2
     appVersion: 3.0.2
+    created: "2023-04-25T15:57:19.640273673Z"
+    description: A Helm chart for Node-Red, a low-code programming for event-driven
+      applications
+    digest: 0974a3a7ea7be1261fe7d752ccf5d0210b6b9ba48580b0624c0cc2f33aca8c33
+    home: https://nodered.org/
+    icon: https://nodered.org/about/resources/media/node-red-icon-2.png
+    keywords:
+    - node-red
+    - iot
+    - home
+    - automation
+    maintainers:
+    - email: engin@pulumi.com
+      name: dirien
+      url: https://pulumi.com
+    - email: felix.kammerer@mail.schwarz
+      name: Kaktor
+      url: https://jobs.schwarz
+    name: node-red
+    sources:
+    - https://github.com/SchwarzIT/node-red-chart
+    type: application
+    urls:
+    - https://github.com/SchwarzIT/node-red-chart/releases/download/node-red-0.23.1/node-red-0.23.1.tgz
+    version: 0.23.1
+  - annotations:
+      artifacthub.io/changes: |
+        - add "helm.sh/resource-policy" annotation to prevent helm from deleting the PVC
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/images: |
+        - name: node-red
+          image: docker.io/nodered/node-red:3.0.2
+        - name: node-red-sidecar
+          image: quay.io/kiwigrid/k8s-sidecar:1.22.3
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: website
+          url: https://jobs.schwarz
+      artifacthub.io/maintainers: |
+        - name: dirien
+          email: engin.diri@mail.schwarz
+        - name: Kaktor
+          email: felix.kammerer@mail.schwarz
+    apiVersion: v2
+    appVersion: 3.0.2
     created: "2023-04-25T15:05:51.089276779Z"
     description: A Helm chart for Node-Red, a low-code programming for event-driven
       applications
@@ -2611,4 +2656,4 @@ entries:
     urls:
     - https://github.com/dirien/node-red-chart/releases/download/node-red-0.1.0/node-red-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-25T15:05:51.089472882Z"
+generated: "2023-04-25T15:57:19.640544373Z"
