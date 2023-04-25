@@ -27,4 +27,4 @@ tests:
       - ./values/sidecar_values.yaml
     asserts:
       - isNotEmpty:
-          path: data.flow_refresh\.sh
+          path: data

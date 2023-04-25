@@ -136,6 +136,8 @@ persistence:
   accessMode: ReadWriteOnce
   # -- Size of persistent volume claim
   size: 5Gi
+  # -- ## Keep a created Persistent volume claim when uninstalling the helm chart (default: false)
+  keepPVC: false
 
 # -- containers which are run before the app containers are started
 initContainers: []
