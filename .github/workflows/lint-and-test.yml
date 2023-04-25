@@ -67,8 +67,8 @@ jobs:
 
       - name: Run helm unittest
         run: |
-          helm plugin install https://github.com/quintush/helm-unittest
-          helm unittest charts/node-red -3
+          helm plugin install https://github.com/helm-unittest/helm-unittest
+          helm unittest charts/node-red
 
       - name: Create kind cluster
         uses: helm/kind-action@d8ccf8fb623ce1bb360ae2f45f323d9d5c5e9f00 # v1.5.0
