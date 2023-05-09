@@ -247,7 +247,7 @@ sidecar:
     # -- The value for the label you want to filter your resources on. Don't set a value to filter by any value
     label_value: "1"
     # -- Absolute path to shell script to execute after a configmap got reloaded.
-    script: flow_refresh.sh
+    script: flow_refresh.py
     # The username for the API Call, check node-red documentation for more information
     username: ""
     # -- Password as key value pair

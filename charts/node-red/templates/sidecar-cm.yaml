@@ -1,7 +1,7 @@
 {{- if .Values.sidecar.enabled }}
 apiVersion: v1
 data:
-  flow_refresh.sh: | {{ range $.Files.Lines "scripts/flow_refresh.sh" }}
+  flow_refresh.py: | {{ range $.Files.Lines "scripts/flow_refresh.py" }}
     {{ . }}{{ end }}
 kind: ConfigMap
 metadata:
