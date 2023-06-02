@@ -3,6 +3,51 @@ entries:
   node-red:
   - annotations:
       artifacthub.io/changes: |
+        - update quay.io/kiwigrid/k8s-sidecar to 1.24.4
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/images: |
+        - name: node-red
+          image: docker.io/nodered/node-red:3.0.2
+        - name: node-red-sidecar
+          image: quay.io/kiwigrid/k8s-sidecar:1.24.4
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: website
+          url: https://jobs.schwarz
+      artifacthub.io/maintainers: |
+        - name: dirien
+          email: engin.diri@mail.schwarz
+        - name: Kaktor
+          email: felix.kammerer@mail.schwarz
+    apiVersion: v2
+    appVersion: 3.0.2
+    created: "2023-06-02T20:35:09.389199747Z"
+    description: A Helm chart for Node-Red, a low-code programming for event-driven
+      applications
+    digest: 557c28431b3a5c636b45c15a4786fe92acb5bbecebdefc3d63b97858b60c9948
+    home: https://nodered.org/
+    icon: https://nodered.org/about/resources/media/node-red-icon-2.png
+    keywords:
+    - node-red
+    - iot
+    - home
+    - automation
+    maintainers:
+    - email: engin@pulumi.com
+      name: dirien
+      url: https://pulumi.com
+    - email: felix.kammerer@mail.schwarz
+      name: Kaktor
+      url: https://jobs.schwarz
+    name: node-red
+    sources:
+    - https://github.com/SchwarzIT/node-red-chart
+    type: application
+    urls:
+    - https://github.com/SchwarzIT/node-red-chart/releases/download/node-red-0.24.1/node-red-0.24.1.tgz
+    version: 0.24.1
+  - annotations:
+      artifacthub.io/changes: |
         - change flow_refresh.sh to flow_refresh.py, this is a breaking change.
       artifacthub.io/containsSecurityUpdates: "false"
       artifacthub.io/images: |
@@ -2746,4 +2791,4 @@ entries:
     urls:
     - https://github.com/dirien/node-red-chart/releases/download/node-red-0.1.0/node-red-0.1.0.tgz
     version: 0.1.0
-generated: "2023-06-02T20:24:51.497721143Z"
+generated: "2023-06-02T20:35:09.38967609Z"
