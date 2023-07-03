@@ -75,7 +75,6 @@ Create the name of the sidecar-configmap
 {{ printf "%s-flow-refresh-cm" (include "node-red.fullname" $) | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
-
 {{/*
 Create the name of the certificate
 */}}
