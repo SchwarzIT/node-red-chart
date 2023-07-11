@@ -258,6 +258,8 @@ sidecar:
     #  name: node-red-api-admin-password
     # -- Key of the secret that contains the password
     #  key: password
+  # -- Extra Node-Modules that will be installed  from the sidecar script
+  extraNodeModules: []
   # -- Extra Environments for the sidecar
   extraEnv: []
   # -- Resources for the sidecar
