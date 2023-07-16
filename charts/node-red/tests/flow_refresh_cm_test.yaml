@@ -21,7 +21,7 @@ tests:
     asserts:
       - equal:
           path: metadata.labels.node-red-settings
-          value: 1
+          value: "1"
   - it: check that data is not empty
     values:
       - ./values/sidecar_values.yaml
