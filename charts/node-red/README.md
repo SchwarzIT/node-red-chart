@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.23.2](https://img.shields.io/badge/Version-0.23.2-informational?style=for-the-badge) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) ![AppVersion: 3.0.2](https://img.shields.io/badge/AppVersion-3.0.2-informational?style=for-the-badge)
+![Version: 0.24.3](https://img.shields.io/badge/Version-0.24.3-informational?style=for-the-badge) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) ![AppVersion: 3.0.2](https://img.shields.io/badge/AppVersion-3.0.2-informational?style=for-the-badge)
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/node-red&style=for-the-badge)](https://artifacthub.io/packages/search?repo=node-red)
 [![SIT](https://img.shields.io/badge/SIT-awesome-blueviolet.svg?style=for-the-badge)](https://jobs.schwarz)
@@ -16,7 +16,7 @@ A Helm chart for Node-Red, a low-code programming for event-driven applications
 To install the chart using the OCI artifact, run:
 
 ```bash
-helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.23.2
+helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.24.3
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.23.2
+helm install node-red node-red/node-red --version 0.24.3
 ```
 
 After a few seconds, node-red should be running.
@@ -119,14 +119,15 @@ The command removes all the Kubernetes components associated with the chart and 
 | sidecar.env.method | string | `"watch"` | If METHOD is set to LIST, the sidecar will just list config-maps/secrets and exit. With SLEEP it will list all config-maps/secrets, then sleep for SLEEP_TIME seconds. Anything else will continuously watch for changes (see https://kubernetes.io/docs/reference/using-api/api-concepts/#efficient-detection-of-changes). |
 | sidecar.env.password | string | `""` | Password as key value pair |
 | sidecar.env.passwordFromExistingSecret | object | `{}` | Password from existing secret |
-| sidecar.env.script | string | `"flow_refresh.sh"` | Absolute path to shell script to execute after a configmap got reloaded. |
+| sidecar.env.script | string | `"flow_refresh.py"` | Absolute path to shell script to execute after a configmap got reloaded. |
 | sidecar.env.sleep_time_sidecar | string | `"5s"` | Set the sleep time for refresh script |
 | sidecar.env.username | string | `""` |  |
 | sidecar.extraEnv | list | `[]` | Extra Environments for the sidecar |
+| sidecar.extraNodeModules | list | `[]` | Extra Node-Modules that will be installed  from the sidecar script |
 | sidecar.image.pullPolicy | string | `"IfNotPresent"` | The image pull policy, default: `IfNotPresent` |
 | sidecar.image.registry | string | `"quay.io"` | The image registry to pull the sidecar from |
 | sidecar.image.repository | string | `"kiwigrid/k8s-sidecar"` | The image repository to pull from |
-| sidecar.image.tag | string | `"1.24.0"` | The image tag to pull, default: `1.24.0` |
+| sidecar.image.tag | string | `"1.25.0"` | The image tag to pull, default: `1.25.0` |
 | sidecar.resources | object | `{}` | Resources for the sidecar |
 | sidecar.securityContext | object | `{}` | Security context for the sidecar |
 | sidecar.volumeMounts | list | `[]` | The extra volume mounts for the sidecar |
@@ -168,6 +169,18 @@ Default values are: `node-red-settings:1`.
 
 The `k8s-sidecar` will then call the `node-red` api to reload the flows. This will be done via a script. To run this script successfully you need to provide the `username` and `password`
 of your admin user. The admin user needs to have the right to use the `node-red` API.
+
+The `k8s-sidecar` can also call the `node-red` api to install additional node modules (npm packages) before refreshing or importing the flow.json.
+You need to list your flows requiert 'NODE_MODULES' in the `sidecar.extraNodeModules`: e.g.
+
+```yaml
+sidecar:
+ extraNodeModules:
+    - node-red-contrib-xkeys_setunitid
+    - node-red-contrib-microsoft-teams-tasks
+    - node-red-contrib-json
+```
+To install the node modules successfully, the node red pod needs access to the `npmrc.registry` to download the declaired modules/packages.
 
 ## Contributing 🤝
 
