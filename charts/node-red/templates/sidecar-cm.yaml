@@ -11,5 +11,5 @@ kind: ConfigMap
 metadata:
   name: {{ include "node-red.sidecarConfigMapName" . }}
   labels:
-    {{ .Values.sidecar.env.label}}: {{ .Values.sidecar.env.label_value}}
+    {{ .Values.sidecar.env.label}}: {{ .Values.sidecar.env.label_value | quote}}
 {{- end }}
