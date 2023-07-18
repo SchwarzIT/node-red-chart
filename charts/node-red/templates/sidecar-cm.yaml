@@ -10,6 +10,7 @@ data:
 kind: ConfigMap
 metadata:
   name: {{ include "node-red.sidecarConfigMapName" . }}
+  namespace: {{ .Release.Namespace | quote }}
   labels:
     {{ .Values.sidecar.env.label}}: {{ .Values.sidecar.env.label_value | quote}}
 {{- end }}

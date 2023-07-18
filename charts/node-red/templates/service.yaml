@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "node-red.fullname" . }}
+  namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "node-red.labels" . | nindent 4 }}
 spec:

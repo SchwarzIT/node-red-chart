@@ -9,7 +9,7 @@ icon: https://nodered.org/about/resources/media/node-red-icon-2.png
 
 type: application
 
-version: 0.24.4
+version: 0.25.0
 appVersion: 3.0.2
 
 keywords:
@@ -29,7 +29,7 @@ maintainers:
 annotations:
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/changes: |
-    - add missing quotes to create valid yaml
+    - add role and clusterrole to chart
   artifacthub.io/images: |
     - name: node-red
       image: docker.io/nodered/node-red:3.0.2
