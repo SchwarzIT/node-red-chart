@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ template "node-red.fullname" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+      {{- include "node-red.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ template "node-red.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "node-red.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace | quote }}

@@ -6,6 +6,7 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
   name: {{ include "node-red.fullname" . }}
+  namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "node-red.labels" . | nindent 4 }}
 spec:
@@ -69,8 +70,10 @@ spec:
           {{- end }}
           - name: URL
             value: {{ printf "http://%s.%s.svc.cluster.local:%d" (include "node-red.fullname" .) .Release.Namespace (.Values.service.port | int) }}
+          {{ if .Values.sidecar.env.username }}
           - name: USERNAME
-            value: {{ required "please set the username for API refresh call" .Values.sidecar.env.username }}
+            value: {{ .Values.sidecar.env.username }}
+          {{- end }}
           {{- if or .Values.sidecar.env.password .Values.sidecar.env.passwordFromExistingSecret }}
           - name: PASSWORD
           {{- if .Values.sidecar.env.password }}
