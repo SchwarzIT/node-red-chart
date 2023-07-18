@@ -232,6 +232,16 @@ extraSidecars: []
 #    image: busybox
 #    command: ["/bin/sh", "-c", "echo hello from sidecar"]
 
+# -- Create a ClusterRole resource for the node-red pod. default: false
+createClusterRole: false
+
+## -- Enable this and set the rules: to whatever custom rules you want for the Cluster Role resource.
+clusterRoleRules:
+  # -- Enable custom rules for the application controller's ClusterRole resource default: false
+  enabled: false
+  # -- List of custom rules for the application controller's ClusterRole resource default: []
+  rules: []
+
 # Sidecar that collect the configmaps with specified label and stores the included files into the given folder
 sidecar:
   # -- Enable the sidecar

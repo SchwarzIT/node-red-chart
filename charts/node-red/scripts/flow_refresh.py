@@ -10,7 +10,8 @@ import sys
 import re
 
 # SET VARIABLES FROM CONTAINER ENVIRONMENT
-SLEEP_TIME_SIDECAR = 5 if os.getenv("SLEEP_TIME_SIDECAR") is None else int(re.sub("[A-z]", "", os.getenv("SLEEP_TIME_SIDECAR")))
+SLEEP_TIME_SIDECAR = 5 if os.getenv("SLEEP_TIME_SIDECAR") is None else int(
+    re.sub("[A-z]", "", os.getenv("SLEEP_TIME_SIDECAR")))
 USERNAME = os.getenv("USERNAME")
 PASSWORD = os.getenv("PASSWORD")
 URL = os.getenv("URL")
@@ -18,12 +19,15 @@ URL = os.getenv("URL")
 FLOW_REQ_RETRY_TOTAL = 20 if os.getenv("REQ_RETRY_TOTAL") is None else int(os.getenv("REQ_RETRY_TOTAL"))
 FLOW_REQ_RETRY_CONNECT = 30 if os.getenv("REQ_RETRY_CONNECT") is None else int(os.getenv("REQ_RETRY_CONNECT"))
 FLOW_REQ_RETRY_READ = 15 if os.getenv("REQ_RETRY_READ") is None else int(os.getenv("REQ_RETRY_READ"))
-FLOW_REQ_RETRY_BACKOFF_FACTOR = 1.1 if os.getenv("REQ_RETRY_BACKOFF_FACTOR") is None else float(os.getenv("REQ_RETRY_BACKOFF_FACTOR"))
+FLOW_REQ_RETRY_BACKOFF_FACTOR = 1.1 if os.getenv("REQ_RETRY_BACKOFF_FACTOR") is None else float(
+    os.getenv("REQ_RETRY_BACKOFF_FACTOR"))
 FLOW_REQ_TIMEOUT = 60 if os.getenv("REQ_TIMEOUT") is None else float(os.getenv("REQ_TIMEOUT"))
 FLOW_REQ_TLS_VERIFY = False if os.getenv("REQ_SKIP_TLS_VERIFY") == "true" else None
 
-EXTRA_NODE_MODULES = None if os.path.isfile('/data/extra-node-modules.json') is False else json.load((open('/data/extra-node-modules.json', "r")))
+EXTRA_NODE_MODULES = None if os.path.isfile('/data/extra-node-modules.json') is False else json.load(
+    (open('/data/extra-node-modules.json', "r")))
 script_errors = {}
+
 
 def main():
     print("----START PYTHON SIDECAR SCRIPT----")
@@ -42,27 +46,43 @@ def main():
     r.mount("http://", HTTPAdapter(max_retries=retries))
     r.mount("https://", HTTPAdapter(max_retries=retries))
 
-    # GET NODE RED BEARER TOKEN
-    print("----TOKEN----")
-    payload_token = {
-        "client_id": "node-red-admin",
-        "grant_type": "password",
-        "scope": "*",
-        "username": USERNAME,
-        "password": PASSWORD,
-    }
-    r_token = r.post(
-        "%s" % URL + "/auth/token",
-        data=payload_token,
-        timeout=FLOW_REQ_TIMEOUT,
-        verify=FLOW_REQ_TLS_VERIFY,
+    # Make the request
+    authenticationScheme = r.get(
+        "%s" % URL + "/auth/login",
     )
-    if r_token.status_code == requests.codes.ok:
-        print(f"node-red bearer token successfully created - {r_token.status_code}")
-        token = json.loads(r_token.text)["access_token"]
+
+    try:
+        data = authenticationScheme.json()
+    except json.JSONDecodeError:
+        print("Received non-JSON response.")
+        sys.exit(1)
+
+    # Check if the data is an empty object
+    if data == {}:
+        print("Empty authentication scheme response.")
+        token = None
     else:
-        print(f"could not create bearer token.... {r_token.status_code}")
-        sys.exit(r_token.status_code)
+        # GET NODE RED BEARER TOKEN
+        print("----TOKEN----")
+        payload_token = {
+            "client_id": "node-red-admin",
+            "grant_type": "password",
+            "scope": "*",
+            "username": USERNAME,
+            "password": PASSWORD,
+        }
+        r_token = r.post(
+            "%s" % URL + "/auth/token",
+            data=payload_token,
+            timeout=FLOW_REQ_TIMEOUT,
+            verify=FLOW_REQ_TLS_VERIFY,
+        )
+        if r_token.status_code == requests.codes.ok:
+            print(f"node-red bearer token successfully created - {r_token.status_code}")
+            token = json.loads(r_token.text)["access_token"]
+        else:
+            print(f"could not create bearer token.... {r_token.status_code}")
+            sys.exit(r_token.status_code)
 
     # NODE MODULE INSTALL VIA HELM SIDECAR EXTRA NODE MODULES CONFIG MAP
     print("----INSTALL EXTRA NODE MODULES----")
@@ -70,9 +90,11 @@ def main():
         print(f"found extra node modules in configmap - {EXTRA_NODE_MODULES}")
         # GET ISNTALLED NODE MODULES
         headers_node_module = {
-            "Authorization": "Bearer" + " " + token,
             "Accept": "application/json",
         }
+        if token:
+            # If token has a value, add Authorization to headers
+            headers_node_module["Authorization"] = "Bearer" + " " + token
         r_node_modules = r.get(
             "%s" % URL + "/nodes",
             headers=headers_node_module,
@@ -88,9 +110,11 @@ def main():
             if module not in modules_installed:
                 payload_node_module = '{"module": "' + module + '"}'
                 headers_node_module = {
-                    "Authorization": "Bearer" + " " + token,
                     "Content-type": "application/json",
                 }
+                if token:
+                    # If token has a value, add Authorization to headers
+                    headers_node_module["Authorization"] = "Bearer" + " " + token
                 # INSTALL NODE MODULES FROM ITERATION
                 r_node_modules = r.post(
                     "%s" % URL + "/nodes",
@@ -115,11 +139,13 @@ def main():
     print("----RELOAD FLOWS----")
     payload_flow_refresh = '{"flows": [{"type": "tab"}]}'
     headers_flow_refresh = {
-        "Authorization": "Bearer" + " " + token,
         "content-type": "application/json; charset=utf-8",
         "Node-RED-Deployment-Type": "reload",
         "Node-RED-API-Version": "v2",
     }
+    if token:
+        # If token has a value, add Authorization to headers
+        headers_flow_refresh["Authorization"] = "Bearer" + " " + token
 
     r_flow_refresh = r.post(
         "%s" % URL + "/flows",
@@ -140,10 +166,11 @@ def main():
     print("----SCRIPT EXIT----")
     if script_errors:
         print(json.dumps(script_errors, indent=4))
-        sys.exit("script error")
+        sys.exit("script errors found...")
     else:
-        print("yeah right")
+        print("no script errors found...")
         sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
