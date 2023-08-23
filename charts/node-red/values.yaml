@@ -44,6 +44,10 @@ env: []
   # env:
   # - name: "NODE_RED_ENABLE_SAFE_MODE"
   #   value: ""
+envFrom: []
+  # Possible values:
+  # - secretRef:
+  #     name: node-red-env
 
 serviceAccount:
   # Specifies whether a service account should be created
