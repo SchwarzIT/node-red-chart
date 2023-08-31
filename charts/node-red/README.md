@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.25.0](https://img.shields.io/badge/Version-0.25.0-informational?style=for-the-badge) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) ![AppVersion: 3.0.2](https://img.shields.io/badge/AppVersion-3.0.2-informational?style=for-the-badge)
+![Version: 0.27.1](https://img.shields.io/badge/Version-0.27.1-informational?style=for-the-badge) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) ![AppVersion: 3.0.2](https://img.shields.io/badge/AppVersion-3.0.2-informational?style=for-the-badge)
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/node-red&style=for-the-badge)](https://artifacthub.io/packages/search?repo=node-red)
 [![SIT](https://img.shields.io/badge/SIT-awesome-blueviolet.svg?style=for-the-badge)](https://jobs.schwarz)
@@ -16,7 +16,7 @@ A Helm chart for Node-Red, a low-code programming for event-driven applications
 To install the chart using the OCI artifact, run:
 
 ```bash
-helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.25.0
+helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.27.1
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.25.0
+helm install node-red node-red/node-red --version 0.27.1
 ```
 
 After a few seconds, node-red should be running.
@@ -67,6 +67,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | deploymentAnnotations | object | `{}` | Deployment annotations |
 | deploymentStrategy | string | `""` | Specifies the strategy used to replace old Pods by new ones, default: `RollingUpdate` |
 | env | list | `[]` | node-red env, see more environment variables in the [node-red documentation](https://nodered.org/docs/getting-started/docker) |
+| envFrom | list | `[]` |  |
 | extraSidecars | list | `[]` | You can configure extra sidecars containers to run alongside the node-red pod. default: [] |
 | extraVolumeMounts | string | `nil` | Extra Volume Mounts for the node-red pod |
 | extraVolumes | string | `nil` | Extra Volumes for the pod |
@@ -110,6 +111,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | podSecurityContext.runAsUser | int | `1000` | node-red user is 1000 |
 | resources | object | `{"limits":{"cpu":"500m","memory":"5123Mi"},"requests":{"cpu":"100m","memory":"128Mi"}}` | CPU/Memory resource requests/limits |
 | securityContext | object | `{"allowPrivilegeEscalation":false,"capabilities":{"drop":["ALL"]},"privileged":false,"readOnlyRootFilesystem":true,"runAsGroup":10003,"runAsNonRoot":true,"runAsUser":10003,"seccompProfile":{"type":"RuntimeDefault"}}` | Security Context see [values.yaml](values.yaml) |
+| service.annotations | object | `{}` | Annotations for the service |
 | service.port | int | `1880` | Kubernetes port where service is exposed |
 | service.type | string | `"ClusterIP"` | Kubernetes service type |
 | serviceAccount.annotations | object | `{}` | Additional ServiceAccount annotations |
@@ -130,7 +132,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | sidecar.image.pullPolicy | string | `"IfNotPresent"` | The image pull policy, default: `IfNotPresent` |
 | sidecar.image.registry | string | `"quay.io"` | The image registry to pull the sidecar from |
 | sidecar.image.repository | string | `"kiwigrid/k8s-sidecar"` | The image repository to pull from |
-| sidecar.image.tag | string | `"1.25.0"` | The image tag to pull, default: `1.25.0` |
+| sidecar.image.tag | string | `"1.25.1"` | The image tag to pull, default: `1.25.1` |
 | sidecar.resources | object | `{}` | Resources for the sidecar |
 | sidecar.securityContext | object | `{}` | Security context for the sidecar |
 | sidecar.volumeMounts | list | `[]` | The extra volume mounts for the sidecar |
