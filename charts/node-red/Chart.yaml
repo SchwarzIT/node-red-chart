@@ -29,12 +29,12 @@ maintainers:
 annotations:
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/changes: |
-    - allow specifying environment variables from secrets
+    - update k8s-sidecar to 1.25.1
   artifacthub.io/images: |
     - name: node-red
       image: docker.io/nodered/node-red:3.0.2
     - name: node-red-sidecar
-      image: quay.io/kiwigrid/k8s-sidecar:1.25.0
+      image: quay.io/kiwigrid/k8s-sidecar:1.25.1
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: website
