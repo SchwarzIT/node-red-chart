@@ -44,7 +44,7 @@ jobs:
           helm-docs -t README.md.gotmpl -o README.md -b for-the-badge
 
       - name: Login to GHCR
-        uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc # v2.2.0
+        uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
         with:
           registry: ghcr.io
           username: ${ GITHUB_REPOSITORY_OWNER }
