@@ -185,6 +185,18 @@ ingress:
     # -- Name of the Issuer
     #     name: "test"
 
+# -- Liveness probe for the Deployment
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+
+# -- Readiness probe for the Deployment
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+
 # -- CPU/Memory resource requests/limits
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -203,6 +215,11 @@ nodeSelector: {}
 
 # -- Toleration labels for pod assignment
 tolerations: []
+
+# -- The terminationGracePeriodSeconds for the pod
+# here we explicitly set the default value defined in kubernetes
+# https://github.com/kubernetes/api/blob/d4b94f478bb2e6467873657dd7b4e1b0ac8351be/core/v1/types.go#L3114-L3118
+terminationGracePeriodSeconds: 30
 
 # -- The affinity constraint
 affinity: {}

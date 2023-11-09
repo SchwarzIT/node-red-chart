@@ -9,7 +9,7 @@ icon: https://nodered.org/about/resources/media/node-red-icon-2.png
 
 type: application
 
-version: 0.27.2
+version: 0.28.0
 appVersion: 3.0.2
 
 keywords:
@@ -29,7 +29,8 @@ maintainers:
 annotations:
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/changes: |
-    - update k8s-sidecar to 1.25.2
+    - add ability to tweak Deployment's liveness/readiness probes
+    - add ability to tweak Deployment's terminationGracePeriodSeconds
   artifacthub.io/images: |
     - name: node-red
       image: docker.io/nodered/node-red:3.0.2
