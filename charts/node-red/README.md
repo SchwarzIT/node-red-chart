@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.27.2](https://img.shields.io/badge/Version-0.27.2-informational?style=for-the-badge) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) ![AppVersion: 3.0.2](https://img.shields.io/badge/AppVersion-3.0.2-informational?style=for-the-badge)
+![Version: 0.28.0](https://img.shields.io/badge/Version-0.28.0-informational?style=for-the-badge) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) ![AppVersion: 3.0.2](https://img.shields.io/badge/AppVersion-3.0.2-informational?style=for-the-badge)
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/node-red&style=for-the-badge)](https://artifacthub.io/packages/search?repo=node-red)
 [![SIT](https://img.shields.io/badge/SIT-awesome-blueviolet.svg?style=for-the-badge)](https://jobs.schwarz)
@@ -16,7 +16,7 @@ A Helm chart for Node-Red, a low-code programming for event-driven applications
 To install the chart using the OCI artifact, run:
 
 ```bash
-helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.27.2
+helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.28.0
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.27.2
+helm install node-red node-red/node-red --version 0.28.0
 ```
 
 After a few seconds, node-red should be running.
@@ -85,6 +85,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` | Ingress type of path |
 | ingress.tls | list | `[]` | Ingress TLS configuration |
 | initContainers | list | `[]` | containers which are run before the app containers are started |
+| livenessProbe | object | `{"httpGet":{"path":"/","port":"http"}}` | Liveness probe for the Deployment |
 | metrics.enabled | bool | `false` | Deploy metrics service |
 | metrics.path | string | `"/metrics"` |  |
 | metrics.serviceMonitor.additionalLabels | object | `{}` | Prometheus ServiceMonitor labels |
@@ -109,6 +110,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | podSecurityContext | object | `{"fsGroup":1000,"runAsUser":1000}` | Pod Security Context see [values.yaml](values.yaml) |
 | podSecurityContext.fsGroup | int | `1000` | node-red group is 1000 |
 | podSecurityContext.runAsUser | int | `1000` | node-red user is 1000 |
+| readinessProbe | object | `{"httpGet":{"path":"/","port":"http"}}` | Readiness probe for the Deployment |
 | resources | object | `{"limits":{"cpu":"500m","memory":"5123Mi"},"requests":{"cpu":"100m","memory":"128Mi"}}` | CPU/Memory resource requests/limits |
 | securityContext | object | `{"allowPrivilegeEscalation":false,"capabilities":{"drop":["ALL"]},"privileged":false,"readOnlyRootFilesystem":true,"runAsGroup":10003,"runAsNonRoot":true,"runAsUser":10003,"seccompProfile":{"type":"RuntimeDefault"}}` | Security Context see [values.yaml](values.yaml) |
 | service.annotations | object | `{}` | Annotations for the service |
@@ -136,6 +138,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | sidecar.resources | object | `{}` | Resources for the sidecar |
 | sidecar.securityContext | object | `{}` | Security context for the sidecar |
 | sidecar.volumeMounts | list | `[]` | The extra volume mounts for the sidecar |
+| terminationGracePeriodSeconds | int | `30` | The terminationGracePeriodSeconds for the pod here we explicitly set the default value defined in kubernetes https://github.com/kubernetes/api/blob/d4b94f478bb2e6467873657dd7b4e1b0ac8351be/core/v1/types.go#L3114-L3118 |
 | tolerations | list | `[]` | Toleration labels for pod assignment |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
