@@ -10,6 +10,52 @@ entries:
         - name: node-red
           image: docker.io/nodered/node-red:3.0.2
         - name: node-red-sidecar
+          image: quay.io/kiwigrid/k8s-sidecar:1.25.3
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: website
+          url: https://jobs.schwarz
+      artifacthub.io/maintainers: |
+        - name: dirien
+          email: engin.diri@mail.schwarz
+        - name: Kaktor
+          email: felix.kammerer@mail.schwarz
+    apiVersion: v2
+    appVersion: 3.0.2
+    created: "2023-12-08T14:32:17.499803683Z"
+    description: A Helm chart for Node-Red, a low-code programming for event-driven
+      applications
+    digest: 1ce686e3b354dcfc3f62245bf2eef355b68e3d33c64ff561f891afb60b6c415b
+    home: https://nodered.org/
+    icon: https://nodered.org/about/resources/media/node-red-icon-2.png
+    keywords:
+    - node-red
+    - iot
+    - home
+    - automation
+    maintainers:
+    - email: engin@pulumi.com
+      name: dirien
+      url: https://pulumi.com
+    - email: felix.kammerer@mail.schwarz
+      name: Kaktor
+      url: https://jobs.schwarz
+    name: node-red
+    sources:
+    - https://github.com/SchwarzIT/node-red-chart
+    type: application
+    urls:
+    - https://github.com/SchwarzIT/node-red-chart/releases/download/node-red-0.28.1/node-red-0.28.1.tgz
+    version: 0.28.1
+  - annotations:
+      artifacthub.io/changes: |
+        - add ability to tweak Deployment's liveness/readiness probes
+        - add ability to tweak Deployment's terminationGracePeriodSeconds
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/images: |
+        - name: node-red
+          image: docker.io/nodered/node-red:3.0.2
+        - name: node-red-sidecar
           image: quay.io/kiwigrid/k8s-sidecar:1.25.1
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
@@ -3197,4 +3243,4 @@ entries:
     urls:
     - https://github.com/dirien/node-red-chart/releases/download/node-red-0.1.0/node-red-0.1.0.tgz
     version: 0.1.0
-generated: "2023-11-12T12:33:34.020254595Z"
+generated: "2023-12-08T14:32:17.500022412Z"
