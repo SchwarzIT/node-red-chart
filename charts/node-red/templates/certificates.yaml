@@ -1,11 +1,12 @@
 {{$name := include "node-red.certificateName" . }}
+{{$namespace := .Release.Namespace }}
 {{- range $index, $value := .Values.ingress.tls }}
 {{- if $value.certificate.enabled }}
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: {{ $value.certificate.name | default (printf "%s-%d" $name $index) | trunc 63 | trimSuffix "-" }}
-  namespace: {{ .Release.Namespace | quote }}
+  namespace: {{ $namespace | quote }}
 spec:
   commonName: {{ index $value.hosts 0 }}
   dnsNames:
