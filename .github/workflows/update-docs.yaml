@@ -1,0 +1,40 @@
+name: Update Documentation
+
+on:
+  workflow_run:
+    workflows:
+    - "chart-publish"
+    types:
+    - completed
+
+permissions: read-all
+
+jobs:
+  documentation-update:
+    runs-on: ubuntu-latest
+    if: ${{github.event.workflow_run.conclusion == 'success'}}
+    env:
+      HELM_DOCS_VERSION: '1.12.0'
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install helm-docs
+      run: |
+        cd /tmp
+        wget https://github.com/norwoodj/helm-docs/releases/download/v${{env.HELM_DOCS_VERSION}}/helm-docs_${{env.HELM_DOCS_VERSION}}_Linux_x86_64.tar.gz
+        tar -xvf helm-docs_${{env.HELM_DOCS_VERSION}}_Linux_x86_64.tar.gz
+        sudo mv helm-docs /usr/local/sbin
+
+    - name: Run helm-docs
+      run: |
+        helm-docs -t README.md.gotmpl -o README.md -b for-the-badge
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add README.md
+        git commit -m "Update documentation via helm-docs"
+        git push
