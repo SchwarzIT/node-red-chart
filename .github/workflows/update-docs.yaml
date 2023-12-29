@@ -1,6 +1,7 @@
 name: Update Documentation
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows:
     - "chart-publish"
@@ -35,6 +36,6 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add README.md
+        git add charts/node-red/README.md
         git commit -m "Update documentation via helm-docs"
         git push
