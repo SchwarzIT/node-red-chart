@@ -130,7 +130,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | sidecar.env.sleep_time_sidecar | string | `"5s"` | Set the sleep time for refresh script |
 | sidecar.env.username | string | `""` |  |
 | sidecar.extraEnv | list | `[]` | Extra Environments for the sidecar |
-| sidecar.extraNodeModules | list | `[]` | Extra Node-Modules that will be installed  from the sidecar script |
+| sidecar.extraNodeModules | list | `[]` | Extra Node-Modules that will be installed from the sidecar script (specifying a version like node-red-contrib-example@1.2.3 is supported) |
 | sidecar.image.pullPolicy | string | `"IfNotPresent"` | The image pull policy, default: `IfNotPresent` |
 | sidecar.image.registry | string | `"quay.io"` | The image registry to pull the sidecar from |
 | sidecar.image.repository | string | `"kiwigrid/k8s-sidecar"` | The image repository to pull from |
