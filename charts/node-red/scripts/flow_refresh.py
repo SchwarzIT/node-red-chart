@@ -108,7 +108,12 @@ def main():
 
         for module in EXTRA_NODE_MODULES:
             if module not in modules_installed:
-                payload_node_module = '{"module": "' + module + '"}'
+               module_name, version = module.split('@') if '@' in module else (module, None)
+               payload_node_module = ''
+               if version is not None:
+                   payload_node_module = '{"module": "' + module_name + '", "version": "' + version + '"}'
+               else:
+                   payload_node_module = '{"module": "' + module_name + '"}'
                 headers_node_module = {
                     "Content-type": "application/json",
                 }
