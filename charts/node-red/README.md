@@ -178,7 +178,7 @@ Default values are: `node-red-settings:1`.
 The `k8s-sidecar` will then call the `node-red` api to reload the flows. This will be done via a script. To run this script successfully you need to provide the `username` and `password`
 of your admin user. The admin user needs to have the right to use the `node-red` API.
 
-The `k8s-sidecar` can also call the `node-red` api to install additional node modules (npm packages) before refreshing or importing the flow.json.
+The `k8s-sidecar` can also call the `node-red` api to install additional node modules (npm packages) before refreshing or importing the flow.json. Specifying a version for a module is supported (s. example below).
 You need to list your flows requiert 'NODE_MODULES' in the `sidecar.extraNodeModules`: e.g.
 
 ```yaml
@@ -186,7 +186,7 @@ sidecar:
  extraNodeModules:
     - node-red-contrib-xkeys_setunitid
     - node-red-contrib-microsoft-teams-tasks
-    - node-red-contrib-json
+    - node-red-contrib-json@0.2.0
 ```
 To install the node modules successfully, the node red pod needs access to the `npmrc.registry` to download the declaired modules/packages.
 
