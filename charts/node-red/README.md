@@ -1,4 +1,4 @@
-# node-red ⚙
+****# node-red ⚙
 
 ![Version: 0.28.1](https://img.shields.io/badge/Version-0.28.1-informational?style=for-the-badge) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) ![AppVersion: 3.0.2](https://img.shields.io/badge/AppVersion-3.0.2-informational?style=for-the-badge)
 
@@ -179,7 +179,7 @@ The `k8s-sidecar` will then call the `node-red` api to reload the flows. This wi
 of your admin user. The admin user needs to have the right to use the `node-red` API.
 
 The `k8s-sidecar` can also call the `node-red` api to install additional node modules (npm packages) before refreshing or importing the flow.json. Specifying a version for a module is supported (s. example below).
-You need to list your flows requiert 'NODE_MODULES' in the `sidecar.extraNodeModules`: e.g.
+You need to list your flows required 'NODE_MODULES' in the `sidecar.extraNodeModules`: e.g.
 
 ```yaml
 sidecar:
