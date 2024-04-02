@@ -108,9 +108,9 @@ def main():
 
         for module in EXTRA_NODE_MODULES:
             if module not in modules_installed:
-                try
+                try:
                     module_name, version = module.rsplit('/', 1)[-1].split('@', 1) if '@' in module else (module, None)
-                except ValueError:
+                except:
                     module_name, version = module, None
                 payload_node_module = ''
                 if version is not None:
