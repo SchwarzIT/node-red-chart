@@ -310,8 +310,8 @@ sidecar:
     registry: quay.io
     # -- The image repository to pull from
     repository: kiwigrid/k8s-sidecar
-    # -- The image tag to pull, default: `1.25.3`
-    tag: 1.25.3
+    # -- The image tag to pull, default: `1.26.2`
+    tag: 1.26.2
     # -- The image pull policy, default: `IfNotPresent`
     pullPolicy: IfNotPresent
   # -- The extra volume mounts for the sidecar
