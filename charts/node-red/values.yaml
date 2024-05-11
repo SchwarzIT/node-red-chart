@@ -15,6 +15,13 @@ image:
   # -- The image tag to pull, default: `Chart.appVersion`
   tag: ""
 
+rbac:
+  # If enabled, roles will be created and bound to the service account. default: true
+  enabled: true
+  # -- Create a ClusterRole resource for the node-red pod. default: false
+  createClusterRole: false
+
+
 # -- The image pull secrets
 imagePullSecrets: ""
 
@@ -255,8 +262,6 @@ extraSidecars: []
 #    image: busybox
 #    command: ["/bin/sh", "-c", "echo hello from sidecar"]
 
-# -- Create a ClusterRole resource for the node-red pod. default: false
-createClusterRole: false
 
 ## -- Enable this and set the rules: to whatever custom rules you want for the Cluster Role resource.
 clusterRoleRules:
