@@ -8,5 +8,10 @@
   "labels": [
     "helm"
   ],
-  "semanticCommits": true
+  "semanticCommits": true,
+  "assigneesFromCodeOwners": true,
+  "assignAutomerge": true,
+  "automerge": true,
+  "automergeStrategy": "squash",
+  "automergeType": "pr"
 }
