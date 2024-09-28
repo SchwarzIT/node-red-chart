@@ -29,7 +29,7 @@ maintainers:
 annotations:
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/changes: |
-    - - update quay.io/kiwigrid/k8s-sidecar to 1.28.0
+    - update quay.io/kiwigrid/k8s-sidecar to 1.28.0
     - Incorrect chart values for memory limit
   artifacthub.io/images: |
     - name: node-red
