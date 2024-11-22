@@ -29,7 +29,7 @@ maintainers:
 annotations:
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/changes: |
-    - feat: Allows template inside .Values.env
+    - Allows template inside .Values.env
   artifacthub.io/images: |
     - name: node-red
       image: docker.io/nodered/node-red:4.0.3
