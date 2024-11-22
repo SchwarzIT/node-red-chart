@@ -9,7 +9,7 @@ icon: https://nodered.org/about/resources/media/node-red-icon-2.png
 
 type: application
 
-version: 0.33.0
+version: 0.33.1
 appVersion: 4.0.3
 
 keywords:
@@ -29,7 +29,7 @@ maintainers:
 annotations:
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/changes: |
-    - update docker.io/nodered/node-red to 4.0.3
+    - feat: Allows template inside .Values.env
   artifacthub.io/images: |
     - name: node-red
       image: docker.io/nodered/node-red:4.0.3
