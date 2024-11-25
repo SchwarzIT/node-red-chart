@@ -1,4 +1,4 @@
-# node-red ⚙
+****# node-red ⚙
 
 ![Version: 0.33.1](https://img.shields.io/badge/Version-0.33.1-informational?style=for-the-badge) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) ![AppVersion: 4.0.3](https://img.shields.io/badge/AppVersion-4.0.3-informational?style=for-the-badge)
 
@@ -131,7 +131,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | sidecar.env.sleep_time_sidecar | string | `"5s"` | Set the sleep time for refresh script |
 | sidecar.env.username | string | `""` |  |
 | sidecar.extraEnv | list | `[]` | Extra Environments for the sidecar |
-| sidecar.extraNodeModules | list | `[]` | Extra Node-Modules that will be installed  from the sidecar script |
+| sidecar.extraNodeModules | list | `[]` | Extra Node-Modules that will be installed from the sidecar script (specifying a version like node-red-contrib-example@1.2.3 is supported) |
 | sidecar.image.pullPolicy | string | `"IfNotPresent"` | The image pull policy, default: `IfNotPresent` |
 | sidecar.image.registry | string | `"quay.io"` | The image registry to pull the sidecar from |
 | sidecar.image.repository | string | `"kiwigrid/k8s-sidecar"` | The image repository to pull from |
@@ -179,7 +179,7 @@ Default values are: `node-red-settings:1`.
 The `k8s-sidecar` will then call the `node-red` api to reload the flows. This will be done via a script. To run this script successfully you need to provide the `username` and `password`
 of your admin user. The admin user needs to have the right to use the `node-red` API.
 
-The `k8s-sidecar` can also call the `node-red` api to install additional node modules (npm packages) before refreshing or importing the flow.json.
+The `k8s-sidecar` can also call the `node-red` api to install additional node modules (npm packages) before refreshing or importing the flow.json. Specifying a version for a module is supported (s. example below).
 You need to list your flows required 'NODE_MODULES' in the `sidecar.extraNodeModules`: e.g.
 
 ```yaml
@@ -187,7 +187,7 @@ sidecar:
  extraNodeModules:
     - node-red-contrib-xkeys_setunitid
     - node-red-contrib-microsoft-teams-tasks
-    - node-red-contrib-json
+    - node-red-contrib-json@0.2.0
 ```
 To install the node modules successfully, the node red pod needs access to the `npmrc.registry` to download the declaired modules/packages.
 
