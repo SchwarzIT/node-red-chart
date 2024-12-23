@@ -1,6 +1,6 @@
-****# node-red ⚙
+# node-red ⚙
 
-![Version: 0.33.1](https://img.shields.io/badge/Version-0.33.1-informational?style=for-the-badge) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) ![AppVersion: 4.0.3](https://img.shields.io/badge/AppVersion-4.0.3-informational?style=for-the-badge)
+![Version: 0.34.0](https://img.shields.io/badge/Version-0.34.0-informational?style=for-the-badge) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) ![AppVersion: 4.0.8](https://img.shields.io/badge/AppVersion-4.0.8-informational?style=for-the-badge)
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/node-red&style=for-the-badge)](https://artifacthub.io/packages/search?repo=node-red)
 [![SIT](https://img.shields.io/badge/SIT-awesome-blueviolet.svg?style=for-the-badge)](https://jobs.schwarz)
@@ -16,7 +16,7 @@ A Helm chart for Node-Red, a low-code programming for event-driven applications
 To install the chart using the OCI artifact, run:
 
 ```bash
-helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.33.1
+helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.34.0
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.33.1
+helm install node-red node-red/node-red --version 0.34.0
 ```
 
 After a few seconds, node-red should be running.
@@ -104,7 +104,6 @@ The command removes all the Kubernetes components associated with the chart and 
 | persistence.enabled | bool | `false` | Use persistent volume to store data |
 | persistence.keepPVC | bool | `false` | ## Keep a created Persistent volume claim when uninstalling the helm chart (default: false) |
 | persistence.size | string | `"5Gi"` | Size of persistent volume claim |
-| persistence.existingClaim | string | `""` | Do not create, but use an existing volume claim with the provided name |
 | podAnnotations | object | `{}` | Pod annotations |
 | podLabels | object | `{}` | Labels to add to the node-red pod. default: {} |
 | podSecurityContext | object | `{"fsGroup":1000,"runAsUser":1000}` | Pod Security Context see [values.yaml](values.yaml) |
@@ -132,11 +131,11 @@ The command removes all the Kubernetes components associated with the chart and 
 | sidecar.env.sleep_time_sidecar | string | `"5s"` | Set the sleep time for refresh script |
 | sidecar.env.username | string | `""` |  |
 | sidecar.extraEnv | list | `[]` | Extra Environments for the sidecar |
-| sidecar.extraNodeModules | list | `[]` | Extra Node-Modules that will be installed from the sidecar script (specifying a version like node-red-contrib-example@1.2.3 is supported) |
+| sidecar.extraNodeModules | list | `[]` | Extra Node-Modules that will be installed  from the sidecar script |
 | sidecar.image.pullPolicy | string | `"IfNotPresent"` | The image pull policy, default: `IfNotPresent` |
 | sidecar.image.registry | string | `"quay.io"` | The image registry to pull the sidecar from |
 | sidecar.image.repository | string | `"kiwigrid/k8s-sidecar"` | The image repository to pull from |
-| sidecar.image.tag | string | `"1.28.0"` | The image tag to pull, default: `1.28.0` |
+| sidecar.image.tag | string | `"1.28.4"` | The image tag to pull, default: `1.28.4` |
 | sidecar.resources | object | `{}` | Resources for the sidecar |
 | sidecar.securityContext | object | `{}` | Security context for the sidecar |
 | sidecar.volumeMounts | list | `[]` | The extra volume mounts for the sidecar |
@@ -188,7 +187,7 @@ sidecar:
  extraNodeModules:
     - node-red-contrib-xkeys_setunitid
     - node-red-contrib-microsoft-teams-tasks
-    - node-red-contrib-json@0.2.0
+    - node-red-contrib-json
 ```
 To install the node modules successfully, the node red pod needs access to the `npmrc.registry` to download the declaired modules/packages.
 
