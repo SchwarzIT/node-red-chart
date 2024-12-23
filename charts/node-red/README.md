@@ -104,6 +104,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | persistence.enabled | bool | `false` | Use persistent volume to store data |
 | persistence.keepPVC | bool | `false` | ## Keep a created Persistent volume claim when uninstalling the helm chart (default: false) |
 | persistence.size | string | `"5Gi"` | Size of persistent volume claim |
+| persistence.existingClaim | string | `""` | Do not create, but use an existing volume claim with the provided name |
 | podAnnotations | object | `{}` | Pod annotations |
 | podLabels | object | `{}` | Labels to add to the node-red pod. default: {} |
 | podSecurityContext | object | `{"fsGroup":1000,"runAsUser":1000}` | Pod Security Context see [values.yaml](values.yaml) |
