@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: write # needed to commit and push changes
+  pull-requests: write
 
 jobs:
   documentation-update:
