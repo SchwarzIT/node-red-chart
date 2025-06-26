@@ -50,3 +50,4 @@ jobs:
         branch: update-docs-${{ github.run_number }}
         delete-branch: true
         base: main
+        signoff: true
