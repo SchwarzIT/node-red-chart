@@ -9,7 +9,7 @@ icon: https://nodered.org/about/resources/media/node-red-icon-2.png
 
 type: application
 
-version: 0.34.0
+version: 0.34.2
 appVersion: 4.0.9
 
 keywords:
@@ -29,13 +29,13 @@ maintainers:
 annotations:
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/changes: |
-    - Update k8s-sidecar to 1.28.4
+    - Update k8s-sidecar to 1.30.5
     - Update Node-Red to 4.0.9
   artifacthub.io/images: |
     - name: node-red
       image: docker.io/nodered/node-red:4.0.9
     - name: node-red-sidecar
-      image: quay.io/kiwigrid/k8s-sidecar:1.28.4
+      image: quay.io/kiwigrid/k8s-sidecar:1.30.5
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: website

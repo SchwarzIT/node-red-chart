@@ -2,18 +2,19 @@ name: Update Documentation
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows:
-    - "chart-publish"
-    types:
-    - completed
+  push:
+    branches:
+      - main
+    paths:
+      - "charts/**"
+      - "!charts/**/README.md"
 
-permissions: read-all
+permissions:
+  contents: write # needed to commit and push changes
 
 jobs:
   documentation-update:
     runs-on: ubuntu-latest
-    if: ${{github.event.workflow_run.conclusion == 'success'}}
     env:
       HELM_DOCS_VERSION: '1.12.0'
 
@@ -32,10 +33,19 @@ jobs:
       run: |
         helm-docs -t README.md.gotmpl -o README.md -b for-the-badge
 
-    - name: Commit changes
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add charts/node-red/README.md
-        git commit -m "Update documentation via helm-docs"
-        git push
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@5e914681df9dc83aa4e4905692ca88beb2f9e91f # v7.0.5
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: "Update documentation via helm-docs"
+        title: "📚 Update Helm chart documentation"
+        body: |
+          This PR updates the Helm chart documentation automatically via helm-docs.
+          
+          Changes:
+          - Updated README.md from template
+          
+          🤖 This is an automated PR created by the Update Documentation workflow.
+        branch: update-docs-${{ github.run_number }}
+        delete-branch: true
+        base: main
