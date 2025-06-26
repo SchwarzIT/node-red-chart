@@ -1,13 +1,12 @@
 ---
 name: chart-publish
 on:
-  workflow_run:
-    workflows:
-      - "Update Documentation"
-    types:
-      - completed
+  push:
     branches:
       - main
+    paths:
+      - "charts/**"
+      - "!charts/**/README.md"
 env:
   HELM_DOCS_VERSION: "1.12.0"
 
@@ -20,7 +19,6 @@ jobs:
       packages: write # for helm/chart-releaser-action to push chart release and create a release
       id-token: write # for helm/chart-releaser-action to push chart release and create a release
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -34,6 +32,17 @@ jobs:
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Install helm-docs
+        run: |
+          cd /tmp
+          wget https://github.com/norwoodj/helm-docs/releases/download/v${{env.HELM_DOCS_VERSION}}/helm-docs_${{env.HELM_DOCS_VERSION}}_Linux_x86_64.tar.gz
+          tar -xvf helm-docs_${{env.HELM_DOCS_VERSION}}_Linux_x86_64.tar.gz
+          sudo mv helm-docs /usr/local/sbin
+
+      - name: Run helm-docs
+        run: |
+          helm-docs -t README.md.gotmpl -o README.md -b for-the-badge
 
       - name: Login to GHCR
         uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3.4.0
