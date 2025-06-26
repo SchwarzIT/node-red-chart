@@ -2,18 +2,19 @@ name: Update Documentation
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows:
-    - "chart-publish"
-    types:
-    - completed
+  push:
+    branches:
+      - main
+    paths:
+      - "charts/**"
+      - "!charts/**/README.md"
 
-permissions: read-all
+permissions:
+  contents: write # needed to commit and push changes
 
 jobs:
   documentation-update:
     runs-on: ubuntu-latest
-    if: ${{github.event.workflow_run.conclusion == 'success'}}
     env:
       HELM_DOCS_VERSION: '1.12.0'
 
@@ -37,5 +38,9 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add charts/node-red/README.md
-        git commit -m "Update documentation via helm-docs"
-        git push
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Update documentation via helm-docs"
+          git push
+        fi
