@@ -115,13 +115,17 @@ spec:
           {{- end }}
           image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- if or .Values.metrics.enabled .Values.env }}
+          {{- if or .Values.metrics.enabled .Values.projectMode.enabled .Values.env }}
           env:
           {{- if .Values.metrics.enabled}}
           - name: PROMETHEUS_COLLECT_DEFAULT_METRICS
             value: "true"
           - name: PROMETHEUS_METRICS_PATH
             value: {{ .Values.metrics.path | default "/metrics" }}
+          {{- end }}
+          {{- if .Values.projectMode.enabled }}
+          - name: NODE_RED_ENABLE_PROJECTS
+            value: "true"
           {{- end }}
           {{- with .Values.env }}
           {{- tpl (toYaml .) $ | nindent 10 }}
