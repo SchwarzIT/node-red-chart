@@ -95,7 +95,7 @@ securityContext:
   allowPrivilegeEscalation: false
   readOnlyRootFilesystem: false  # Node-RED needs write access for project mode and normal operation
   runAsGroup: 1000               # Match Node-RED's expected group
-  runAsUser: 1000                # Match Node-RED's expected user  
+  runAsUser: 1000                # Match Node-RED's expected user
   seccompProfile:
     type: RuntimeDefault
   capabilities:
