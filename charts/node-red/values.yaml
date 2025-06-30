@@ -51,6 +51,13 @@ env: []
   # env:
   # - name: "NODE_RED_ENABLE_SAFE_MODE"
   #   value: ""
+
+# -- Enable Node-RED project mode for Git integration and project management
+# Note: Project mode requires write access to the /data directory and may need
+# additional security context adjustments depending on your cluster's security policies
+projectMode:
+  enabled: false
+
 envFrom: []
   # Possible values:
   # - secretRef:
@@ -86,9 +93,9 @@ securityContext:
   privileged: false
   runAsNonRoot: true
   allowPrivilegeEscalation: false
-  readOnlyRootFilesystem: true
-  runAsGroup: 10003
-  runAsUser: 10003
+  readOnlyRootFilesystem: false  # Node-RED needs write access for project mode and normal operation
+  runAsGroup: 1000               # Match Node-RED's expected group
+  runAsUser: 1000                # Match Node-RED's expected user
   seccompProfile:
     type: RuntimeDefault
   capabilities:

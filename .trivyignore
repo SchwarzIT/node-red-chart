@@ -1,0 +1,2 @@
+# readOnlyRootFilesystem: false  # Node-RED needs write access for project mode and normal operation
+AVD-KSV-0014
