@@ -101,9 +101,10 @@ You need to list your flows required 'NODE_MODULES' in the `sidecar.extraNodeMod
 ```yaml
 sidecar:
  extraNodeModules:
-    - node-red-contrib-xkeys_setunitid
-    - node-red-contrib-microsoft-teams-tasks
     - node-red-contrib-json
+    - node-red-node-mysql@2.0.0
+    - @flowfuse/node-red-dashboard
+    - @flowfuse/node-red-dashboard-2-ui-iframe@1.1.0
 ```
 To install the node modules successfully, the node red pod needs access to the `npmrc.registry` to download the declaired modules/packages.
 
