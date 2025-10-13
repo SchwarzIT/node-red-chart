@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.39.0](https://img.shields.io/badge/Version-0.39.0-informational?style=for-the-badge)
+![Version: 0.40.0](https://img.shields.io/badge/Version-0.40.0-informational?style=for-the-badge)
 ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge)
 ![AppVersion: 4.1.2](https://img.shields.io/badge/AppVersion-4.1.2-informational?style=for-the-badge)
 
@@ -18,7 +18,7 @@ A Helm chart for Node-Red, a low-code programming for event-driven applications
 To install the chart using the OCI artifact, run:
 
 ```bash
-helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.39.0
+helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.40.0
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.39.0
+helm install node-red node-red/node-red --version 0.40.0
 ```
 
 After a few seconds, node-red should be running.
@@ -111,6 +111,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | podSecurityContext | object | `{"fsGroup":1000,"runAsUser":1000}` | Pod Security Context see [values.yaml](values.yaml) |
 | podSecurityContext.fsGroup | int | `1000` | node-red group is 1000 |
 | podSecurityContext.runAsUser | int | `1000` | node-red user is 1000 |
+| priorityClassName | string | `""` | Priority class name for the node-red pod. default: "" |
 | projectMode | object | `{"enabled":false}` | Enable Node-RED project mode for Git integration and project management Note: Project mode requires write access to the /data directory and may need additional security context adjustments depending on your cluster's security policies |
 | rbac.createClusterRole | bool | `false` | Create a ClusterRole resource for the node-red pod. default: false |
 | rbac.enabled | bool | `true` |  |
