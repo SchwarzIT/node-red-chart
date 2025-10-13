@@ -268,6 +268,9 @@ settings: {}
 # -- Labels to add to the node-red pod. default: {}
 podLabels: {}
 
+# -- Priority class name for the node-red pod. default: ""
+priorityClassName: ""
+
 # -- You can configure extra sidecars containers to run alongside the node-red pod. default: []
 extraSidecars: []
 #  - name: sidecar-example
