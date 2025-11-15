@@ -200,6 +200,11 @@ ingress:
     #     name: "test"
 
 # -- Liveness probe for the Deployment
+startupProbe:
+  httpGet:
+    path: /
+    port: http
+
 livenessProbe:
   httpGet:
     path: /
