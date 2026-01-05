@@ -199,12 +199,13 @@ ingress:
     # -- Name of the Issuer
     #     name: "test"
 
-# -- Liveness probe for the Deployment
+# -- Startup probe for the Deployment
 startupProbe:
   httpGet:
     path: /
     port: http
 
+# -- Liveness probe for the Deployment
 livenessProbe:
   httpGet:
     path: /
