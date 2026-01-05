@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.35.0](https://img.shields.io/badge/Version-0.35.0-informational?style=for-the-badge) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) ![AppVersion: 4.0.9](https://img.shields.io/badge/AppVersion-4.0.9-informational?style=for-the-badge)
+![Version: 0.36.0](https://img.shields.io/badge/Version-0.36.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.0.9](https://img.shields.io/badge/AppVersion-4.0.9-informational?style=flat-square)
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/node-red&style=for-the-badge)](https://artifacthub.io/packages/search?repo=node-red)
 [![SIT](https://img.shields.io/badge/SIT-awesome-blueviolet.svg?style=for-the-badge)](https://jobs.schwarz)
@@ -16,7 +16,7 @@ A Helm chart for Node-Red, a low-code programming for event-driven applications
 To install the chart using the OCI artifact, run:
 
 ```bash
-helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.35.0
+helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.36.0
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.35.0
+helm install node-red node-red/node-red --version 0.36.0
 ```
 
 After a few seconds, node-red should be running.
@@ -84,7 +84,8 @@ The command removes all the Kubernetes components associated with the chart and 
 | ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` | Ingress type of path |
 | ingress.tls | list | `[]` | Ingress TLS configuration |
 | initContainers | list | `[]` | containers which are run before the app containers are started |
-| livenessProbe | object | `{"httpGet":{"path":"/","port":"http"}}` | Liveness probe for the Deployment |
+| livenessProbe.httpGet.path | string | `"/"` |  |
+| livenessProbe.httpGet.port | string | `"http"` |  |
 | metrics.enabled | bool | `false` | Deploy metrics service |
 | metrics.path | string | `"/metrics"` |  |
 | metrics.serviceMonitor.additionalLabels | object | `{}` | Prometheus ServiceMonitor labels |
@@ -140,6 +141,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | sidecar.resources | object | `{}` | Resources for the sidecar |
 | sidecar.securityContext | object | `{}` | Security context for the sidecar |
 | sidecar.volumeMounts | list | `[]` | The extra volume mounts for the sidecar |
+| startupProbe | object | `{"httpGet":{"path":"/","port":"http"}}` | Liveness probe for the Deployment |
 | terminationGracePeriodSeconds | int | `30` | The terminationGracePeriodSeconds for the pod here we explicitly set the default value defined in kubernetes https://github.com/kubernetes/api/blob/d4b94f478bb2e6467873657dd7b4e1b0ac8351be/core/v1/types.go#L3114-L3118 |
 | tolerations | list | `[]` | Toleration labels for pod assignment |
 
