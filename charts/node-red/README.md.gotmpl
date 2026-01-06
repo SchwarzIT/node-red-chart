@@ -113,6 +113,17 @@ sidecar:
 ```
 To install the node modules successfully, the node red pod needs access to the `npmrc.registry` to download the declaired modules/packages.
 
+### Sidecar v2 Health Checks
+
+Starting with k8s-sidecar v2.x, the sidecar exposes a `/healthz` endpoint on port 8080 for health monitoring. This chart configures liveness and readiness probes by default:
+
+- **Readiness Probe**: Reports ready (HTTP 200) only after the initial synchronization completes
+- **Liveness Probe**: Monitors Kubernetes API connectivity and watcher subprocess status
+
+You can customize or disable these probes via `sidecar.livenessProbe` and `sidecar.readinessProbe` values.
+
+The `sidecar.env.skip_init` option (v2.1.0+) allows skipping the initial request to the Node-RED API when using watch mode.
+
 ## Contributing 🤝
 
 ### Contributing via GitHub
