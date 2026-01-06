@@ -1,3 +1,9 @@
+{{- define "chart.badgesSection" -}}
+![Version: {{ .Version }}](https://img.shields.io/badge/Version-{{ .Version | replace "-" "--" }}-informational?style=for-the-badge)
+![Type: {{ .Type }}](https://img.shields.io/badge/Type-{{ .Type }}-informational?style=for-the-badge)
+![AppVersion: {{ .AppVersion }}](https://img.shields.io/badge/AppVersion-{{ .AppVersion | replace "-" "--" }}-informational?style=for-the-badge)
+{{- end -}}
+
 # node-red ⚙
 
 {{ template "chart.badgesSection" . }}
