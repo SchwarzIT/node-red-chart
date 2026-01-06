@@ -9,8 +9,8 @@ icon: https://nodered.org/about/resources/media/node-red-icon-2.png
 
 type: application
 
-version: 0.37.0
-appVersion: 4.0.9
+version: 0.38.0
+appVersion: 4.1.2
 
 keywords:
   - node-red
@@ -29,10 +29,10 @@ maintainers:
 annotations:
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/changes: |
-    - Add startupProbe configuration support
+    - Update Node-RED to 4.1.2
   artifacthub.io/images: |
     - name: node-red
-      image: docker.io/nodered/node-red:4.0.9
+      image: docker.io/nodered/node-red:4.1.2
     - name: node-red-sidecar
       image: quay.io/kiwigrid/k8s-sidecar:1.30.5
   artifacthub.io/license: Apache-2.0
