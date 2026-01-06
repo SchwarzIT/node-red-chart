@@ -131,7 +131,7 @@ metrics:
     # prometheus: kube-prometheus
 
     # -- Prometheus ServiceMonitor namespace
-    namespace: "" # "monitoring"
+    namespace: ""  # "monitoring"
     # -- Prometheus ServiceMonitor labels
     additionalLabels: {}
 
@@ -308,6 +308,8 @@ sidecar:
     #  name: node-red-api-admin-password
     # -- Key of the secret that contains the password
     #  key: password
+    # -- Skip the initial request to REQ_URL when using watch mode (v2.1.0+)
+    skip_init: false
   # -- Extra Node-Modules that will be installed  from the sidecar script
   extraNodeModules: []
   # -- Extra Environments for the sidecar
@@ -316,6 +318,20 @@ sidecar:
   resources: {}
   # -- Security context for the sidecar
   securityContext: {}
+  # -- Liveness probe for the sidecar (k8s-sidecar v2+ exposes /healthz on port 8080)
+  livenessProbe:
+    httpGet:
+      path: /healthz
+      port: 8080
+    initialDelaySeconds: 5
+    periodSeconds: 10
+  # -- Readiness probe for the sidecar (reports ready after initial sync completes)
+  readinessProbe:
+    httpGet:
+      path: /healthz
+      port: 8080
+    initialDelaySeconds: 5
+    periodSeconds: 10
   #  Image for the sidecar
   image:
     # -- The image registry to pull the sidecar from
@@ -323,7 +339,7 @@ sidecar:
     # -- The image repository to pull from
     repository: kiwigrid/k8s-sidecar
     # -- The image tag to pull, default: `1.28.4`
-    tag: 1.30.5
+    tag: 2.2.3
     # -- The image pull policy, default: `IfNotPresent`
     pullPolicy: IfNotPresent
   # -- The extra volume mounts for the sidecar

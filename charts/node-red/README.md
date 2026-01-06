@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.38.0](https://img.shields.io/badge/Version-0.38.0-informational?style=for-the-badge)
+![Version: 0.39.0](https://img.shields.io/badge/Version-0.39.0-informational?style=for-the-badge)
 ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge)
 ![AppVersion: 4.1.2](https://img.shields.io/badge/AppVersion-4.1.2-informational?style=for-the-badge)
 
@@ -18,7 +18,7 @@ A Helm chart for Node-Red, a low-code programming for event-driven applications
 To install the chart using the OCI artifact, run:
 
 ```bash
-helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.38.0
+helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.39.0
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.38.0
+helm install node-red node-red/node-red --version 0.39.0
 ```
 
 After a few seconds, node-red should be running.
@@ -131,6 +131,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | sidecar.env.password | string | `""` | Password as key value pair |
 | sidecar.env.passwordFromExistingSecret | object | `{}` | Password from existing secret |
 | sidecar.env.script | string | `"flow_refresh.py"` | Absolute path to shell script to execute after a configmap got reloaded. |
+| sidecar.env.skip_init | bool | `false` | Skip the initial request to REQ_URL when using watch mode (v2.1.0+) |
 | sidecar.env.sleep_time_sidecar | string | `"5s"` | Set the sleep time for refresh script |
 | sidecar.env.username | string | `""` |  |
 | sidecar.extraEnv | list | `[]` | Extra Environments for the sidecar |
@@ -138,7 +139,9 @@ The command removes all the Kubernetes components associated with the chart and 
 | sidecar.image.pullPolicy | string | `"IfNotPresent"` | The image pull policy, default: `IfNotPresent` |
 | sidecar.image.registry | string | `"quay.io"` | The image registry to pull the sidecar from |
 | sidecar.image.repository | string | `"kiwigrid/k8s-sidecar"` | The image repository to pull from |
-| sidecar.image.tag | string | `"1.30.5"` | The image tag to pull, default: `1.28.4` |
+| sidecar.image.tag | string | `"2.2.3"` | The image tag to pull, default: `1.28.4` |
+| sidecar.livenessProbe | object | `{"httpGet":{"path":"/healthz","port":8080},"initialDelaySeconds":5,"periodSeconds":10}` | Liveness probe for the sidecar (k8s-sidecar v2+ exposes /healthz on port 8080) |
+| sidecar.readinessProbe | object | `{"httpGet":{"path":"/healthz","port":8080},"initialDelaySeconds":5,"periodSeconds":10}` | Readiness probe for the sidecar (reports ready after initial sync completes) |
 | sidecar.resources | object | `{}` | Resources for the sidecar |
 | sidecar.securityContext | object | `{}` | Security context for the sidecar |
 | sidecar.volumeMounts | list | `[]` | The extra volume mounts for the sidecar |
@@ -194,6 +197,17 @@ sidecar:
     - node-red-contrib-json
 ```
 To install the node modules successfully, the node red pod needs access to the `npmrc.registry` to download the declaired modules/packages.
+
+### Sidecar v2 Health Checks
+
+Starting with k8s-sidecar v2.x, the sidecar exposes a `/healthz` endpoint on port 8080 for health monitoring. This chart configures liveness and readiness probes by default:
+
+- **Readiness Probe**: Reports ready (HTTP 200) only after the initial synchronization completes
+- **Liveness Probe**: Monitors Kubernetes API connectivity and watcher subprocess status
+
+You can customize or disable these probes via `sidecar.livenessProbe` and `sidecar.readinessProbe` values.
+
+The `sidecar.env.skip_init` option (v2.1.0+) allows skipping the initial request to the Node-RED API when using watch mode.
 
 ## Contributing 🤝
 

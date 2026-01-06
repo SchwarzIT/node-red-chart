@@ -85,9 +85,21 @@ spec:
                 name: {{ .Values.sidecar.env.passwordFromExistingSecret.name }}
           {{- end }}
           {{- end }}
+          {{- if .Values.sidecar.env.skip_init }}
+          - name: SKIP_INIT
+            value: "true"
+          {{- end }}
           image: "{{ .Values.sidecar.image.registry }}/{{ .Values.sidecar.image.repository }}:{{ .Values.sidecar.image.tag }}"
           imagePullPolicy: {{ .Values.sidecar.image.pullPolicy }}
           name: node-red-sidecar
+          {{- if .Values.sidecar.livenessProbe }}
+          livenessProbe:
+            {{- toYaml .Values.sidecar.livenessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.sidecar.readinessProbe }}
+          readinessProbe:
+            {{- toYaml .Values.sidecar.readinessProbe | nindent 12 }}
+          {{- end }}
           {{- if .Values.sidecar.resources }}
           resources:
             {{- toYaml .Values.sidecar.resources | nindent 12 }}
