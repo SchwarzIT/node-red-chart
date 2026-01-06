@@ -4,6 +4,52 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - Update Node-RED to 4.1.2
+        - Update k8s-sidecar to 2.2.3 (major version upgrade with health endpoint support)
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/images: |
+        - name: node-red
+          image: docker.io/nodered/node-red:4.1.2
+        - name: node-red-sidecar
+          image: quay.io/kiwigrid/k8s-sidecar:2.2.3
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: website
+          url: https://jobs.schwarz
+      artifacthub.io/maintainers: |
+        - name: dirien
+          email: engin.diri@mail.schwarz
+        - name: Kaktor
+          email: felix.kammerer@mail.schwarz
+    apiVersion: v2
+    appVersion: 4.1.2
+    created: "2026-01-06T19:51:32.994535447Z"
+    description: A Helm chart for Node-Red, a low-code programming for event-driven
+      applications
+    digest: f2bd47501fed57001e0d8a7a11b3331109f5654636916a2b97573f36077eb62f
+    home: https://nodered.org/
+    icon: https://nodered.org/about/resources/media/node-red-icon-2.png
+    keywords:
+    - node-red
+    - iot
+    - home
+    - automation
+    maintainers:
+    - email: engin@pulumi.com
+      name: dirien
+      url: https://pulumi.com
+    - email: felix.kammerer@mail.schwarz
+      name: Kaktor
+      url: https://jobs.schwarz
+    name: node-red
+    sources:
+    - https://github.com/SchwarzIT/node-red-chart
+    type: application
+    urls:
+    - https://github.com/SchwarzIT/node-red-chart/releases/download/node-red-0.39.0/node-red-0.39.0.tgz
+    version: 0.39.0
+  - annotations:
+      artifacthub.io/changes: |
+        - Update Node-RED to 4.1.2
       artifacthub.io/containsSecurityUpdates: "false"
       artifacthub.io/images: |
         - name: node-red
@@ -3968,4 +4014,4 @@ entries:
     urls:
     - https://github.com/dirien/node-red-chart/releases/download/node-red-0.1.0/node-red-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-06T19:03:23.680107204Z"
+generated: "2026-01-06T19:51:32.99484508Z"
