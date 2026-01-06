@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.36.0](https://img.shields.io/badge/Version-0.36.0-informational?style=for-the-badge) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge) ![AppVersion: 4.0.9](https://img.shields.io/badge/AppVersion-4.0.9-informational?style=for-the-badge)
+![Version: 0.37.0](https://img.shields.io/badge/Version-0.37.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.0.9](https://img.shields.io/badge/AppVersion-4.0.9-informational?style=flat-square)
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/node-red&style=for-the-badge)](https://artifacthub.io/packages/search?repo=node-red)
 [![SIT](https://img.shields.io/badge/SIT-awesome-blueviolet.svg?style=for-the-badge)](https://jobs.schwarz)
@@ -16,7 +16,7 @@ A Helm chart for Node-Red, a low-code programming for event-driven applications
 To install the chart using the OCI artifact, run:
 
 ```bash
-helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.36.0
+helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.37.0
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.36.0
+helm install node-red node-red/node-red --version 0.37.0
 ```
 
 After a few seconds, node-red should be running.
@@ -113,7 +113,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | rbac.createClusterRole | bool | `false` | Create a ClusterRole resource for the node-red pod. default: false |
 | rbac.enabled | bool | `true` |  |
 | readinessProbe | object | `{"httpGet":{"path":"/","port":"http"}}` | Readiness probe for the Deployment |
-| resources | object | `{"limits":{"cpu":"500m","memory":"512Mi"},"requests":{"cpu":"100m","memory":"128Mi"}}` | CPU/Memory resource requests/limits |
+| resources | object | `{"limits":{"memory":"512Mi"},"requests":{"cpu":"100m","memory":"128Mi"}}` | CPU/Memory resource requests/limits |
 | securityContext | object | `{"allowPrivilegeEscalation":false,"capabilities":{"drop":["ALL"]},"privileged":false,"readOnlyRootFilesystem":false,"runAsGroup":1000,"runAsNonRoot":true,"runAsUser":1000,"seccompProfile":{"type":"RuntimeDefault"}}` | Security Context see [values.yaml](values.yaml) |
 | service.annotations | object | `{}` | Annotations for the service |
 | service.port | int | `1880` | Kubernetes port where service is exposed |
