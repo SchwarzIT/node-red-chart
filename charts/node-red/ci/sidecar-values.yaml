@@ -1,0 +1,22 @@
+# CI test: sidecar enabled with k8s-sidecar v2.x health probes
+# Validates sidecar container starts and passes liveness/readiness checks
+sidecar:
+  enabled: true
+  env:
+    method: watch
+    label: node-red-settings
+    label_value: "1"
+    script: flow_refresh.py
+    sleep_time_sidecar: 5s
+  livenessProbe:
+    httpGet:
+      path: /healthz
+      port: 8080
+    initialDelaySeconds: 5
+    periodSeconds: 10
+  readinessProbe:
+    httpGet:
+      path: /healthz
+      port: 8080
+    initialDelaySeconds: 5
+    periodSeconds: 10
