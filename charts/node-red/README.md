@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.40.0](https://img.shields.io/badge/Version-0.40.0-informational?style=for-the-badge)
+![Version: 0.40.1](https://img.shields.io/badge/Version-0.40.1-informational?style=for-the-badge)
 ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge)
 ![AppVersion: 4.1.2](https://img.shields.io/badge/AppVersion-4.1.2-informational?style=for-the-badge)
 
@@ -18,7 +18,7 @@ A Helm chart for Node-Red, a low-code programming for event-driven applications
 To install the chart using the OCI artifact, run:
 
 ```bash
-helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.40.0
+helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.40.1
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.40.0
+helm install node-red node-red/node-red --version 0.40.1
 ```
 
 After a few seconds, node-red should be running.
@@ -140,7 +140,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | sidecar.image.pullPolicy | string | `"IfNotPresent"` | The image pull policy, default: `IfNotPresent` |
 | sidecar.image.registry | string | `"quay.io"` | The image registry to pull the sidecar from |
 | sidecar.image.repository | string | `"kiwigrid/k8s-sidecar"` | The image repository to pull from |
-| sidecar.image.tag | string | `"2.2.3"` | The image tag to pull, default: `1.28.4` |
+| sidecar.image.tag | string | `"2.5.0"` | The image tag to pull, default: `2.5.0` |
 | sidecar.livenessProbe | object | `{"httpGet":{"path":"/healthz","port":8080},"initialDelaySeconds":5,"periodSeconds":10}` | Liveness probe for the sidecar (k8s-sidecar v2+ exposes /healthz on port 8080) |
 | sidecar.readinessProbe | object | `{"httpGet":{"path":"/healthz","port":8080},"initialDelaySeconds":5,"periodSeconds":10}` | Readiness probe for the sidecar (reports ready after initial sync completes) |
 | sidecar.resources | object | `{}` | Resources for the sidecar |
