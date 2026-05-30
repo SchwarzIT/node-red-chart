@@ -199,6 +199,30 @@ ingress:
     # -- Name of the Issuer
     #     name: "test"
 
+# -- Define network policy targeting managed pod
+networkPolicy:
+  enabled: false
+  # -- If cilium flavor is defined, fill definition here
+  cilium:
+    egress:
+    - toPorts:
+      - ports:
+        - port: "1883"
+          protocol: TCP
+        - port: "8883"
+          protocol: TCP
+    ingress: {}
+  # -- Choose policy flavor in 'kubernetes', 'cilium'
+  flavor: kubernetes
+  # -- If kubernetes flavor is defined, fill definition here
+  ingress: {}
+  egress:
+  - ports:
+    - port: 1883
+      protocol: TCP
+    - port: 8883
+      protocol: TCP
+
 # -- Startup probe for the Deployment
 startupProbe:
   httpGet:

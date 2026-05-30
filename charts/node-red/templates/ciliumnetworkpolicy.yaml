@@ -1,0 +1,22 @@
+{{- if and .Values.networkPolicy.enabled (eq .Values.networkPolicy.flavor "cilium") }}
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: {{ include "node-red.fullname" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "node-red.labels" . | nindent 4 }}
+spec:
+  endpointSelector:
+    matchLabels:
+      k8s:app.kubernetes.io/name: '{{ include "node-red.name" . }}'
+      k8s:app.kubernetes.io/instance: '{{ .Release.Name }}'
+  {{- if and .Values.networkPolicy.cilium .Values.networkPolicy.cilium.egress }}
+  egress:
+    {{ toYaml .Values.networkPolicy.cilium.egress | nindent 4 }}
+  {{- end }}
+  {{- if and .Values.networkPolicy.cilium .Values.networkPolicy.cilium.ingress }}
+  ingress:
+    {{ toYaml .Values.networkPolicy.cilium.ingress | nindent 4 }}
+  {{- end }}
+{{- end }}
