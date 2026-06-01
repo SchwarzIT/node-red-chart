@@ -204,24 +204,52 @@ networkPolicy:
   enabled: false
   # -- If cilium flavor is defined, fill definition here
   cilium:
-    egress:
+    egress: []
+    # Exemple to talk to mqtt
+    # - toPorts:
+    #   - ports:
+    #     - port: "1883"
+    #       protocol: TCP
+    #     - port: "8883"
+    #       protocol: TCP
+    #
+    # Exemple to restrict https output
+    # - toFQDNs: &dns_names
+    #   - matchName: registry.npmjs.org
+    #   toPorts:
+    #   - ports:
+    #     - port: "443"
+    #       protocol: TCP
+    # - toEndpoints:
+    #   - matchLabels:
+    #       k8s:io.kubernetes.pod.namespace: kube-system
+    #       k8s:k8s-app: kube-dns
+    #   toPorts:
+    #   - ports:
+    #     - port: "53"
+    #       protocol: UDP
+    #     - port: "53"
+    #       protocol: TCP
+    #     rules:
+    #       dns: *dns_names
+    ingress:
     - toPorts:
       - ports:
-        - port: "1883"
-          protocol: TCP
-        - port: "8883"
-          protocol: TCP
-    ingress: {}
+        - port: http
   # -- Choose policy flavor in 'kubernetes', 'cilium'
   flavor: kubernetes
   # -- If kubernetes flavor is defined, fill definition here
-  ingress: {}
-  egress:
+  ingress:
   - ports:
-    - port: 1883
-      protocol: TCP
-    - port: 8883
-      protocol: TCP
+    - protocol: TCP
+      port: http
+  egress: []
+  # Exemple to talk to mqtt
+  # - ports:
+  #   - port: 1883
+  #     protocol: TCP
+  #   - port: 8883
+  #     protocol: TCP
 
 # -- Startup probe for the Deployment
 startupProbe:
