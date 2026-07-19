@@ -98,6 +98,12 @@ The command removes all the Kubernetes components associated with the chart and 
 | metrics.serviceMonitor.relabelings | list | `[]` | Prometheus [RelabelConfigs] to apply to samples before scraping |
 | metrics.serviceMonitor.selector | object | `{}` | Prometheus ServiceMonitor selector |
 | nameOverride | string | `""` | Provide a name in place of node-red |
+| networkPolicy.cilium.egress | list | `[]` | Cilium network policy egress https://docs.cilium.io/en/stable/security/policy/ |
+| networkPolicy.cilium.ingress | list | `[]` | Cilium network policy ingress https://docs.cilium.io/en/stable/security/policy/ |
+| networkPolicy.egress  | list | `[]` | Kubernetes egress spec https://kubernetes.io/docs/concepts/services-networking/network-policies/ |
+| networkPolicy.enabled | bool | `false` | Enable network policy management |
+| networkPolicy.flavor | string | `kubernetes` | Network policy mode in kubernetes, cilium |
+| networkPolicy.ingress  | list | `[]` |  | Kubernetes ingress spec https://kubernetes.io/docs/concepts/services-networking/network-policies/ |
 | nodeSelector | object | `{}` | Node selector |
 | npmrc.content | string | `"# Custom npmrc config\n"` | Configuration to add custom npmrc config |
 | npmrc.enabled | bool | `false` | Enable custom npmrc config |
