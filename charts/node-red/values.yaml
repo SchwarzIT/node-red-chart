@@ -313,6 +313,8 @@ sidecar:
     #  key: password
     # -- Skip the initial request to REQ_URL when using watch mode (v2.1.0+)
     skip_init: false
+    # -- Optional: Custom target URL for the sidecar. If left empty, the internal service cluster URL is used automatically.
+    url: ""
   # -- Extra Node-Modules that will be installed  from the sidecar script
   extraNodeModules: []
   # -- Extra Environments for the sidecar
