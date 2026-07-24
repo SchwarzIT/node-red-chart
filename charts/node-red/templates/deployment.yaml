@@ -42,7 +42,7 @@ spec:
       {{- if .Values.initContainers  }}
       initContainers:
       {{- with .Values.initContainers }}
-        {{- toYaml . | nindent 6 }}
+        {{- tpl (toYaml .) $ | nindent 6 }}
       {{- end }}
       {{- end }}
       containers:
