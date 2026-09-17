@@ -1,6 +1,6 @@
 # node-red ⚙
 
-![Version: 0.40.1](https://img.shields.io/badge/Version-0.40.1-informational?style=for-the-badge)
+![Version: 0.40.2](https://img.shields.io/badge/Version-0.40.2-informational?style=for-the-badge)
 ![Type: application](https://img.shields.io/badge/Type-application-informational?style=for-the-badge)
 ![AppVersion: 4.1.2](https://img.shields.io/badge/AppVersion-4.1.2-informational?style=for-the-badge)
 
@@ -18,7 +18,7 @@ A Helm chart for Node-Red, a low-code programming for event-driven applications
 To install the chart using the OCI artifact, run:
 
 ```bash
-helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.40.1
+helm install node-red oci://ghcr.io/schwarzit/charts/node-red --version 0.40.2
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ helm repo update
 To install the chart with the release name node-red run:
 
 ```bash
-helm install node-red node-red/node-red --version 0.40.1
+helm install node-red node-red/node-red --version 0.40.2
 ```
 
 After a few seconds, node-red should be running.
@@ -73,6 +73,11 @@ The command removes all the Kubernetes components associated with the chart and 
 | extraVolumeMounts | string | `nil` | Extra Volume Mounts for the node-red pod |
 | extraVolumes | string | `nil` | Extra Volumes for the pod |
 | fullnameOverride | string | `""` | String to fully override "node-red.fullname" |
+| httpRoute.annotations | object | `{}` | Additional HTTPRoute annotations |
+| httpRoute.enabled | bool | `false` | Enable an HTTPRoute resource for the server |
+| httpRoute.hostnames | list | `[]` | Hostnames exposed by the HTTPRoute |
+| httpRoute.parentRefs | list | `[]` | Parent references for Gateway API attachment |
+| httpRoute.rules | list | `[{"backendRefs":[],"matches":[{"path":{"type":"PathPrefix","value":"/"}}]}]` | HTTPRoute rules. If backendRefs is empty, traffic is forwarded to this chart's service. |
 | image.pullPolicy | string | `"IfNotPresent"` | The image pull policy |
 | image.registry | string | `"docker.io"` | The image registry to pull from |
 | image.repository | string | `"nodered/node-red"` | The image repository to pull from |
@@ -134,6 +139,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | sidecar.env.script | string | `"flow_refresh.py"` | Absolute path to shell script to execute after a configmap got reloaded. |
 | sidecar.env.skip_init | bool | `false` | Skip the initial request to REQ_URL when using watch mode (v2.1.0+) |
 | sidecar.env.sleep_time_sidecar | string | `"5s"` | Set the sleep time for refresh script |
+| sidecar.env.url | string | `""` | Optional: Custom target URL for the sidecar. If left empty, the internal service cluster URL is used automatically. |
 | sidecar.env.username | string | `""` |  |
 | sidecar.extraEnv | list | `[]` | Extra Environments for the sidecar |
 | sidecar.extraNodeModules | list | `[]` | Extra Node-Modules that will be installed  from the sidecar script |
@@ -163,6 +169,24 @@ helm install node-red node-red/node-red -f values.yaml
 ```
 
 > **Tip**: You can use the default [values.yaml](values.yaml)
+
+## Gateway API HTTPRoute
+
+This chart can expose Node-RED via Gateway API using `HTTPRoute`.
+
+Example:
+
+```yaml
+httpRoute:
+  enabled: true
+  parentRefs:
+    - name: edge-gateway
+      sectionName: web
+  hostnames:
+    - nodered.example.com
+```
+
+If a rule does not define `backendRefs`, the chart routes traffic to the default Node-RED service and `service.port`.
 
 ## Monitoring 🌡️
 To enable the node-red prometheus monitoring capability, you need to install the node `node-red-contrib-prometheus-exporter`.
