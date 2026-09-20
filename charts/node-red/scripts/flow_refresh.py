@@ -109,7 +109,13 @@ def main():
         for module in EXTRA_NODE_MODULES:
             if module not in modules_installed:
                 try:
-                    module_name, version = module.rsplit('/', 1)[-1].split('@', 1) if '@' in module else (module, None)
+                    # SPLIT WILL NOT WORK PROBERLY, IF STRING HAS MORE THAN ONE MATCH. THE ARRAY INDEX WILL FAIL 
+                    # MODULE SAMPLE USE CASES: "NODE-RED-NODE-MYSQL, NODE-RED-NODE-MYSQL@2.0.0, NODE-RED-NODE-MYSQL/, @FLOWFUSE/NODE-RED-DASHBOARD, @FLOWFUSE/NODE-RED-DASHBOARD/, @FLOWFUSE/NODE-RED-DASHBOARD@1.2.3, 
+                    # OLD SPLIT MODULE_NAME, VERSION = MODULE.RSPLIT('/', 1)[-1].SPLIT('@', 1) IF '@' IN MODULE ELSE (MODULE, NONE)
+                    # TRAILING SLASH - ONLY AT THE END
+                    module = module[:-1] if module.endswith('/') else module
+                    # SPLIT AT LAST @ EVEN IF NONE OR MORE THAN ONE 
+                    module_name, version = (module[:module.rfind('@')], module[module.rfind('@') + 1:]) if '@' in module else (module, None)
                 except:
                     module_name, version = module, None
                 payload_node_module = ''
