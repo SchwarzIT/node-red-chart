@@ -1,0 +1,15 @@
+httpRoute:
+  enabled: true
+  parentRefs:
+    - name: edge-gateway
+      sectionName: web
+  hostnames:
+    - nodered.example.com
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /flows
+      backendRefs:
+        - name: custom-backend
+          port: 8080
