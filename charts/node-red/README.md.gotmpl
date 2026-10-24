@@ -78,6 +78,24 @@ helm install node-red node-red/node-red -f values.yaml
 
 > **Tip**: You can use the default [values.yaml](values.yaml)
 
+## Gateway API HTTPRoute
+
+This chart can expose Node-RED via Gateway API using `HTTPRoute`.
+
+Example:
+
+```yaml
+httpRoute:
+  enabled: true
+  parentRefs:
+    - name: edge-gateway
+      sectionName: web
+  hostnames:
+    - nodered.example.com
+```
+
+If a rule does not define `backendRefs`, the chart routes traffic to the default Node-RED service and `service.port`.
+
 ## Monitoring 🌡️
 To enable the node-red prometheus monitoring capability, you need to install the node `node-red-contrib-prometheus-exporter`.
 For more details see [official documentation](https://flows.nodered.org/node/node-red-contrib-prometheus-exporter)

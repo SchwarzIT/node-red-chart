@@ -1,0 +1,46 @@
+suite: test httproute template
+templates:
+  - httproute.yaml
+tests:
+  - it: should not render, when httpRoute.enabled=false
+    asserts:
+      - hasDocuments:
+          count: 0
+
+  - it: should render defaults, when httpRoute.enabled=true
+    set:
+      httpRoute.enabled: true
+    asserts:
+      - hasDocuments:
+          count: 1
+      - isKind:
+          of: HTTPRoute
+      - equal:
+          path: spec.rules[0].backendRefs[0].name
+          value: RELEASE-NAME-node-red
+      - equal:
+          path: spec.rules[0].backendRefs[0].port
+          value: 1880
+
+  - it: should render custom parentRefs, hostnames and backendRefs
+    values:
+      - ./values/httproute_values.yaml
+    asserts:
+      - equal:
+          path: spec.parentRefs[0].name
+          value: edge-gateway
+      - equal:
+          path: spec.parentRefs[0].sectionName
+          value: web
+      - equal:
+          path: spec.hostnames[0]
+          value: nodered.example.com
+      - equal:
+          path: spec.rules[0].matches[0].path.value
+          value: /flows
+      - equal:
+          path: spec.rules[0].backendRefs[0].name
+          value: custom-backend
+      - equal:
+          path: spec.rules[0].backendRefs[0].port
+          value: 8080
