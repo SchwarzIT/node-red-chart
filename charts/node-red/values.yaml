@@ -199,6 +199,23 @@ ingress:
     # -- Name of the Issuer
     #     name: "test"
 
+httpRoute:
+  # -- Enable an HTTPRoute resource for the server
+  enabled: false
+  # -- Additional HTTPRoute annotations
+  annotations: {}
+  # -- Parent references for Gateway API attachment
+  parentRefs: []
+  # -- Hostnames exposed by the HTTPRoute
+  hostnames: []
+  # -- HTTPRoute rules. If backendRefs is empty, traffic is forwarded to this chart's service.
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs: []
+
 # -- Startup probe for the Deployment
 startupProbe:
   httpGet:
